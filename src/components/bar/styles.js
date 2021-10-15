@@ -33,7 +33,6 @@ export const StyleBar = styled.div`
     border-left: 1px solid var(--black);
   }
   .FaBars {
-    display: block;
     margin: 10px;
     font-size: 20px;
   }
