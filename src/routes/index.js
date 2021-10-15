@@ -1,5 +1,5 @@
 import { Route, Switch } from "react-router";
-// import Home from "../pages/home";
+import Home from "../pages/home";
 // import SignUp from "../pages/signup";
 // import Login from "../pages/login";
 // import AboutUs from "../pages/aboutus";
@@ -12,10 +12,10 @@ import Dashboard from "../pages/dashboard";
 function Routes() {
   return (
     <Switch>
-      {/* <Route exact path="/">
+      <Route exact path="/">
         <Home />
       </Route>
-      <Route path="/signup">
+      {/* <Route path="/signup">
         <SignUp />
       </Route>
       <Route path="/login">

@@ -9,7 +9,20 @@ export const StyleButton = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
-  span {
+  margin-top:50px;
+
+  span{
     font-size: 22px;
+    color:var(--white);
+  }
+  .ou{
+    position:relative;
+    top:97%;
+    right:15%;
+  }
+
+  .ou span{
+    font-size: 22px;
+    color:var(--black);
   }
 `;
