@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { TextField } from "@material-ui/core";
 
 const Input = () => {
@@ -11,6 +12,10 @@ const Input = () => {
       />
     </div>
   );
+=======
+const Input = () => {
+  return <div></div>;
+>>>>>>> 7ecb4e40943efa78ff131fa874839af2d523975c
 };
 
 export default Input;

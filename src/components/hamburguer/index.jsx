@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { StyleHamburguer } from "./style";
 import { AiFillAppstore, AiFillCarryOut, AiFillSetting } from "react-icons/ai";
 import { BsFillPeopleFill } from "react-icons/bs";
@@ -37,6 +38,10 @@ const Hamburguer = () => {
       </div>
     </StyleHamburguer>
   );
+=======
+const Hamburguer = () => {
+  return <div></div>;
+>>>>>>> 7ecb4e40943efa78ff131fa874839af2d523975c
 };
 
 export default Hamburguer;

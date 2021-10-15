@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import Bar from "../../components/bar";
 import Hamburguer from "../../components/hamburguer";
 import { MainContainer } from "./styles.js";
@@ -18,6 +19,10 @@ const Dashboard = () => {
       </MainContainer>
     </>
   );
+=======
+const Dashboard = () => {
+  return <div></div>;
+>>>>>>> 7ecb4e40943efa78ff131fa874839af2d523975c
 };
 
 export default Dashboard;

@@ -1,3 +1,4 @@
+
 import {StyleButton} from "./styles";
 
 const Button = () => {
@@ -12,6 +13,7 @@ const Button = () => {
     
     <StyleButton><span>Sign Up</span></StyleButton>
   </>
+
 };
 
 export default Button;

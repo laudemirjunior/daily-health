@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+<<<<<<< HEAD
     "@emotion/react": "^11.4.1",
     "@emotion/styled": "^11.3.0",
     "@hookform/resolvers": "^2.8.2",
@@ -11,6 +12,11 @@
     "@mui/icons-material": "^5.0.4",
     "@mui/material": "^5.0.4",
     "@mui/styled-engine-sc": "^5.0.3",
+=======
+    "@hookform/resolvers": "^2.8.2",
+    "@material-ui/core": "^5.0.0-beta.5",
+    "@material-ui/styled-engine-sc": "^5.0.0-beta.5",
+>>>>>>> 7ecb4e40943efa78ff131fa874839af2d523975c
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
@@ -20,7 +26,10 @@
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-hook-form": "^7.17.4",
+<<<<<<< HEAD
     "react-icons": "^4.3.1",
+=======
+>>>>>>> 7ecb4e40943efa78ff131fa874839af2d523975c
     "react-lottie": "^1.2.3",
     "react-router-dom": "^5.3.0",
     "react-scripts": "4.0.3",
