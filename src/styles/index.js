@@ -12,7 +12,8 @@ const GlobalStyle = createGlobalStyle`
   .App {
       width: 100%;
       min-height: 100vh;
-  }
+      min-width: 320px;
+        }
   :root {
     --white: #ffffff;
     --black: #000000;

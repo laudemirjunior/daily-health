@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 export const StyleHamburguer = styled.div`
   width: 100%;
+  min-width: 250px;
   height: 80%;
   border-radius: 20px;
   color: var(--white);
@@ -12,7 +13,7 @@ export const StyleHamburguer = styled.div`
   align-items: center;
   flex-direction: column;
   div {
-    width: 120px;
+    width: 150px;
     height: 50%;
     display: flex;
     flex-direction: column;
@@ -26,7 +27,8 @@ export const StyleHamburguer = styled.div`
       flex-direction: row;
       justify-content: left;
       align-items: center;
-
+      border-radius: 30px;
+      padding: 10px;
       svg {
         font-size: 20px;
       }

@@ -3,8 +3,17 @@ import { AiFillAppstore, AiFillCarryOut, AiFillSetting } from "react-icons/ai";
 import { BsFillPeopleFill } from "react-icons/bs";
 import { BiLogOut } from "react-icons/bi";
 import ellipse from "../../images/ellipse.png";
+import { useHistory } from "react-router";
 
 const Hamburguer = () => {
+  const history = useHistory();
+
+  const logout = () => {
+    localStorage.clear();
+    history.push("/");
+  };
+  const local = history.location.pathname;
+
   return (
     <StyleHamburguer>
       <div>
@@ -12,27 +21,51 @@ const Hamburguer = () => {
         <p>Laudemir</p>
       </div>
       <div>
-        <div>
+        <div
+          style={
+            local === "/dashboard"
+              ? { backgroundColor: "var(--bar)" }
+              : { backgroundColor: "transparent" }
+          }
+        >
           <AiFillAppstore />
-          <span>Dashboard</span>
+          <span onClick={() => history.push("/dashboard")}>Dashboard</span>
         </div>
-        <div>
+        <div
+          style={
+            local === "/habits"
+              ? { backgroundColor: "var(--bar)" }
+              : { backgroundColor: "transparent" }
+          }
+        >
           <AiFillCarryOut />
-          <span>Habits</span>
+          <span onClick={() => history.push("/habits")}>Habits</span>
         </div>
-        <div>
+        <div
+          style={
+            local === "/groups"
+              ? { backgroundColor: "var(--bar)" }
+              : { backgroundColor: "transparent" }
+          }
+        >
           <BsFillPeopleFill />
-          <span>Groups</span>
+          <span onClick={() => history.push("/groups")}>Groups</span>
         </div>
-        <div>
+        <div
+          style={
+            local === "/settings"
+              ? { backgroundColor: "var(--bar)" }
+              : { backgroundColor: "transparent" }
+          }
+        >
           <AiFillSetting />
-          <span>Setttings</span>
+          <span onClick={() => history.push("/settings")}>Setttings</span>
         </div>
       </div>
       <div>
         <div>
           <BiLogOut />
-          <span>Logout</span>
+          <span onClick={() => logout()}>Logout</span>
         </div>
       </div>
     </StyleHamburguer>

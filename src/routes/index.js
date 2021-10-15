@@ -1,18 +1,18 @@
 import { Route, Switch } from "react-router";
-// import Home from "../pages/home";
-// import SignUp from "../pages/signup";
-// import Login from "../pages/login";
-// import AboutUs from "../pages/aboutus";
-// import PinkOctober from "../pages/pinkoctober";
+import Home from "../pages/home";
+import SignUp from "../pages/signup";
+import Login from "../pages/login";
+import AboutUs from "../pages/aboutus";
+import PinkOctober from "../pages/pinkoctober";
 import Dashboard from "../pages/dashboard";
-// import Habits from "../pages/habits";
-// import Groups from "../pages/groups";
-// import Settings from "../pages/settings";
+import Habits from "../pages/habits";
+import Groups from "../pages/groups";
+import Settings from "../pages/settings";
 
 function Routes() {
   return (
     <Switch>
-      {/* <Route exact path="/">
+      <Route exact path="/">
         <Home />
       </Route>
       <Route path="/signup">
@@ -26,19 +26,22 @@ function Routes() {
       </Route>
       <Route path="/pinkoctober">
         <PinkOctober />
-      </Route> */}
+      </Route>
       <Route path="/dashboard">
         <Dashboard />
       </Route>
-      {/* <Route path="/habits">
+      <Route path="/habits">
         <Habits />
       </Route>
       <Route path="/groups">
         <Groups />
       </Route>
+      <Route path="/dashboard/:id">
+        <Groups />
+      </Route>
       <Route path="/settings">
         <Settings />
-      </Route> */}
+      </Route>
     </Switch>
   );
 }
