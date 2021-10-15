@@ -5,7 +5,7 @@ import { Route, Switch } from "react-router";
 // import AboutUs from "../pages/aboutus";
 // import PinkOctober from "../pages/pinkoctober";
 import Dashboard from "../pages/dashboard";
-// import Habits from "../pages/habits";
+import Habits from "../pages/habits";
 // import Groups from "../pages/groups";
 // import Settings from "../pages/settings";
 
@@ -30,10 +30,10 @@ function Routes() {
       <Route path="/dashboard">
         <Dashboard />
       </Route>
-      {/* <Route path="/habits">
+      <Route path="/habits">
         <Habits />
       </Route>
-      <Route path="/groups">
+      {/* <Route path="/groups">
         <Groups />
       </Route>
       <Route path="/settings">

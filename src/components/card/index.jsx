@@ -5,6 +5,7 @@ const Card = () => {
   return (
     <StyleCard>
       <h1>Habits</h1>
+
       <CardTask />
       <CardTask />
       <CardTask />

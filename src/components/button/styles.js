@@ -9,6 +9,8 @@ export const StyleButton = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
+  color: var(--white);
+
   span {
     font-size: 22px;
   }
