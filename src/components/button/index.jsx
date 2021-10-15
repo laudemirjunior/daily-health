@@ -1,5 +1,7 @@
+import StyleButton from "./styles";
+
 const Button = () => {
-  return <div></div>;
+  return <StyleButton></StyleButton>;
 };
 
 export default Button;
