@@ -17,7 +17,7 @@ export const StyleButton = styled.button`
   }
   .ou{
     position:relative;
-    top:97%;
+    top:96%;
     right:15%;
   }
 
