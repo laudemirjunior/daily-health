@@ -34,13 +34,12 @@ export const HabitListProvider = ({ children }) => {
   };
 
   const createHabit = (habit) => {
+    let newHabit = { ...habit, user: decodedToken.user_id };
     api
-      .post("/habits/", {
+      .post("/habits/", newHabit, {
         headers: {
           Authorization: token,
         },
-        ...habit,
-        user: decodedToken.user_id,
       })
       .then(() => getHabitList())
       .catch((err) => console.log(err));

@@ -4,14 +4,10 @@ import Button from "../button/index";
 import { TextField } from "@material-ui/core";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useContext } from "react";
-import { ShowCardsContext } from "../../Providers/showCards";
 import { AiOutlineCloseCircle } from "react-icons/ai";
 import toast from "react-hot-toast";
 
-const CardCreate = ({ createHabit }) => {
-  const { open, showCard } = useContext(ShowCardsContext);
-
+const CardCreate = ({ createHabit, open }) => {
   const formSchema = yup.object().shape({
     category: yup.string(),
     difficulty: yup.string(),
@@ -27,17 +23,19 @@ const CardCreate = ({ createHabit }) => {
     resolver: yupResolver(formSchema),
   });
 
+  const notify = () => toast.success("Hábitos criado com sucesso!");
+
   const onSubmit = (data) => {
     createHabit(data);
+    open();
+    notify();
   };
 
-  const notify = () => toast.error("Here is your toast.");
-
   return (
-    <StyleCardCreate open={open}>
+    <StyleCardCreate>
       <form onSubmit={handleSubmit(onSubmit)}>
         <h1 className="title">Criar hábito</h1>
-        <AiOutlineCloseCircle onClick={showCard} />
+        <AiOutlineCloseCircle onClick={open} />
         <TextField {...register("title")} label="Title" type="text"></TextField>
         <TextField
           {...register("category")}
@@ -59,9 +57,7 @@ const CardCreate = ({ createHabit }) => {
           label="How much achieved"
           type="number"
         ></TextField>
-        <Button onClick={notify} type="submit">
-          Criar hábito
-        </Button>
+        <Button type="submit">Criar hábito</Button>
       </form>
     </StyleCardCreate>
   );

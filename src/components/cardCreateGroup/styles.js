@@ -6,7 +6,7 @@ export const StyleCardCreate = styled.div`
   background-color: white;
   position: absolute;
   border-radius: 20px;
-  display: ${(props) => (props.open ? "none" : "block")};
+  display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-around;

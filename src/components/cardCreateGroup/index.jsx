@@ -7,7 +7,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { AiOutlineCloseCircle } from "react-icons/ai";
 import toast from "react-hot-toast";
 
-const CardCreateGroup = ({ createHabit, open, showCard }) => {
+const CardCreateGroup = ({ open }) => {
   const formSchema = yup.object().shape({
     name: yup.string(),
     description: yup.string(),
@@ -22,17 +22,18 @@ const CardCreateGroup = ({ createHabit, open, showCard }) => {
     resolver: yupResolver(formSchema),
   });
 
+  const notify = () => toast.success("Grupo criado com sucesso!");
+
   const onSubmit = (data) => {
-    createHabit(data);
+    open();
+    notify();
   };
 
-  const notify = () => toast.error("Here is your toast.");
-
   return (
-    <StyleCardCreate open={open}>
+    <StyleCardCreate>
       <form onSubmit={handleSubmit(onSubmit)}>
         <h1 className="title">Criar Grupo</h1>
-        <AiOutlineCloseCircle onClick={showCard} />
+        <AiOutlineCloseCircle onClick={open} />
         <TextField {...register("title")} label="Title" type="text"></TextField>
         <TextField {...register("name")} label="Name" type="text"></TextField>
         <TextField
