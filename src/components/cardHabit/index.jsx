@@ -1,16 +1,9 @@
 import { StyleCardTask } from "./styles";
 import { AiOutlineCheckCircle, AiOutlineCloseCircle } from "react-icons/ai";
-import { useHistory } from "react-router";
 
-const CardHabit = ({ item }) => {
-  let history = useHistory();
-
-  function handleClick(item) {
-    history.push(`/groups/${item.id}`);
-  }
-
+const CardHabit = ({ item, removeHabit }) => {
   return (
-    <StyleCardTask onClick={() => handleClick(item)}>
+    <StyleCardTask>
       <div>
         <span>Título: {item.title}</span>
         <span>Categoria: {item.category}</span>
@@ -22,6 +15,7 @@ const CardHabit = ({ item }) => {
           style={{ fontSize: "30px", color: "green", cursor: "poiter" }}
         />
         <AiOutlineCloseCircle
+          onClick={() => removeHabit(item)}
           style={{ fontSize: "30px", color: "red", cursor: "poiter" }}
         />
       </div>

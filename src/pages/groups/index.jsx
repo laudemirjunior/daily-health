@@ -5,13 +5,15 @@ import { useState } from "react";
 import api from "../../services";
 import { useEffect } from "react";
 import CardMyGroups from "../../components/cardMyGroups";
-import CardHabit from "../../components/cardHabit";
 import Button from "../../components/button";
-import { useHistory } from "react-router";
+import CardCreateGroup from "../../components/cardCreateGroup";
+import { ShowCardsContext } from "../../Providers/showCards";
+import { useContext } from "react";
 
 const Groups = () => {
   const [habbits, setHabbits] = useState([]);
   const [groups, setGroups] = useState([]);
+  const { open, showCard } = useContext(ShowCardsContext);
 
   const [token] = useState(
     JSON.parse(localStorage.getItem("@KenzieHabits:token")) || ""
@@ -60,7 +62,8 @@ const Groups = () => {
           <div className="cards">
             <div className="card">
               <h1>Meus Grupos</h1>
-              <Button>Criar grupo</Button>
+              <Button onClick={() => showCard()}>Criar grupo</Button>
+              <CardCreateGroup open={open} showCard={showCard} />
               {habbits.map((item) => {
                 return <CardMyGroups item={item} />;
               })}
@@ -68,7 +71,7 @@ const Groups = () => {
             <div className="card">
               <h1>Todos os Grupos</h1>
               {groups.map((item) => {
-                return <CardHabit item={item} />;
+                return <CardMyGroups item={item} />;
               })}
             </div>
           </div>

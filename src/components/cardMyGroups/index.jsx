@@ -1,9 +1,15 @@
 import { StyleCardTask } from "./styles";
 import { BiLogOut } from "react-icons/bi";
+import { useHistory } from "react-router";
 
 const CardMyGroups = ({ item }) => {
+  let history = useHistory();
+
+  function handleClick(item) {
+    history.push(`/groups/${item.id}`);
+  }
   return (
-    <StyleCardTask>
+    <StyleCardTask onClick={() => handleClick(item)}>
       <div>
         <span>Nome: {item.name}</span>
         <span>Descrição: {item.description}</span>

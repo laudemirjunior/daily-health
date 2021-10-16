@@ -8,6 +8,7 @@ import Dashboard from "../pages/dashboard";
 import Habits from "../pages/habits";
 import Groups from "../pages/groups";
 import Settings from "../pages/settings";
+import GroupsID from "../pages/groupsID";
 
 function Routes() {
   return (
@@ -33,11 +34,11 @@ function Routes() {
       <Route path="/habits">
         <Habits />
       </Route>
-      <Route path="/groups">
+      <Route exact path="/groups">
         <Groups />
       </Route>
-      <Route path="/dashboard/:id">
-        <Groups />
+      <Route path="/groups/:id">
+        <GroupsID />
       </Route>
       <Route path="/settings">
         <Settings />

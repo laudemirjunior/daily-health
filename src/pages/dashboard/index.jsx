@@ -1,53 +1,19 @@
 import Bar from "../../components/bar";
 import Hamburguer from "../../components/hamburguer";
 import { MainContainer } from "./styles.js";
-import { useState } from "react";
-import api from "../../services";
-import { useEffect } from "react";
 import CardHabit from "../../components/cardHabit";
 import CardMyGroups from "../../components/cardMyGroups";
+import { HabitListContext } from "../../Providers/habitsList";
+import { MyGroupListContext } from "../../Providers/myGroupList";
+import { useContext } from "react";
+import Button from "../../components/button";
+import CardCreate from "../../components/cardCreate/index";
+import { ShowCardsContext } from "../../Providers/showCards";
 
 const Dashboard = () => {
-  const [habbits, setHabbits] = useState([]);
-  const [groups, setGroups] = useState([]);
-
-  const [token] = useState(
-    JSON.parse(localStorage.getItem("@KenzieHabits:token")) || ""
-  );
-
-  const loadHabits = () => {
-    api
-      .get("/habits/personal/", {
-        headers: {
-          Authorization: `Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjM0NjAyMTM1LCJqdGkiOiJiZTVhZjJkODkyOWI0YWYwODZiODI3NmExYjE4NDIyOCIsInVzZXJfaWQiOjE1fQ.EYZCiQ0c-BM-LNoCDX5SFVtolZSBycFjrA_9fxyFVog`,
-        },
-      })
-      .then((response) => setHabbits(response.data))
-      .catch((err) => console.log(err));
-  };
-
-  const loadGroups = () => {
-    api
-      .get("/groups/subscriptions/", {
-        headers: {
-          Authorization: `Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjM0NjAyMTM1LCJqdGkiOiJiZTVhZjJkODkyOWI0YWYwODZiODI3NmExYjE4NDIyOCIsInVzZXJfaWQiOjE1fQ.EYZCiQ0c-BM-LNoCDX5SFVtolZSBycFjrA_9fxyFVog`,
-        },
-      })
-      .then((response) => {
-        setGroups(response.data);
-      })
-      .catch((err) => console.log(err));
-  };
-
-  useEffect(() => {
-    loadHabits();
-  }, []);
-
-  console.log(groups);
-
-  useEffect(() => {
-    loadGroups();
-  }, []);
+  const { habitList, removeHabit, createHabit } = useContext(HabitListContext);
+  const { open, showCard } = useContext(ShowCardsContext);
+  const { myGroupList } = useContext(MyGroupListContext);
 
   return (
     <>
@@ -59,14 +25,20 @@ const Dashboard = () => {
           </div>
           <div className="cards">
             <div className="card">
-              <h1>Meus Hábitos</h1>
-              {habbits.map((item) => {
-                return <CardHabit item={item} />;
+              <h1>Criar hábito</h1>
+              <Button onClick={() => showCard()}>Criar grupo</Button>
+              <CardCreate
+                createHabit={createHabit}
+                open={open}
+                showCard={showCard}
+              />
+              {habitList.map((item) => {
+                return <CardHabit item={item} removeHabit={removeHabit} />;
               })}
             </div>
             <div className="card">
               <h1>Meus Grupos</h1>
-              {groups.map((item) => {
+              {myGroupList.map((item) => {
                 return <CardMyGroups item={item} />;
               })}
             </div>
