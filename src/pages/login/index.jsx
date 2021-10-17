@@ -41,7 +41,7 @@ const Login = () => {
 
           localStorage.setItem('@Doit:token', JSON.stringify(access))
 
-          // return history.push('/dashboard')
+          return history.push('/dashboard')
       })
       .catch((err) => toast.error('Username / senha inválidos!'))
      
@@ -64,22 +64,19 @@ const Login = () => {
     <div style={{display:'flex'}}>
       <Animate_div>
         <Lottie
-              options={defaultOptions}
-              height={'27vw'}
-              width={'50vw'}
-              speed={0.5}
-              isStopped={animationState.isStopped}
-              isPaused={animationState.isPaused}
-            />
+          options={defaultOptions}
+          height={'27vw'}
+          width={'50vw'}
+          speed={0.5}
+          isStopped={animationState.isStopped}
+          isPaused={animationState.isPaused}
+        />
       </Animate_div>
       <Poligon>
             
       </Poligon>
       <Countainer>
-          {/* <nav>
-            <h3>Kenzie Health</h3>
-          </nav> */}
-          <Bar />
+        <Bar />
         <h1> Login </h1>
         <Form onSubmit={handleSubmit(handleForm)}>
           <div>
@@ -96,31 +93,31 @@ const Login = () => {
           </div>
           <div>
             <TextField 
-                label='Senha'
-                type='password'
-                margin='normal'
-                variant="outlined"
-                color='primary'
-                {...register('password')}
-                error={!!errors.password}
-                helperText={errors.password?.message}
+              label='Senha'
+              type='password'
+              margin='normal'
+              variant="outlined"
+              color='primary'
+              {...register('password')}
+              error={!!errors.password}
+              helperText={errors.password?.message}
             />          
           </div>
             <Button text='Entrar'></Button>
             <p> Nao tem cadastro? Crie uma conta <Link>aqui</Link></p>
         </Form>
         <ToastContainer 
-        position="top-center"
-        autoClose={2000}
-        style={{ marginBottom: '500px' }}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        theme='colored'
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
+          position="top-center"
+          autoClose={2000}
+          style={{ marginBottom: '500px' }}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          theme='colored'
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
       /> 
       </Countainer>
     </div>
