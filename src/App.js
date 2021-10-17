@@ -1,11 +1,12 @@
-import GlobalStyle from "./styles"
-import Login from "./pages/login"
+import GlobalStyle from "./styles";
+import Routes from "./routes/";
+
 
 function App() {
   return (
     <div className="App">
       <GlobalStyle />
-      <Login />
+      <Routes />
     </div>
   );
 }

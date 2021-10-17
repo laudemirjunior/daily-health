@@ -30,7 +30,7 @@ function Routes() {
       <Route path="/dashboard">
         <Dashboard />
       </Route>
-      <Route path="/habits">
+      {/* <Route path="/habits">
         <Habits />
       </Route>
       <Route path="/groups">
@@ -38,7 +38,7 @@ function Routes() {
       </Route>
       <Route path="/settings">
         <Settings />
-      </Route>
+      </Route> */}
     </Switch>
   );
 }
