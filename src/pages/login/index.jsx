@@ -72,9 +72,7 @@ const Login = () => {
           isPaused={animationState.isPaused}
         />
       </Animate_div>
-      <Poligon>
-            
-      </Poligon>
+        <Poligon></Poligon>
       <Countainer>
         <Bar />
         <h1> Login </h1>
@@ -104,7 +102,7 @@ const Login = () => {
             />          
           </div>
             <Button text='Entrar'></Button>
-            <p> Nao tem cadastro? Crie uma conta <Link>aqui</Link></p>
+            <p> Nao tem cadastro? Crie uma conta <Link to={'/signup'}>aqui</Link></p>
         </Form>
         <ToastContainer 
           position="top-center"
