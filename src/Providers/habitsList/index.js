@@ -5,10 +5,9 @@ import { useJwt } from "react-jwt";
 export const HabitListContext = createContext();
 
 export const HabitListProvider = ({ children }) => {
+  const user = localStorage.getItem("user");
   const [habitList, setHabitList] = useState([]);
-
   const token = `Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjM0NzY2MTQzLCJqdGkiOiI4ZmFkOGU4ODU1OGI0ZGFiOGJlZGI1YWNhYTYxOWQwMiIsInVzZXJfaWQiOjE1fQ.MyM-dshWnP1BhPl-jbGWJGvTpe_ujZzKuEN1N6so-pY`;
-
   const { decodedToken, isExpired } = useJwt(token);
 
   const getHabitList = () => {

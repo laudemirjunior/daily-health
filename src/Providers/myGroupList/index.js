@@ -1,15 +1,18 @@
 import { createContext, useState, useEffect } from "react";
-import axios from "axios";
+import api from "../../services";
 export const MyGroupListContext = createContext();
 
 export const MyGroupListProvider = ({ children }) => {
   const user = localStorage.getItem("user");
   const [myGroupList, setMygroupList] = useState([]);
+
+  const token = `Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjM0NzY2MTQzLCJqdGkiOiI4ZmFkOGU4ODU1OGI0ZGFiOGJlZGI1YWNhYTYxOWQwMiIsInVzZXJfaWQiOjE1fQ.MyM-dshWnP1BhPl-jbGWJGvTpe_ujZzKuEN1N6so-pY`;
+
   const getMyGroupList = () => {
-    axios
-      .get("https://kenzie-habits.herokuapp.com/groups/subscriptions/", {
+    api
+      .get("/groups/subscriptions/", {
         headers: {
-          Authorization: `Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjM0NzY2MTQzLCJqdGkiOiI4ZmFkOGU4ODU1OGI0ZGFiOGJlZGI1YWNhYTYxOWQwMiIsInVzZXJfaWQiOjE1fQ.MyM-dshWnP1BhPl-jbGWJGvTpe_ujZzKuEN1N6so-pY`,
+          Authorization: token,
         },
       })
       .then((response) => setMygroupList(response.data))
@@ -19,38 +22,37 @@ export const MyGroupListProvider = ({ children }) => {
   useEffect(() => {
     getMyGroupList();
   }, []);
+
   const createGroup = (groupInfo) => {
-    axios
-      .post("https://kenzie-habits.herokuapp.com/groups/", {
+    api
+      .post("/groups/", {
         headers: {
-          Authorization: `Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjM0NzY2MTQzLCJqdGkiOiI4ZmFkOGU4ODU1OGI0ZGFiOGJlZGI1YWNhYTYxOWQwMiIsInVzZXJfaWQiOjE1fQ.MyM-dshWnP1BhPl-jbGWJGvTpe_ujZzKuEN1N6so-pY`,
+          Authorization: token,
         },
         groupInfo,
       })
       .catch((err) => console.log(err));
   };
+
   const subscribe = (group) => {
-    axios
-      .post(
-        `https://kenzie-habits.herokuapp.com/groups/${group.id}/subscribe/`,
-        {
-          headers: {
-            Authorization: `Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjM0NzY2MTQzLCJqdGkiOiI4ZmFkOGU4ODU1OGI0ZGFiOGJlZGI1YWNhYTYxOWQwMiIsInVzZXJfaWQiOjE1fQ.MyM-dshWnP1BhPl-jbGWJGvTpe_ujZzKuEN1N6so-pY`,
-          },
-        }
-      )
+    api
+      .post(`/groups/${group.id}/subscribe/`, null, {
+        headers: {
+          Authorization: token,
+        },
+      })
+      .then(() => getMyGroupList())
       .catch((err) => console.log(err));
   };
+
   const unSubscribe = (group) => {
-    axios
-      .delete(
-        `https://kenzie-habits.herokuapp.com/groups/${group.id}/subscribe/`,
-        {
-          headers: {
-            Authorization: `Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjM0NzY2MTQzLCJqdGkiOiI4ZmFkOGU4ODU1OGI0ZGFiOGJlZGI1YWNhYTYxOWQwMiIsInVzZXJfaWQiOjE1fQ.MyM-dshWnP1BhPl-jbGWJGvTpe_ujZzKuEN1N6so-pY`,
-          },
-        }
-      )
+    api
+      .delete(`/groups/${group.id}/unsubscribe/`, {
+        headers: {
+          Authorization: token,
+        },
+      })
+      .then(() => getMyGroupList())
       .catch((err) => console.log(err));
   };
 

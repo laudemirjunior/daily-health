@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 export const StyleCardTask = styled.div`
+  cursor: pointer;
   width: 100%;
   min-height: 130px;
   background-color: var(--white);
@@ -14,25 +15,9 @@ export const StyleCardTask = styled.div`
     display: flex;
     justify-content: space-between;
     flex-direction: column;
-    svg {
-      cursor: pointer;
-    }
   }
-  .actions {
+  .svg {
     display: flex;
-    align-items: end;
-  }
-  .active {
-    flex-direction: row;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    width: 120px;
-    border: 1px solid green;
-    border-radius: 30px;
-    cursor: pointer;
-    &:hover {
-      background-color: lightgreen;
-    }
+    justify-content: center;
   }
 `;
