@@ -12,7 +12,6 @@ const CardCreate = ({ createHabit, open }) => {
     category: yup.string(),
     difficulty: yup.string(),
     frequency: yup.string(),
-    how_much_achieved: yup.number(),
   });
 
   const {
@@ -51,11 +50,6 @@ const CardCreate = ({ createHabit, open }) => {
           {...register("frequency")}
           label="Frequency"
           type="text"
-        ></TextField>
-        <TextField
-          {...register("how_much_achieved")}
-          label="How much achieved"
-          type="number"
         ></TextField>
         <Button type="submit">Criar hábito</Button>
       </form>
