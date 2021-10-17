@@ -21,7 +21,7 @@ const GlobalStyle = createGlobalStyle`
     --background: #FD7FAA;
     --bar: #F2527D;
   }
-  button, span {
+  button, span, svg {
     cursor: pointer;
   }
 

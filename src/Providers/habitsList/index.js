@@ -34,9 +34,25 @@ export const HabitListProvider = ({ children }) => {
   };
 
   const createHabit = (habit) => {
-    let newHabit = { ...habit, user: decodedToken.user_id };
+    let newHabit = {
+      ...habit,
+      how_much_achieved: 0,
+      user: decodedToken.user_id,
+    };
     api
       .post("/habits/", newHabit, {
+        headers: {
+          Authorization: token,
+        },
+      })
+      .then(() => getHabitList())
+      .catch((err) => console.log(err));
+  };
+
+  const updateHabit = (habit, item) => {
+    const newHabit = { how_much_achieved: habit };
+    api
+      .patch(`/habits/${item}/`, newHabit, {
         headers: {
           Authorization: token,
         },
@@ -50,7 +66,9 @@ export const HabitListProvider = ({ children }) => {
   }, []);
 
   return (
-    <HabitListContext.Provider value={{ habitList, removeHabit, createHabit }}>
+    <HabitListContext.Provider
+      value={{ habitList, removeHabit, createHabit, updateHabit }}
+    >
       {children}
     </HabitListContext.Provider>
   );

@@ -11,7 +11,8 @@ import CardCreate from "../../components/cardCreate/index";
 import { useState } from "react";
 
 const Dashboard = () => {
-  const { habitList, removeHabit, createHabit } = useContext(HabitListContext);
+  const { habitList, removeHabit, createHabit, updateHabit } =
+    useContext(HabitListContext);
   const { myGroupList } = useContext(MyGroupListContext);
   const [showCard, setShowCard] = useState(false);
 
@@ -29,15 +30,21 @@ const Dashboard = () => {
           </div>
           <div className="cards">
             <div className="card">
-              <h1>Meus hábitos</h1>
+              <h1 className="title">Meus hábitos</h1>
               <Button onClick={() => open()}>Criar hábito</Button>
               {showCard && <CardCreate createHabit={createHabit} open={open} />}
               {habitList.map((item) => {
-                return <CardHabit item={item} removeHabit={removeHabit} />;
+                return (
+                  <CardHabit
+                    item={item}
+                    removeHabit={removeHabit}
+                    updateHabit={updateHabit}
+                  />
+                );
               })}
             </div>
             <div className="card">
-              <h1>Meus Grupos</h1>
+              <h1 className="title">Meus Grupos</h1>
               {myGroupList.map((item) => {
                 return <CardMyGroups item={item} />;
               })}

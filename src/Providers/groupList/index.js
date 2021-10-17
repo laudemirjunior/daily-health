@@ -3,15 +3,10 @@ import axios from "axios";
 export const GroupListContext = createContext();
 
 export const GroupListProvider = ({ children }) => {
-  const [open, setOpen] = useState(true);
   const [groupList, setgroupList] = useState([]);
   const [link, setLink] = useState(
     "https://kenzie-habits.herokuapp.com/groups/"
   );
-
-  const showCard = () => {
-    setOpen(!open);
-  };
 
   useEffect(() => {
     if (link !== null) {
@@ -30,9 +25,7 @@ export const GroupListProvider = ({ children }) => {
   }, []);
 
   return (
-    <GroupListContext.Provider
-      value={{ groupList, setgroupList, open, showCard }}
-    >
+    <GroupListContext.Provider value={{ groupList, setgroupList }}>
       {children}
     </GroupListContext.Provider>
   );

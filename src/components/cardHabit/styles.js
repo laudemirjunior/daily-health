@@ -18,4 +18,21 @@ export const StyleCardTask = styled.div`
       cursor: pointer;
     }
   }
+  .actions {
+    display: flex;
+    align-items: end;
+  }
+  .active {
+    flex-direction: row;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 120px;
+    border: 2px solid #b721ff;
+    border-radius: 30px;
+    cursor: pointer;
+    :hover {
+      background-color: #21d4fd;
+    }
+  }
 `;

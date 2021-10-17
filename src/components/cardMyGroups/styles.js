@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 export const StyleCardTask = styled.div`
+  cursor: pointer;
   width: 100%;
   min-height: 130px;
   background-color: var(--white);
