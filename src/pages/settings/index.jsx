@@ -6,7 +6,7 @@ import { useJwt } from "react-jwt";
 import { useState } from "react";
 import api from "../../services";
 import Button from "../../components/button";
-import ellipse from "../../images/ellipse.png";
+import k from "../../images/k.png";
 import { AiFillSetting } from "react-icons/ai";
 
 const Settings = () => {
@@ -51,7 +51,7 @@ const Settings = () => {
               <div className="profile">
                 <h2>Seu Perfil: </h2>
                 <div>
-                  <img src={ellipse} alt="" />
+                  <img src={k} alt="" />
                   <h3>Username: {userInfo.username}</h3>
                 </div>
               </div>
