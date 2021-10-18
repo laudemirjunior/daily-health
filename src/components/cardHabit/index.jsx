@@ -28,24 +28,13 @@ const CardHabit = ({ item, removeHabit, updateHabit }) => {
         <div className="actions">
           <AiOutlineCloseCircle
             onClick={() => removeHabit(item)}
-            style={{ fontSize: "30px", color: "red", marginRight: "7px" }}
+            style={{ color: "red", marginRight: "7px" }}
           />
-          <div
-            style={{
-              margin: "auto",
-              width: "100px",
-              height: "10px",
-              backgroundColor: "var(--button)",
-              borderRadius: "5px",
-              overflow: "hidden",
-            }}
-          >
+          <div className="progress">
             <div
+              className="percentage"
               style={{
                 width: `${value()}%`,
-                height: "10px",
-                backgroundColor: "var(--bar)",
-                borderRadius: "5px",
               }}
             ></div>
           </div>
@@ -57,9 +46,7 @@ const CardHabit = ({ item, removeHabit, updateHabit }) => {
             }}
           >
             <h3>{item.how_much_achieved} Dias</h3>
-            <AiOutlineCheckCircle
-              style={{ fontSize: "30px", color: "green" }}
-            />
+            <AiOutlineCheckCircle style={{ color: "green" }} />
           </div>
         </div>
       </StyleCardTask>

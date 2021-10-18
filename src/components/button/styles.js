@@ -10,6 +10,9 @@ export const StyleButton = styled.button`
   justify-content: center;
   align-items: center;
   font-size: 22px;
-  color: var(--white);
+  color: var(--black);
   font-weight: bold;
+  :hover {
+    filter: saturate(2);
+  }
 `;

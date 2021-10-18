@@ -10,14 +10,10 @@ export const StyleCardTask = styled.div`
   display: flex;
   justify-content: space-between;
   padding: 10px;
-  border: 1px solid var(--black);
+  border: 1px solid black;
   div {
     display: flex;
     justify-content: space-between;
     flex-direction: column;
-  }
-  .svg {
-    display: flex;
-    justify-content: center;
   }
 `;

@@ -13,18 +13,20 @@ const GlobalStyle = createGlobalStyle`
       width: 100%;
       min-height: 100vh;
       min-width: 320px;
-        }
+  }
   :root {
     --white: #ffffff;
     --black: #000000;
-    --button: #F2A0AF;
+    --button: #88E8F2;
     --background: #FD7FAA;
     --bar: #F2527D;
   }
   button, span, svg {
     cursor: pointer;
   }
-
+  svg {
+    font-size: 30px;
+  }
   * {
     scrollbar-width: auto;
     scrollbar-color: #F2527D #ffffff;

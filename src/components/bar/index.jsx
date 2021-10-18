@@ -11,7 +11,7 @@ export default function Bar() {
   return (
     <StyleBar>
       <div className="bar">
-        <span className="logo" onClick={() => history.push("/")}>
+        <span className="logo" onClick={() => history.push("/dashboard")}>
           Kenzie Health
         </span>
         <div className="buttons">

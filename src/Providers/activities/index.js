@@ -1,10 +1,19 @@
 import { createContext, useState } from "react";
 import api from "../../services";
+import { toast } from "react-toastify";
+
 export const ActivitiesContext = createContext();
 
 export const ActivitiesProvider = ({ children }) => {
   const [activitiesList, setActivitiesList] = useState([]);
   const token = `Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjM0NzY2MTQzLCJqdGkiOiI4ZmFkOGU4ODU1OGI0ZGFiOGJlZGI1YWNhYTYxOWQwMiIsInVzZXJfaWQiOjE1fQ.MyM-dshWnP1BhPl-jbGWJGvTpe_ujZzKuEN1N6so-pY`;
+  const notifySearchActivities = () =>
+    toast.error("Erro ao carregar as atividade!");
+  const notifyCreateActivity = () => toast.error("Erro ao criar a atividade!");
+  const notifyUpdateAtivity = () =>
+    toast.error("Erro ao atualizar a atividade!");
+  const notifyDeleteActivity = () =>
+    toast.error("Erro ao deletar a atividade!");
 
   const searchActivities = (id) => {
     api
@@ -16,18 +25,17 @@ export const ActivitiesProvider = ({ children }) => {
       .then((response) => {
         setActivitiesList(response.data.results);
       })
-      .catch((err) => console.log(err));
+      .catch(() => notifySearchActivities());
   };
 
-  const createActivity = (activity, id) => {
-    const newActivity = { ...activity, group: id };
+  const createActivity = (activity) => {
     api
-      .post("/activities/", newActivity, {
+      .post("/activities/", activity, {
         headers: {
           Authorization: token,
         },
       })
-      .catch((err) => console.log(err));
+      .catch(() => notifyCreateActivity());
   };
 
   const updateAtivity = (id, title) => {
@@ -37,7 +45,7 @@ export const ActivitiesProvider = ({ children }) => {
           Authorization: token,
         },
       })
-      .catch((err) => console.log(err));
+      .catch(() => notifyUpdateAtivity());
   };
 
   const deleteActivity = (id) => {
@@ -47,7 +55,7 @@ export const ActivitiesProvider = ({ children }) => {
           Authorization: token,
         },
       })
-      .catch((err) => console.log(err));
+      .catch(() => notifyDeleteActivity());
   };
 
   return (

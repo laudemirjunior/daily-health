@@ -1,7 +1,6 @@
 import styled from "styled-components";
 
 export const StyleCardTask = styled.div`
-  cursor: pointer;
   width: 100%;
   min-height: 130px;
   background-color: var(--white);
@@ -10,14 +9,14 @@ export const StyleCardTask = styled.div`
   display: flex;
   justify-content: space-between;
   padding: 10px;
-  border: 1px solid var(--black);
+  border: 1px solid #88e8f2;
   div {
     display: flex;
     justify-content: space-between;
     flex-direction: column;
   }
-  .svg {
+  .actions {
     display: flex;
-    justify-content: center;
+    align-items: end;
   }
 `;

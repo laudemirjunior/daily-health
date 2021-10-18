@@ -6,19 +6,10 @@ import CardMyGroups from "../../components/cardMyGroups";
 import { HabitListContext } from "../../Providers/habitsList";
 import { MyGroupListContext } from "../../Providers/myGroupList";
 import { useContext } from "react";
-import Button from "../../components/button";
-import CardCreate from "../../components/cardCreate/index";
-import { useState } from "react";
 
 const Dashboard = () => {
-  const { habitList, removeHabit, createHabit, updateHabit } =
-    useContext(HabitListContext);
+  const { habitList, removeHabit, updateHabit } = useContext(HabitListContext);
   const { myGroupList } = useContext(MyGroupListContext);
-  const [showCard, setShowCard] = useState(false);
-
-  const open = () => {
-    setShowCard(!showCard);
-  };
 
   return (
     <>
@@ -31,8 +22,6 @@ const Dashboard = () => {
           <div className="cards">
             <div className="card">
               <h1 className="title">Meus hábitos</h1>
-              <Button onClick={() => open()}>Criar hábito</Button>
-              {showCard && <CardCreate createHabit={createHabit} open={open} />}
               {habitList.map((item) => {
                 return (
                   <CardHabit
