@@ -11,7 +11,7 @@ export const Form = styled.form`
   max-width: 375px;
   border-radius: 10px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  p {
+  span {
     font-size: 13px;
     margin-top: 12px;
   }
@@ -20,6 +20,14 @@ export const Form = styled.form`
   }
   button {
     margin-top: 16px;
+    color: var(--white)
+  }
+  .input{
+    width: 240px;
+  }
+  .visibilityButton{
+    color: grey;
+    margin: inherit;
   }
   @media screen and (min-width: 768px) {
     display: flex;
@@ -32,7 +40,7 @@ export const Form = styled.form`
     max-width: 375px;
     border-radius: 10px;
 
-    p {
+    span {
       font-size: 15px;
       margin-top: 16px;
     }
