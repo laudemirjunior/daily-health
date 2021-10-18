@@ -4,12 +4,19 @@ import { MainContainer } from "./styles.js";
 import CardHabit from "../../components/cardHabit";
 import CardMyGroups from "../../components/cardMyGroups";
 import { HabitListContext } from "../../Providers/habitsList";
+import { AuthenticatedContext } from "../../Providers/authenticated";
 import { MyGroupListContext } from "../../Providers/myGroupList";
 import { useContext } from "react";
+import { Redirect } from "react-router";
 
 const Dashboard = () => {
   const { habitList, removeHabit, updateHabit } = useContext(HabitListContext);
   const { myGroupList } = useContext(MyGroupListContext);
+  const { authenticated } = useContext(AuthenticatedContext);
+
+  if (!authenticated) {
+    return <Redirect to="/" />;
+  }
 
   return (
     <>
