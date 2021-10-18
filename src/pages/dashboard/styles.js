@@ -13,14 +13,13 @@ export const MainContainer = styled.div`
     display: flex;
     justify-content: space-around;
     align-items: center;
-    margin: 0 10px;
   }
   .menu {
     max-width: 300px;
     display: none;
     align-items: center;
     height: calc(100vh - 60px);
-    margin-right: 30px;
+    margin-right: 20px;
     @media (min-width: 768px) {
       display: flex;
     }
@@ -33,9 +32,7 @@ export const MainContainer = styled.div`
     justify-content: center;
     flex-wrap: wrap;
     gap: 20px;
-
     @media (min-width: 900px) {
-      justify-content: space-between;
       flex-wrap: nowrap;
     }
   }
@@ -50,9 +47,9 @@ export const MainContainer = styled.div`
     flex-direction: column;
     align-items: center;
     gap: 20px;
-    background-color: var(--background);
+    background-color: var(--backgroundOpacity);
     border-radius: 20px;
-    padding: 20px;
+    padding: 10px;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     h1 {
       color: var(--white);

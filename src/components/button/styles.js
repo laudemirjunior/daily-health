@@ -10,7 +10,7 @@ export const StyleButton = styled.button`
   justify-content: center;
   align-items: center;
   font-size: 22px;
-  color: var(--black);
+  color: var(--white);
   font-weight: bold;
   :hover {
     filter: saturate(2);
