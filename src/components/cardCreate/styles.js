@@ -30,5 +30,8 @@ export const StyleCardCreate = styled.div`
       color: red;
       cursor: pointer;
     }
+    .inputSelect {
+      width: 92%;
+    }
   }
 `;

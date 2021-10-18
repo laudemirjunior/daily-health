@@ -6,6 +6,7 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { AiOutlineCloseCircle } from "react-icons/ai";
 import toast from "react-hot-toast";
+import MenuItem from "@mui/material/MenuItem";
 
 const CardCreate = ({ createHabit, open }) => {
   const formSchema = yup.object().shape({
@@ -13,7 +14,35 @@ const CardCreate = ({ createHabit, open }) => {
     difficulty: yup.string(),
     frequency: yup.string(),
   });
+  const dificulty = [
+    {
+      value: "Facil",
+      label: "Facil",
+    },
+    {
+      value: "Media",
+      label: "Medio",
+    },
+    {
+      value: "Dificil",
+      label: "Dificil",
+    },
+  ];
 
+  const frequency = [
+    {
+      value: "Diario",
+      label: "Diario",
+    },
+    {
+      value: "Semanal",
+      label: "Semanal",
+    },
+    {
+      value: "Mensal",
+      label: "Mensal",
+    },
+  ];
   const {
     register,
     handleSubmit,
@@ -44,13 +73,28 @@ const CardCreate = ({ createHabit, open }) => {
         <TextField
           {...register("difficulty")}
           label="Difficulty"
-          type="text"
-        ></TextField>
+          select
+          className="inputSelect"
+        >
+          {dificulty.map((option) => (
+            <MenuItem key={option.value} value={option.value}>
+              {option.label}
+            </MenuItem>
+          ))}
+        </TextField>
         <TextField
           {...register("frequency")}
           label="Frequency"
           type="text"
-        ></TextField>
+          select
+          className="inputSelect"
+        >
+          {frequency.map((option) => (
+            <MenuItem key={option.value} value={option.value}>
+              {option.label}
+            </MenuItem>
+          ))}
+        </TextField>
         <Button type="submit">Criar hábito</Button>
       </form>
     </StyleCardCreate>
