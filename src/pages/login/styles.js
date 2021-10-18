@@ -12,17 +12,35 @@ export const Form = styled.form`
     max-width: 375px;
     border-radius: 10px;
     box-shadow:  0px 4px 4px rgba(0, 0, 0, 0.25);
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/feature/page_register
     p{
         font-size: 13px;
         margin-top: 12px;
     }
+<<<<<<< HEAD
     a{
         text-decoration:none;
     }
     button{
         margin-top: 16px;
     }
+=======
+
+    a{
+        text-decoration:none;
+    }
+
+    button{
+        margin-top: 16px;
+    }
+
+
+>>>>>>> origin/feature/page_register
     @media screen and (min-width: 768px){
+
         display: flex;
         background-color: var(--white);
         justify-content: center;
@@ -66,9 +84,24 @@ export const Countainer = styled.div`
     display: flex;
     flex-direction: column;
 
+<<<<<<< HEAD
     input{
         background-color: white;
         border-radius: 6px;
+=======
+    z-index: 1;
+    background-color: transparent;
+    height: 100vh;
+    width: 100vw;
+    align-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+
+    input{
+    background-color: white;
+    border-radius: 6px;
+>>>>>>> origin/feature/page_register
     }
 
     h1{
@@ -78,6 +111,10 @@ export const Countainer = styled.div`
         margin-bottom: 25px;
         margin-top: 20px;
         font-size: 57px;
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/feature/page_register
     }
       
     @media screen and (min-width: 768px){
@@ -92,7 +129,12 @@ export const Countainer = styled.div`
             font-size: 6.5vw;
             line-height: 98px;
         }
+<<<<<<< HEAD
     }
+=======
+
+        }
+>>>>>>> origin/feature/page_register
 `
 
 export const Animate_div = styled.div`
