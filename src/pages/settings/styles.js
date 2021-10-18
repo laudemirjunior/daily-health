@@ -37,12 +37,13 @@ export const MainContainer = styled.div`
     overflow-y: scroll;
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
+    justify-content: space-between;
     background-color: var(--background);
     border-radius: 20px;
     padding: 20px;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     color: var(--white);
+    font-size: 20px;
 
     h1 {
       color: var(--white);
@@ -52,6 +53,9 @@ export const MainContainer = styled.div`
       justify-content: space-between;
       width: 100%;
       height: 40px;
+    }
+    .profile {
+      height: 50%;
     }
     img {
       width: 50px;
