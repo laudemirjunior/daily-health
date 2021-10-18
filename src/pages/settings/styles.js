@@ -25,20 +25,6 @@ export const MainContainer = styled.div`
       display: flex;
     }
   }
-  .cards {
-    width: 100%;
-    height: 80%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 20px;
-
-    @media (min-width: 900px) {
-      justify-content: space-between;
-      flex-wrap: nowrap;
-    }
-  }
 
   .card {
     width: 100%;
