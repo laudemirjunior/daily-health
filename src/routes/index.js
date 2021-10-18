@@ -2,7 +2,7 @@ import { Route, Switch } from "react-router";
 import Home from "../pages/home";
 // import SignUp from "../pages/signup";
 // import Login from "../pages/login";
-import AboutUs from "../pages/aboutus";
+// import AboutUs from "../pages/aboutus";
 // import PinkOctober from "../pages/pinkoctober";
 import Dashboard from "../pages/dashboard";
 // import Habits from "../pages/habits";
@@ -12,7 +12,7 @@ import Dashboard from "../pages/dashboard";
 // import SignUp from "../pages/signup";
 // import Login from "../pages/login";
 // import AboutUs from "../pages/aboutus";
-import PinkOctober from "../pages/pinkoctober";
+// import PinkOctober from "../pages/pinkoctober";
 // import Habits from "../pages/habits";
 // import Groups from "../pages/groups";
 // import Settings from "../pages/settings";
@@ -31,12 +31,12 @@ function Routes() {
         <Login />
       </Route> */}
 
-      <Route path="/aboutus">
+      {/* <Route path="/aboutus">
         <AboutUs />
       </Route>
       <Route path="/pinkoctober">
         <PinkOctober />
-      </Route> 
+      </Route>  */}
       <Route path="/dashboard">
         <Dashboard />
       </Route>
