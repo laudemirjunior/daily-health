@@ -19,10 +19,9 @@ export const ActivitiesProvider = ({ children }) => {
       .catch((err) => console.log(err));
   };
 
-  const createActivity = (activity, id) => {
-    const newActivity = { ...activity, group: id };
+  const createActivity = (activity) => {
     api
-      .post("/activities/", newActivity, {
+      .post("/activities/", activity, {
         headers: {
           Authorization: token,
         },

@@ -1,22 +1,28 @@
 import { StyleCardTask } from "./styles";
-import { BiLogOut } from "react-icons/bi";
+import { AiOutlineLogout } from "react-icons/ai";
 import { useHistory } from "react-router";
+import { MyGroupListContext } from "../../Providers/myGroupList";
+import { useContext } from "react";
 
 const CardMyGroups = ({ item }) => {
   let history = useHistory();
+  const { unSubscribe } = useContext(MyGroupListContext);
 
   function handleClick(item) {
     history.push(`/groups/${item.id}`);
   }
   return (
-    <StyleCardTask onClick={() => handleClick(item)}>
-      <div>
+    <StyleCardTask>
+      <div onClick={() => handleClick(item)}>
         <span>Nome: {item.name}</span>
         <span>Descrição: {item.description}</span>
         <span>Categoria: {item.category}</span>
       </div>
       <div className="svg">
-        <BiLogOut style={{ fontSize: "30px", color: "red" }} />
+        <AiOutlineLogout
+          onClick={() => unSubscribe(item)}
+          style={{ fontSize: "30px", color: "red" }}
+        />
       </div>
     </StyleCardTask>
   );

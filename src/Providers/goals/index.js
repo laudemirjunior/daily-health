@@ -19,10 +19,9 @@ export const GoalsProvider = ({ children }) => {
       .catch((err) => console.log(err));
   };
 
-  const createGoals = (goal, id) => {
-    const newGoal = { ...goal, id };
+  const createGoals = (goal) => {
     api
-      .post("/goals/", newGoal, {
+      .post("/goals/", goal, {
         headers: {
           Authorization: token,
         },
@@ -30,13 +29,17 @@ export const GoalsProvider = ({ children }) => {
       .catch((err) => console.log(err));
   };
 
-  const updateAtivity = (id, title) => {
+  const updateGoals = (boolean, id) => {
     api
-      .patch(`/goals/${id}/`, title, {
-        headers: {
-          Authorization: token,
-        },
-      })
+      .patch(
+        `/goals/${id}/`,
+        { achieved: boolean },
+        {
+          headers: {
+            Authorization: token,
+          },
+        }
+      )
       .catch((err) => console.log(err));
   };
 
@@ -56,7 +59,7 @@ export const GoalsProvider = ({ children }) => {
         searchGoals,
         goalsList,
         createGoals,
-        updateAtivity,
+        updateGoals,
         deleteGoals,
       }}
     >

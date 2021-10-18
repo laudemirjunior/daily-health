@@ -21,6 +21,10 @@ export const HabitListProvider = ({ children }) => {
       .catch((err) => console.log(err));
   };
 
+  useEffect(() => {
+    getHabitList();
+  }, []);
+
   const removeHabit = (habit) => {
     api
       .delete(`/habits/${habit.id}/`, {
@@ -59,10 +63,6 @@ export const HabitListProvider = ({ children }) => {
       .then(() => getHabitList())
       .catch((err) => console.log(err));
   };
-
-  useEffect(() => {
-    getHabitList();
-  }, []);
 
   return (
     <HabitListContext.Provider
