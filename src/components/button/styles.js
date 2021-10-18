@@ -18,9 +18,12 @@ export const StyleButton = styled.button`
   .ou{
     position:relative;
     top:96%;
-    right:15%;
+    right:10%;
   }
-
+  .login{
+    position:relative;
+    left:5%;
+  }
   .ou span{
     font-size: 22px;
     color:var(--black);

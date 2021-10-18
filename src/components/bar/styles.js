@@ -9,6 +9,7 @@ export const StyleBar = styled.div`
   justify-content: center;
   color: var(--white);
   align-items: center;
+ 
   .bar {
     width: 100%;
     max-width: 1366px;
