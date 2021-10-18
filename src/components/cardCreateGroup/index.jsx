@@ -6,6 +6,8 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { AiOutlineCloseCircle } from "react-icons/ai";
 import toast from "react-hot-toast";
+import { MyGroupListContext } from "../../Providers/myGroupList";
+import { useContext } from "react";
 
 const CardCreateGroup = ({ open }) => {
   const formSchema = yup.object().shape({
@@ -13,6 +15,8 @@ const CardCreateGroup = ({ open }) => {
     description: yup.string().required("Descrição obrigatória!"),
     category: yup.string().required("Categoria obrigatória!"),
   });
+
+  const { createGroup } = useContext(MyGroupListContext);
 
   const {
     register,
@@ -25,6 +29,7 @@ const CardCreateGroup = ({ open }) => {
   const notify = () => toast.success("Grupo criado com sucesso!");
 
   const onSubmit = (data) => {
+    createGroup(data);
     open();
     notify();
   };

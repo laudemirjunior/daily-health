@@ -17,8 +17,9 @@ const GlobalStyle = createGlobalStyle`
   :root {
     --white: #ffffff;
     --black: #000000;
-    --button: #88E8F2;
+    --button: #F2A0AF;
     --background: #FD7FAA;
+    --backgroundOpacity: #fd7faacc;
     --bar: #F2527D;
   }
   button, span, svg {

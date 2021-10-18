@@ -20,10 +20,10 @@ const CardHabit = ({ item, removeHabit, updateHabit }) => {
     <>
       <StyleCardTask>
         <div>
-          <span>Título: {item.title}</span>
-          <span>Categoria: {item.category}</span>
-          <span>Dificuldade: {item.difficulty}</span>
-          <span>Frequência: {item.frequency}</span>
+          <h2>Título: {item.title}</h2>
+          <h3>Categoria: {item.category}</h3>
+          <h5>Dificuldade: {item.difficulty}</h5>
+          <h5>Frequência: {item.frequency}</h5>
         </div>
         <div className="actions">
           <AiOutlineCloseCircle
