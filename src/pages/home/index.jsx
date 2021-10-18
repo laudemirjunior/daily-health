@@ -1,31 +1,29 @@
 import Bar from "../../components/bar";
 import Button from "../../components/button";
-import { Background } from "./styles";
+import { Container } from "./styles";
 
 const Home = () => {
   return (
-    <>
+    <Container>
       <Bar />
-      
-      <Background>
-        <div className="container">
-          <div className="name_page">
-            <span>Monitore seus habitos</span>
+
+          <div className="background">
+            
           </div>
-        </div>
-        
+          
+         <div className="name_page">
+                <h1>Monitore seus habitos</h1>
+            </div>
+
         <div className="description">
-          <span>Comece agora para transformar sua vida</span> 
+            <span>Comece agora para transformar sua vida.</span> 
 
-          <div className="btns">
-          <Button />
-          </div>
-
-        </div>
-
-      </Background>
+            <div className="btns">
+              <Button />
+            </div> 
+        </div> 
       
-    </>
+    </Container>
 
   
   )

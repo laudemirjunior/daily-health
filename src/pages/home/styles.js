@@ -1,51 +1,61 @@
 import styled from 'styled-components'
 import background from '../../images/background-home.png'
-export const Background = styled.div`
+
+export const Container = styled.div`
+
+
     width: 100vw;
-    height: calc(100vh - 60px);
+    height: 100%;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    flex-direction:column;
 
-    @media (min-width:1024px){
-        .container {
-            max-width: 1366px;
-            width: 100%;
-            height: 100%;
-            background:url(${background}) no-repeat;
-            background-size:contain;
-            margin-bottom:3%;
-            
-          }
-
-          .name_page{
-            width: 224px;
-            height: 367px;
-            margin:25px 7px;
-        }
-          
+    .background{
+        width:100%;
+        height:53vh;
+        background:var(--background);
+        clip-path: polygon(0 0, 100% 0, 100% 17%, 0% 100%);    
     }
     
-    
-    .name_page span{
-        font-weight: bold;
-        font-size:50px;
-        line-height: 70px;
+    .name_page{
+        width:218px;
+        height:181px;
+        font-size:1.5rem;
+        position: absolute;
+        left: 29px;
+        top: 69px;
+
     }
 
     .description{
-        width: 386px;
+        position: absolute;
+        width: 286px;
         height: 84px;
-        margin-right:10%;
-        margin-bottom:20%;
-        font-size: 26px;
-        line-height: 35px;
-    }
-    .btns{
-        margin-top:20%;
+        font-size:1.63rem;
+        left: 30px;
+        top: 284px;
+
     }
 
-    
-
+    @media (min-width:1100px){
+        width: 100vw;
+        height: 100vh;
+        .background{
+            width:1037px;
+            height:1090px;
+            background:url(${background}) no-repeat;
+            background-size:contain;
+            clip-path:none;
+            margin-left:15%;
+        }
+        .name_page{
+            width: 324px;
+            height: 267px;
+            font-size:2rem;
+        }
+        .description{
+            position:absolute;
+            left:75%;
+        }
+    }
 `
 
