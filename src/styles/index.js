@@ -12,7 +12,8 @@ const GlobalStyle = createGlobalStyle`
   .App {
       width: 100%;
       min-height: 100vh;
-  }
+      min-width: 320px;
+        }
   :root {
     --white: #ffffff;
     --black: #000000;
@@ -20,7 +21,7 @@ const GlobalStyle = createGlobalStyle`
     --background: #FD7FAA;
     --bar: #F2527D;
   }
-  button, span {
+  button, span, svg {
     cursor: pointer;
   }
 

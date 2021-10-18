@@ -11,7 +11,7 @@ export const StyleBar = styled.div`
   align-items: center;
   .bar {
     width: 100%;
-    max-width: 1366px;
+    max-width: 1500px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -33,15 +33,30 @@ export const StyleBar = styled.div`
     border-left: 1px solid var(--black);
   }
   .FaBars {
-    margin: 10px;
+    display: block;
+    margin-right: 30px;
     font-size: 20px;
+    cursor: pointer;
   }
-  @media (min-width: 400px) {
+  @media (min-width: 768px) {
     .info {
       display: block;
     }
     .FaBars {
       display: none;
     }
+  }
+`;
+
+export const MenuHamburguer = styled.div`
+  width: 200px;
+  height: 80vh;
+  position: absolute;
+  right: 55px;
+  top: 60px;
+  z-index: 1;
+  display: ${(props) => (props.open ? "none" : "block")};
+  @media (min-width: 768px) {
+    display: none;
   }
 `;

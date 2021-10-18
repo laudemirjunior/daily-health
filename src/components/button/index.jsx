@@ -1,7 +1,7 @@
-import StyleButton from "./styles";
+import { StyleButton } from "./styles";
 
-const Button = () => {
-  return <StyleButton></StyleButton>;
+const Button = ({ children, ...rest }) => {
+  return <StyleButton {...rest}>{children}</StyleButton>;
 };
 
 export default Button;

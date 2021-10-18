@@ -4,23 +4,58 @@ export const MainContainer = styled.div`
   width: 100vw;
   height: calc(100vh - 60px);
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
   .container {
-    max-width: 1366px;
     width: 100%;
+    max-width: 1500px;
     height: 100%;
-    display: grid;
+    display: flex;
+    justify-content: space-around;
     align-items: center;
-    grid-template-columns: 0.5fr 1fr 1fr;
-    grid-template-rows: 1fr;
-    gap: 20px;
-    grid-template-areas: "bar cards cards";
+    margin: 0 10px;
+  }
+  .menu {
+    max-width: 300px;
+    display: none;
+    align-items: center;
+    height: calc(100vh - 60px);
+    margin-right: 30px;
+    @media (min-width: 768px) {
+      display: flex;
+    }
   }
   .cards {
-    grid-area: cards;
+    width: 100%;
+    height: 80%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+
+    @media (min-width: 900px) {
+      justify-content: space-between;
+      flex-wrap: nowrap;
+    }
   }
-  .bar {
-    grid-area: bar;
+
+  .card {
+    width: 100%;
+    max-width: 600px;
+    min-width: 320px;
+    height: 100%;
+    overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    background-color: var(--background);
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    h1 {
+      color: var(--white);
+    }
   }
 `;
