@@ -6,7 +6,11 @@ export const MainContainer = styled.div`
   flex-direction: column;
   margin-top: 20px;
   justify-content: space-between;
-
+  img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50px;
+  }
   svg {
     width: 25px;
     height: 25px;
@@ -50,11 +54,13 @@ export const RigthContainer = styled.div`
     flex-direction: column;
     flex-wrap: wrap;
     justify-content: space-evenly;
+    gap: 20px;
   }
   li {
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
+    align-items: center;
   }
 
   @media (min-width: 900px) {
