@@ -6,7 +6,9 @@ import { useState, useEffect } from "react";
 import api from "../../services";
 import { TextField } from "@material-ui/core";
 import Button from "../../components/button";
+import ellipse from "../../images/ellipse.png";
 import axios from "axios";
+import { AiFillSetting } from "react-icons/ai";
 const Settings = () => {
   const token = `Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjM0NzY2MTQzLCJqdGkiOiI4ZmFkOGU4ODU1OGI0ZGFiOGJlZGI1YWNhYTYxOWQwMiIsInVzZXJfaWQiOjE1fQ.MyM-dshWnP1BhPl-jbGWJGvTpe_ujZzKuEN1N6so-pY`;
   const { decodedToken, isExpired } = useJwt(token);
@@ -35,21 +37,22 @@ const Settings = () => {
       .catch((err) => console.log(err));
   };
 
-  useEffect(() => {
-    if (link !== null) {
-      axios
-        .get(link, {
-          headers: {
-            Authorization: token,
-          },
-        })
-        .then((response) => {
-          setUserGroup(response.data.results.filter((user) => user.id === 125));
-          setLink(response.data.next);
-        })
-        .catch((err) => console.log(err));
-    }
-  }, [userGroup, link]);
+  // useEffect(() => {
+  //   if (link !== null) {
+  //     axios
+  //       .get(link, {
+  //         headers: {
+  //           Authorization: token,
+  //         },
+  //       })
+  //       .then((response) => {
+  //         setUserGroup(response.data.results.filter((user) => user.id === 125));
+  //         setLink(response.data.next);
+  //       })
+  //       .catch((err) => console.log(err));
+  //   }
+  // }, [userGroup, link]);
+
   console.log(userGroup);
   return (
     <>
@@ -61,23 +64,27 @@ const Settings = () => {
           </div>
           <div className="cards">
             <div className="card">
-              <h1 className="title">Settings</h1>
-              <ul>
-                <li>
-                  <h3>Username: {userInfo[0].username}</h3>
-                  <h3>email: {userInfo[0].email}</h3>
-                </li>
+              <h1 className="title">
+                Settings <AiFillSetting />
+              </h1>
+              <div>
+                <img src={ellipse} alt="" />
+                <h3>Username: {userInfo[0].username}</h3>
+                <h3>email: {userInfo[0].email}</h3>
+              </div>
+              <div className="divInput">
                 <h3> Escolha o novo nome de usuario: </h3>
+
                 <TextField
                   label="Username"
                   type="text"
                   value={userInput}
                   onChange={(event) => setUserInput(event.target.value)}
                 ></TextField>
-                <Button onClick={() => handleNewUserName(decodedToken.user_id)}>
-                  Enviar
-                </Button>
-              </ul>
+              </div>
+              <Button onClick={() => handleNewUserName(decodedToken.user_id)}>
+                Update Profile
+              </Button>
             </div>
           </div>
         </div>
