@@ -35,22 +35,22 @@ const Settings = () => {
       .catch((err) => console.log(err));
   };
 
-  // useEffect(() => {
-  //   if (link !== null) {
-  //     axios
-  //       .get(link, {
-  //         headers: {
-  //           Authorization: token,
-  //         },
-  //       })
-  //       .then((response) => {
-  //         setUserGroup([...userGroup, ...response.data.results]);
-  //         setLink(response.data.next)
-  //       })
-  //       .catch((err) => console.log(err));
-  //   }
-  // }, [userGroup, link]);
-  console.log(decodedToken);
+  useEffect(() => {
+    if (link !== null) {
+      axios
+        .get(link, {
+          headers: {
+            Authorization: token,
+          },
+        })
+        .then((response) => {
+          setUserGroup(response.data.results.filter((user) => user.id === 125));
+          setLink(response.data.next);
+        })
+        .catch((err) => console.log(err));
+    }
+  }, [userGroup, link]);
+  console.log(userGroup);
   return (
     <>
       <Bar />
