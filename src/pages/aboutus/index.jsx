@@ -1,10 +1,12 @@
 import Bar from "../../components/bar";
 import { MainContainer, LeftContainer, RigthContainer } from "./styles.js";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
+
 const AboutUs = () => {
   return (
     <div>
       <Bar />
+
       <MainContainer>
         <LeftContainer>
           <h3>Sobre o App</h3>
