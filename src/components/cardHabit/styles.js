@@ -9,7 +9,7 @@ export const StyleCardTask = styled.div`
   display: flex;
   justify-content: space-between;
   padding: 10px;
-  border: 1px solid black;
+  border: 1px solid var(--black);
   div {
     display: flex;
     justify-content: space-between;
@@ -28,8 +28,18 @@ export const StyleCardTask = styled.div`
     border: 1px solid green;
     border-radius: 30px;
     cursor: pointer;
-    &:hover {
-      background-color: lightgreen;
-    }
+  }
+  .progress {
+    margin: auto;
+    width: 100px;
+    height: 10px;
+    background-color: var(--button);
+    border-radius: 5px;
+    overflow: hidden;
+  }
+  .percentage {
+    height: 10px;
+    background-color: var(--bar);
+    border-radius: 5px;
   }
 `;

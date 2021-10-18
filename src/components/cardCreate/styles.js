@@ -26,9 +26,7 @@ export const StyleCardCreate = styled.div`
       top: 0;
       right: 0;
       margin: 10px;
-      font-size: 30px;
       color: red;
-      cursor: pointer;
     }
   }
 `;

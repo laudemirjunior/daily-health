@@ -50,7 +50,7 @@ export const MenuHamburguer = styled.div`
   width: 200px;
   height: 80vh;
   position: absolute;
-  right: 55px;
+  right: 50px;
   top: 60px;
   z-index: 1;
   display: ${(props) => (props.open ? "none" : "block")};

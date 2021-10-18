@@ -6,7 +6,7 @@ export const StyleHamburguer = styled.div`
   height: 80%;
   border-radius: 20px;
   color: var(--white);
-  background-color: var(--background);
+  background-color: var(--bar);
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -20,6 +20,7 @@ export const StyleHamburguer = styled.div`
     align-items: center;
     justify-content: center;
     img {
+      width: 60px;
       margin-bottom: 20px;
     }
     div {

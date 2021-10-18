@@ -1,7 +1,7 @@
 import { StyleCardCreate } from "./styles";
 import { useForm } from "react-hook-form";
 import Button from "../button/index";
-import { MenuItem, OutlinedInput, Select, TextField } from "@material-ui/core";
+import { MenuItem, TextField } from "@material-ui/core";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { AiOutlineCloseCircle } from "react-icons/ai";
@@ -34,7 +34,7 @@ const CardCreate = ({ createHabit, open }) => {
   return (
     <StyleCardCreate>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <h1 className="title">Criar hábito</h1>
+        <h2 className="title">Criar hábito</h2>
         <AiOutlineCloseCircle onClick={open} />
         <TextField
           {...register("title")}

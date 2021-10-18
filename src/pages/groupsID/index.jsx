@@ -19,8 +19,7 @@ const GroupsID = () => {
   useEffect(() => {
     searchActivities(id);
     searchGoals(id);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [activitiesList, searchGoals]);
+  }, []);
 
   const [openActivities, setOpenActivities] = useState(false);
 

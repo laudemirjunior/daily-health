@@ -11,6 +11,7 @@ const CardMyGroups = ({ item }) => {
   function handleClick(item) {
     history.push(`/groups/${item.id}`);
   }
+
   return (
     <StyleCardTask>
       <div onClick={() => handleClick(item)}>
@@ -21,7 +22,7 @@ const CardMyGroups = ({ item }) => {
       <div className="svg">
         <AiOutlineLogout
           onClick={() => unSubscribe(item)}
-          style={{ fontSize: "30px", color: "red" }}
+          style={{ color: "red" }}
         />
       </div>
     </StyleCardTask>

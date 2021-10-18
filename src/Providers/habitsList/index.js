@@ -1,6 +1,7 @@
 import { createContext, useState, useEffect } from "react";
 import api from "../../services";
 import { useJwt } from "react-jwt";
+import { toast } from "react-toastify";
 
 export const HabitListContext = createContext();
 
@@ -9,6 +10,11 @@ export const HabitListProvider = ({ children }) => {
   const [habitList, setHabitList] = useState([]);
   const token = `Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjM0NzY2MTQzLCJqdGkiOiI4ZmFkOGU4ODU1OGI0ZGFiOGJlZGI1YWNhYTYxOWQwMiIsInVzZXJfaWQiOjE1fQ.MyM-dshWnP1BhPl-jbGWJGvTpe_ujZzKuEN1N6so-pY`;
   const { decodedToken, isExpired } = useJwt(token);
+  const notifyGetHabitList = () =>
+    toast.error("Erro ao carregar seus hábitos!");
+  const notifyRemoveHabit = () => toast.error("Erro ao remover seu hábito!");
+  const notifyCreateHabit = () => toast.error("Erro ao criar seu hábito!");
+  const notifyUpdateHabit = () => toast.error("Erro ao atualizar seu hábito!");
 
   const getHabitList = () => {
     api
@@ -18,7 +24,7 @@ export const HabitListProvider = ({ children }) => {
         },
       })
       .then((response) => setHabitList(response.data))
-      .catch((err) => console.log(err));
+      .catch(() => notifyGetHabitList());
   };
 
   useEffect(() => {
@@ -33,7 +39,7 @@ export const HabitListProvider = ({ children }) => {
         },
       })
       .then(() => getHabitList())
-      .catch((err) => console.log(err));
+      .catch(() => notifyRemoveHabit());
   };
 
   const createHabit = (habit) => {
@@ -49,7 +55,7 @@ export const HabitListProvider = ({ children }) => {
         },
       })
       .then(() => getHabitList())
-      .catch((err) => console.log(err));
+      .catch(() => notifyCreateHabit());
   };
 
   const updateHabit = (habit, item) => {
@@ -61,7 +67,7 @@ export const HabitListProvider = ({ children }) => {
         },
       })
       .then(() => getHabitList())
-      .catch((err) => console.log(err));
+      .catch(() => notifyUpdateHabit());
   };
 
   return (

@@ -9,15 +9,15 @@ import toast from "react-hot-toast";
 
 const CardCreateGroup = ({ open }) => {
   const formSchema = yup.object().shape({
-    name: yup.string(),
-    description: yup.string(),
-    category: yup.string(),
+    name: yup.string().required("Nome obrigatório!"),
+    description: yup.string().required("Descrição obrigatória!"),
+    category: yup.string().required("Categoria obrigatória!"),
   });
 
   const {
     register,
     handleSubmit,
-    // formState: { errors },
+    formState: { errors },
   } = useForm({
     resolver: yupResolver(formSchema),
   });
@@ -32,20 +32,29 @@ const CardCreateGroup = ({ open }) => {
   return (
     <StyleCardCreate>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <h1 className="title">Criar Grupo</h1>
+        <h2 className="title">Criar Grupo</h2>
         <AiOutlineCloseCircle onClick={open} />
-        <TextField {...register("title")} label="Title" type="text"></TextField>
-        <TextField {...register("name")} label="Name" type="text"></TextField>
+        <TextField
+          {...register("name")}
+          label="Name"
+          type="text"
+          helperText={errors.name?.message}
+          error={!!errors.name}
+        />
         <TextField
           {...register("description")}
           label="Description"
           type="text"
-        ></TextField>
+          helperText={errors.description?.message}
+          error={!!errors.description}
+        />
         <TextField
           {...register("category")}
           label="Category"
           type="text"
-        ></TextField>
+          helperText={errors.category?.message}
+          error={!!errors.category}
+        />
         <Button onClick={notify} type="submit">
           Criar Grupo
         </Button>

@@ -14,17 +14,17 @@ const CardCreateActivities = ({ openShowActivities }) => {
   const { id } = useParams();
 
   const formSchema = yup.object().shape({
-    title: yup.string(),
-    date: yup.string(),
-    time: yup.string(),
+    title: yup.string().required("Título obrigatório!"),
+    date: yup.string().required("Data obrigatório!"),
+    time: yup.string().required("Horário obrigatório!"),
   });
 
-  const { createActivity } = useContext(ActivitiesContext);
+  const { createActivity, searchActivities } = useContext(ActivitiesContext);
 
   const {
     register,
     handleSubmit,
-    // formState: { errors },
+    formState: { errors },
   } = useForm({
     resolver: yupResolver(formSchema),
   });
@@ -39,18 +39,35 @@ const CardCreateActivities = ({ openShowActivities }) => {
     });
     openShowActivities();
     notify();
+    searchActivities(id);
   };
 
   return (
     <StyleCardCreate>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <h1 className="title">Criar atividade</h1>
+        <h2 className="title">Criar atividade</h2>
         <AiOutlineCloseCircle onClick={openShowActivities} />
-        <TextField {...register("title")} label="Title" type="text"></TextField>
-        <TextField {...register("date")} type="date"></TextField>
-        <TextField {...register("time")} type="time"></TextField>
+        <TextField
+          {...register("title")}
+          type="text"
+          label="Título"
+          helperText={errors.title?.message}
+          error={!!errors.title}
+        />
+        <TextField
+          {...register("date")}
+          type="date"
+          helperText={errors.date?.message}
+          error={!!errors.date}
+        />
+        <TextField
+          {...register("time")}
+          type="time"
+          helperText={errors.time?.message}
+          error={!!errors.time}
+        />
         <Button onClick={notify} type="submit">
-          Criar Atividade
+          Criar atividade
         </Button>
       </form>
     </StyleCardCreate>

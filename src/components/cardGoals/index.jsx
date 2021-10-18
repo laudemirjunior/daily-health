@@ -18,7 +18,7 @@ const CardGoals = ({ item }) => {
         <div className="actions">
           <AiOutlineCloseCircle
             onClick={() => deleteGoals(item.id)}
-            style={{ fontSize: "30px", color: "red" }}
+            style={{ color: "red" }}
           />
           <div
             className="active"
@@ -26,9 +26,7 @@ const CardGoals = ({ item }) => {
               updateGoals(true, item.id);
             }}
           >
-            <AiOutlineCheckCircle
-              style={{ fontSize: "30px", color: "green" }}
-            />
+            <AiOutlineCheckCircle style={{ color: "green" }} />
           </div>
         </div>
       </StyleCardTask>

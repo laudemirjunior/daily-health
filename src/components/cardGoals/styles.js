@@ -14,9 +14,6 @@ export const StyleCardTask = styled.div`
     display: flex;
     justify-content: space-between;
     flex-direction: column;
-    svg {
-      cursor: pointer;
-    }
   }
   .actions {
     display: flex;

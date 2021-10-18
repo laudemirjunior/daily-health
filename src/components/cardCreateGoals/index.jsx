@@ -12,11 +12,15 @@ import { GoalsContext } from "../../Providers/goals";
 
 const CardCreateGoals = ({ openShowGoals }) => {
   const { id } = useParams();
-  const { createGoals } = useContext(GoalsContext);
+  const { createGoals, searchGoals } = useContext(GoalsContext);
   const formSchema = yup.object().shape({
     title: yup.string().required("Título obrigatório!"),
     difficulty: yup.string().required("Dificuldade obrigatória!"),
-    achieved: yup.number().required("Quanto para alcançar obrigatória!"),
+    achieved: yup
+      .number()
+      .required("Quanto para alcançar obrigatória!")
+      .positive()
+      .integer(),
   });
 
   const {
@@ -29,21 +33,22 @@ const CardCreateGoals = ({ openShowGoals }) => {
 
   const notify = () => toast.success("Sua atividade criada com sucesso!");
 
-  const onSubmit = ({ title, difficulty, how_much_achieved }) => {
+  const onSubmit = ({ title, difficulty, achieved }) => {
     createGoals({
       title,
       difficulty,
-      how_much_achieved,
+      how_much_achieved: achieved,
       group: id,
     });
     openShowGoals();
     notify();
+    searchGoals(id);
   };
 
   return (
     <StyleCardCreate>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <h2 className="title">Criar atividade</h2>
+        <h2 className="title">Criar meta</h2>
         <AiOutlineCloseCircle onClick={openShowGoals} />
         <TextField
           label="Título"
@@ -60,13 +65,13 @@ const CardCreateGoals = ({ openShowGoals }) => {
           error={!!errors.difficulty}
         />
         <TextField
-          {...register("how_much_achieved")}
+          {...register("achieved")}
           label="Quanto para alcançar"
-          type="text"
+          type="number"
           helperText={errors.achieved?.message}
           error={!!errors.achieved}
         />
-        <Button type="submit">Criar Atividade</Button>
+        <Button type="submit">Criar meta</Button>
       </form>
     </StyleCardCreate>
   );
