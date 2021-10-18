@@ -1,17 +1,18 @@
 import { StyleCardCreate } from "./styles";
 import { useForm } from "react-hook-form";
 import Button from "../button/index";
-import { TextField } from "@material-ui/core";
+import { MenuItem, TextField } from "@material-ui/core";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { AiOutlineCloseCircle } from "react-icons/ai";
-import toast from "react-hot-toast";
+import { toast } from "react-toastify";
 
 const CardCreate = ({ createHabit, open }) => {
   const formSchema = yup.object().shape({
-    category: yup.string(),
-    difficulty: yup.string(),
-    frequency: yup.string(),
+    title: yup.string().required("Titulo obrigatório!"),
+    category: yup.string().required("Categoria obrigatória!"),
+    difficulty: yup.string().required("Dificuldade obrigatória!"),
+    frequency: yup.string().required("Frequência obrigatória!"),
   });
 
   const {
@@ -22,7 +23,7 @@ const CardCreate = ({ createHabit, open }) => {
     resolver: yupResolver(formSchema),
   });
 
-  const notify = () => toast.success("Hábitos criado com sucesso!");
+  const notify = () => toast.success("Seu habito foi criado com sucesso!");
 
   const onSubmit = (data) => {
     createHabit(data);
@@ -33,24 +34,51 @@ const CardCreate = ({ createHabit, open }) => {
   return (
     <StyleCardCreate>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <h1 className="title">Criar hábito</h1>
+        <h2 className="title">Criar hábito</h2>
         <AiOutlineCloseCircle onClick={open} />
-        <TextField {...register("title")} label="Title" type="text"></TextField>
+        <TextField
+          {...register("title")}
+          label="Titulo"
+          type="text"
+          helperText={errors.title?.message}
+          error={!!errors.title}
+        />
         <TextField
           {...register("category")}
-          label="Category"
+          label="Categoria"
           type="text"
-        ></TextField>
+          helperText={errors.category?.message}
+          error={!!errors.category}
+        />
         <TextField
+          select
+          style={{
+            width: "230px",
+          }}
           {...register("difficulty")}
-          label="Difficulty"
-          type="text"
-        ></TextField>
+          label="Dificuldade"
+          helperText={errors.difficulty?.message}
+          error={!!errors.difficulty}
+        >
+          <MenuItem value={1}>Fácil</MenuItem>
+          <MenuItem value={2}>Médio</MenuItem>
+          <MenuItem value={3}>Difícil</MenuItem>
+        </TextField>
         <TextField
+          select
+          style={{
+            width: "230px",
+          }}
           {...register("frequency")}
-          label="Frequency"
+          label="Frequência"
           type="text"
-        ></TextField>
+          helperText={errors.frequency?.message}
+          error={!!errors.frequency}
+        >
+          <MenuItem value={1}>Diária</MenuItem>
+          <MenuItem value={2}>Semanal</MenuItem>
+          <MenuItem value={3}>Mensal</MenuItem>
+        </TextField>
         <Button type="submit">Criar hábito</Button>
       </form>
     </StyleCardCreate>

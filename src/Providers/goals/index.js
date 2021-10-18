@@ -1,10 +1,15 @@
 import { createContext, useState } from "react";
 import api from "../../services";
+import { toast } from "react-toastify";
 export const GoalsContext = createContext();
 
 export const GoalsProvider = ({ children }) => {
   const [goalsList, setGoalsList] = useState([]);
   const token = `Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjM0NzY2MTQzLCJqdGkiOiI4ZmFkOGU4ODU1OGI0ZGFiOGJlZGI1YWNhYTYxOWQwMiIsInVzZXJfaWQiOjE1fQ.MyM-dshWnP1BhPl-jbGWJGvTpe_ujZzKuEN1N6so-pY`;
+  const notifySearchGoals = () => toast.error("Erro ao carregar suas metas!");
+  const notifyCreateGoals = () => toast.error("Erro ao criar sua meta!");
+  const notifyUpdateGoals = () => toast.error("Erro ao atualizar sua meta!");
+  const notifyDeleteGoals = () => toast.error("Erro ao deletar sua meta!");
 
   const searchGoals = (id) => {
     api
@@ -16,28 +21,31 @@ export const GoalsProvider = ({ children }) => {
       .then((response) => {
         setGoalsList(response.data.results);
       })
-      .catch((err) => console.log(err));
+      .catch(() => notifySearchGoals());
   };
 
-  const createGoals = (goal, id) => {
-    const newGoal = { ...goal, id };
+  const createGoals = (goal) => {
     api
-      .post("/goals/", newGoal, {
+      .post("/goals/", goal, {
         headers: {
           Authorization: token,
         },
       })
-      .catch((err) => console.log(err));
+      .catch(() => notifyCreateGoals());
   };
 
-  const updateAtivity = (id, title) => {
+  const updateGoals = (boolean, id) => {
     api
-      .patch(`/goals/${id}/`, title, {
-        headers: {
-          Authorization: token,
-        },
-      })
-      .catch((err) => console.log(err));
+      .patch(
+        `/goals/${id}/`,
+        { achieved: boolean },
+        {
+          headers: {
+            Authorization: token,
+          },
+        }
+      )
+      .catch(() => notifyUpdateGoals());
   };
 
   const deleteGoals = (id) => {
@@ -47,7 +55,7 @@ export const GoalsProvider = ({ children }) => {
           Authorization: token,
         },
       })
-      .catch((err) => console.log(err));
+      .catch(() => notifyDeleteGoals());
   };
 
   return (
@@ -56,7 +64,7 @@ export const GoalsProvider = ({ children }) => {
         searchGoals,
         goalsList,
         createGoals,
-        updateAtivity,
+        updateGoals,
         deleteGoals,
       }}
     >

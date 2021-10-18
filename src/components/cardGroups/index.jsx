@@ -1,5 +1,5 @@
 import { StyleCardTask } from "./styles";
-import { ImEnter } from "react-icons/im";
+import { AiOutlineLogin } from "react-icons/ai";
 import { useContext } from "react";
 import { MyGroupListContext } from "../../Providers/myGroupList";
 
@@ -14,9 +14,9 @@ const CardGroups = ({ item }) => {
         <span>Categoria: {item.category}</span>
       </div>
       <div className="svg">
-        <ImEnter
+        <AiOutlineLogin
           onClick={() => subscribe(item)}
-          style={{ fontSize: "30px", color: "green" }}
+          style={{ color: "green" }}
         />
       </div>
     </StyleCardTask>

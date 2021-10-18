@@ -19,7 +19,7 @@ export const StyleBar = styled.div`
   .logo {
     font-size: 30px;
     padding: 10px;
-    cursor: pointer;
+    font-weight: bold;
   }
   .buttons {
     display: flex;
@@ -27,7 +27,6 @@ export const StyleBar = styled.div`
   .info {
     display: none;
     font-size: 20px;
-    cursor: pointer;
     margin: 10px;
     padding: 10px;
     border-left: 1px solid var(--black);
@@ -36,7 +35,6 @@ export const StyleBar = styled.div`
     display: block;
     margin-right: 30px;
     font-size: 20px;
-    cursor: pointer;
   }
   @media (min-width: 768px) {
     .info {
@@ -52,7 +50,7 @@ export const MenuHamburguer = styled.div`
   width: 200px;
   height: 80vh;
   position: absolute;
-  right: 55px;
+  right: 50px;
   top: 60px;
   z-index: 1;
   display: ${(props) => (props.open ? "none" : "block")};

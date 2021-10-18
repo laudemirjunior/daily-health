@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const StyleCardCreate = styled.div`
   width: 300px;
-  height: 450px;
+  height: 350px;
   background-color: white;
   position: absolute;
   border-radius: 20px;
@@ -13,13 +13,16 @@ export const StyleCardCreate = styled.div`
   form {
     height: inherit;
     display: flex;
-    align-items: center;
+    align-items: left;
     flex-direction: column;
     justify-content: space-around;
     padding: 20px;
     color: black;
     .title {
       color: black;
+    }
+    h2 {
+      text-align: center;
     }
     svg {
       position: absolute;
