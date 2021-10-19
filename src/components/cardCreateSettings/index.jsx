@@ -8,7 +8,7 @@ import { AiOutlineCloseCircle } from "react-icons/ai";
 import toast from "react-hot-toast";
 import { useHistory } from "react-router";
 
-const CardCreateSettings = ({ open, handleNewUserName, userName }) => {
+const CardCreateSettings = ({ open, handleNewUserName }) => {
   const formSchema = yup.object().shape({
     username: yup.string().required(),
   });
@@ -27,9 +27,6 @@ const CardCreateSettings = ({ open, handleNewUserName, userName }) => {
     handleNewUserName(data);
     open();
     notify();
-    userName();
-    history.push("/");
-    history.push("/settings");
   };
   return (
     <>

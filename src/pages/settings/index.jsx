@@ -8,8 +8,9 @@ import api from "../../services";
 import Button from "../../components/button";
 import k from "../../images/k.png";
 import { AiFillSetting } from "react-icons/ai";
-import { useEffect } from "react";
+import { useEffect, useContext } from "react";
 import { useHistory } from "react-router";
+import { NameUserContext } from "../../Providers/nameUser";
 
 const Settings = () => {
   const token = `Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjM0NzY2MTQzLCJqdGkiOiI4ZmFkOGU4ODU1OGI0ZGFiOGJlZGI1YWNhYTYxOWQwMiIsInVzZXJfaWQiOjE1fQ.MyM-dshWnP1BhPl-jbGWJGvTpe_ujZzKuEN1N6so-pY`;
@@ -18,9 +19,7 @@ const Settings = () => {
   const [showCard, setShowCard] = useState(false);
   const [userInfo, setUserInfo] = useState("");
   const history = useHistory();
-  const userName = () => {
-    setUserInfo(localStorage.getItem("@KenzieHealth:username"));
-  };
+  const { nameUser, setNameUser } = useContext(NameUserContext);
 
   const handleNewUserName = (data) => {
     const id = decodedToken.user_id;
@@ -31,11 +30,8 @@ const Settings = () => {
           Authorization: token,
         },
       })
-      .then(() => localStorage.clear("@KenzieHealth:username"))
       .then(() => {
-        localStorage.setItem("@KenzieHealth:username", data.username);
-        history.push("/settings");
-        console.log("sucesso");
+        setNameUser(data.username);
       })
 
       .catch((err) => console.log(err.message));
@@ -43,10 +39,12 @@ const Settings = () => {
   const open = () => {
     setShowCard(!showCard);
   };
-
-  useEffect(() => {
-    userName();
-  });
+  // const userName = () => {
+  //   setUserInfo(localStorage.getItem("@KenzieHealth:username"));
+  // };
+  // useEffect(() => {
+  //   userName();
+  // });
   return (
     <>
       <Bar />
@@ -64,7 +62,7 @@ const Settings = () => {
                 <CardHeading>Seu Perfil: </CardHeading>
                 <div>
                   <img src={k} alt="" />
-                  <span>Username: {userInfo}</span>
+                  <span>Username: {nameUser}</span>
                   <span>Voce Participa de 30 grupos diferentes!</span>
                   <span>
                     Atualmente voce esta tentando ter 10 habitos novos!
@@ -76,7 +74,6 @@ const Settings = () => {
                 <CardCreateSettings
                   open={open}
                   handleNewUserName={handleNewUserName}
-                  userName={userName}
                 />
               )}
             </div>

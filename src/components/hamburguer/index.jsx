@@ -8,14 +8,8 @@ import { useState, useEffect } from "react";
 const Hamburguer = () => {
   const history = useHistory();
   const [userInfo, setUserInfo] = useState("");
-  const userName = () => {
-    setUserInfo();
-  };
+
   const nome = localStorage.getItem(`@KenzieHealth:username`);
-  useEffect(() => {
-    userName();
-    console.log(userInfo);
-  });
 
   const logout = () => {
     localStorage.clear();

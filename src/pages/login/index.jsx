@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { TextField, InputAdornment, IconButton} from "@material-ui/core";
+import { useState, useContext } from "react";
+import { TextField, InputAdornment, IconButton } from "@material-ui/core";
 import { Countainer, Form, Animate_div, Poligon } from "./styles";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -15,11 +15,12 @@ import animationData from "../../animation/animate-login";
 import Bar from "../../components/bar";
 import VisibilityIcon from "@material-ui/icons/Visibility";
 import VisibilityOffIcon from "@material-ui/icons/VisibilityOff";
+import { NameUserContext } from "../../Providers/nameUser";
 
 const Login = () => {
   const [error, setError] = useState("");
-  const [showPassword, setShowPassword] = useState('password');
-  
+  const [showPassword, setShowPassword] = useState("password");
+  const { nameUser, setNameUser } = useContext(NameUserContext);
   const history = useHistory();
 
   const schema = yup.object().shape({
@@ -62,73 +63,79 @@ const Login = () => {
 
   return (
     <>
-     <Bar />
-    <div style={{ display: "flex" }}>
-      <Animate_div>
-        <Lottie
-          options={defaultOptions}
-          height={"27vw"}
-          width={"50vw"}
-          speed={0.5}
-          isStopped={animationState.isStopped}
-          isPaused={animationState.isPaused}
-        />
-      </Animate_div>
-      <Poligon></Poligon>
-      <Countainer>
-        <h1> Login </h1>
-        <Form onSubmit={handleSubmit(handleForm)}>
-          <div>
-            <TextField
-              label="Username"
-              className='input'
-              type="text"
-              margin="normal"
-              variant="outlined"
-              color="primary"
-              {...register("username")}
-              helperText={errors.username?.message}
-              error={!!errors.username}
-            />
-          </div>
-          <div>
-            <TextField
-              label="Senha"
-              className='input'
-              type={showPassword}
-              margin="normal"
-              variant="outlined"
-              color="primary"
-              {...register("password")}
-              helperText={errors.password?.message}
-              error={!!errors.password}
+      <Bar />
+      <div style={{ display: "flex" }}>
+        <Animate_div>
+          <Lottie
+            options={defaultOptions}
+            height={"27vw"}
+            width={"50vw"}
+            speed={0.5}
+            isStopped={animationState.isStopped}
+            isPaused={animationState.isPaused}
+          />
+        </Animate_div>
+        <Poligon></Poligon>
+        <Countainer>
+          <h1> Login </h1>
+          <Form onSubmit={handleSubmit(handleForm)}>
+            <div>
+              <TextField
+                label="Username"
+                className="input"
+                type="text"
+                margin="normal"
+                variant="outlined"
+                color="primary"
+                {...register("username")}
+                helperText={errors.username?.message}
+                error={!!errors.username}
+              />
+            </div>
+            <div>
+              <TextField
+                label="Senha"
+                className="input"
+                type={showPassword}
+                margin="normal"
+                variant="outlined"
+                color="primary"
+                {...register("password")}
+                helperText={errors.password?.message}
+                error={!!errors.password}
                 InputProps={{
                   endAdornment: (
                     <InputAdornment>
                       <IconButton
-                      className='visibilityButton' 
-                      onClick={() => showPassword === 'password' ? setShowPassword('text') 
-                        : setShowPassword('password')
-                      }
-                      aria-label="toggle password visibility"
+                        className="visibilityButton"
+                        onClick={() =>
+                          showPassword === "password"
+                            ? setShowPassword("text")
+                            : setShowPassword("password")
+                        }
+                        aria-label="toggle password visibility"
                       >
-                        {showPassword === 'password' ? <VisibilityOffIcon /> : <VisibilityIcon />}
+                        {showPassword === "password" ? (
+                          <VisibilityOffIcon />
+                        ) : (
+                          <VisibilityIcon />
+                        )}
                       </IconButton>
                     </InputAdornment>
                   ),
                 }}
-            />
-          </div>
-          
-          <Button>entrar</Button> 
-          <span>
-            {" "}
-            Nao tem cadastro? Crie uma conta <Link to={"/signup"}>aqui</Link>
-          </span>
-        </Form>
-      </Countainer>
-    </div>
-  </>
+              />
+            </div>
+
+            <Button>entrar</Button>
+            <span>
+              {" "}
+              Nao tem cadastro? Crie uma conta <Link to={"/signup"}>aqui</Link>
+            </span>
+          </Form>
+        </Countainer>
+      </div>
+    </>
   );
 };
 

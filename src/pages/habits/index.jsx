@@ -6,6 +6,7 @@ import Button from "../../components/button";
 import CardCreate from "../../components/cardCreate";
 import CardHabit from "../../components/cardHabit";
 import { HabitListContext } from "../../Providers/habitsList";
+
 const Habits = () => {
   const [showCard, setShowCard] = useState(false);
   const open = () => {
