@@ -18,7 +18,7 @@ import { toast } from "react-toastify";
 const SignUp = () => {
   const [showPassword, setShowPassword] = useState("password");
   const [showPasswordTwo, setShowPasswordTwo] = useState("password");
-
+  console.log(showPassword);
   const history = useHistory();
 
   const schema = yup.object().shape({
@@ -118,7 +118,7 @@ const SignUp = () => {
             <TextField
               className="input"
               label="Senha"
-              type="password"
+              type={showPassword}
               margin="normal"
               variant="outlined"
               color="primary"
@@ -150,7 +150,7 @@ const SignUp = () => {
             <TextField
               className="input"
               label="Confirmar senha"
-              type="password"
+              type={showPasswordTwo}
               margin="normal"
               variant="outlined"
               color="primary"
