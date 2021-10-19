@@ -17,7 +17,8 @@ const Hamburguer = () => {
   };
 
   const local = history.location.pathname;
-  const name = localStorage.getItem("@KenzieHealth:userName");
+  const name = localStorage.getItem(`@KenzieHealth:userName`);
+  console.log(name);
 
   return (
     <StyleHamburguer>
