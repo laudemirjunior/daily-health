@@ -6,12 +6,13 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { AiOutlineCloseCircle } from "react-icons/ai";
 import toast from "react-hot-toast";
+import { useHistory } from "react-router";
 
 const CardCreateSettings = ({ open, handleNewUserName, userName }) => {
   const formSchema = yup.object().shape({
     username: yup.string().required(),
   });
-
+  const history = useHistory();
   const {
     register,
     handleSubmit,
@@ -27,6 +28,8 @@ const CardCreateSettings = ({ open, handleNewUserName, userName }) => {
     open();
     notify();
     userName();
+    history.push("/");
+    history.push("/settings");
   };
   return (
     <>

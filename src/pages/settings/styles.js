@@ -44,7 +44,7 @@ export const MainContainer = styled.div`
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     color: var(--white);
     font-size: 20px;
-
+    gap: 10px;
     h1 {
       color: var(--white);
       align-self: center;
@@ -64,5 +64,57 @@ export const MainContainer = styled.div`
     .divInput {
       max-width: 450px;
     }
+    button {
+      transition: 0.3s;
+      align-self: flex-end;
+    }
+    button:hover {
+      box-shadow: 0 15px 15px rgba(0, 0, 0, 0.16);
+      transform: translate(0, -5px);
+    }
   }
 `;
+
+export const CardWrapper = styled.div`
+  overflow: hidden;
+  padding: 20px;
+  align-self: center;
+  width: 250px;
+  box-shadow: 0 0 20px rgb(0 0 0 / 5%), 0 0px 40px rgb(0 0 0 / 8%);
+  border-radius: 5px;
+  height: 100%;
+  max-height: 340px;
+  div {
+    display: flex;
+    flex-direction: column;
+  }
+  span {
+    font-size: 15px;
+    margin: 10px;
+  }
+`;
+
+export const CardHeading = styled.h1`
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+`;
+
+export const CardBody = styled.div`
+  padding-right: 32px;
+  padding-left: 32px;
+`;
+
+// export const CardLink = styled.a`
+//   display: inline-block;
+//   font-size: 12px;
+//   text-decoration: none;
+//   color: #aaa;
+//   border-bottom: 1px solid #ddd;
+//   cursor: pointer;
+//   transition: color 0.25s ease-in;
+
+//   &:hover {
+//     color: #777;
+//   }
+// `;

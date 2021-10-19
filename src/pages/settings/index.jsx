@@ -1,7 +1,7 @@
 import Bar from "../../components/bar";
 import Hamburguer from "../../components/hamburguer";
 import CardCreateSettings from "../../components/cardCreateSettings";
-import { MainContainer } from "./styles.js";
+import { MainContainer, CardWrapper, CardHeading } from "./styles.js";
 import { useJwt } from "react-jwt";
 import { useState } from "react";
 import api from "../../services";
@@ -9,6 +9,7 @@ import Button from "../../components/button";
 import k from "../../images/k.png";
 import { AiFillSetting } from "react-icons/ai";
 import { useEffect } from "react";
+import { useHistory } from "react-router";
 
 const Settings = () => {
   const token = `Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjM0NzY2MTQzLCJqdGkiOiI4ZmFkOGU4ODU1OGI0ZGFiOGJlZGI1YWNhYTYxOWQwMiIsInVzZXJfaWQiOjE1fQ.MyM-dshWnP1BhPl-jbGWJGvTpe_ujZzKuEN1N6so-pY`;
@@ -16,10 +17,11 @@ const Settings = () => {
   const [userInput, setUserInput] = useState("");
   const [showCard, setShowCard] = useState(false);
   const [userInfo, setUserInfo] = useState("");
-
+  const history = useHistory();
   const userName = () => {
     setUserInfo(localStorage.getItem("@KenzieHealth:username"));
   };
+
   const handleNewUserName = (data) => {
     const id = decodedToken.user_id;
 
@@ -32,6 +34,7 @@ const Settings = () => {
       .then(() => localStorage.clear("@KenzieHealth:username"))
       .then(() => {
         localStorage.setItem("@KenzieHealth:username", data.username);
+        history.push("/settings");
         console.log("sucesso");
       })
 
@@ -57,13 +60,17 @@ const Settings = () => {
               <h1 className="title">
                 Settings <AiFillSetting />
               </h1>
-              <div className="profile">
-                <h2>Seu Perfil: </h2>
+              <CardWrapper>
+                <CardHeading>Seu Perfil: </CardHeading>
                 <div>
                   <img src={k} alt="" />
-                  <h3>Username: {userInfo}</h3>
+                  <span>Username: {userInfo}</span>
+                  <span>Voce Participa de 30 grupos diferentes!</span>
+                  <span>
+                    Atualmente voce esta tentando ter 10 habitos novos!
+                  </span>
                 </div>
-              </div>
+              </CardWrapper>
               <Button onClick={open}>Change Username</Button>
               {showCard && (
                 <CardCreateSettings
