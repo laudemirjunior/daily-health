@@ -8,33 +8,41 @@ import api from "../../services";
 import Button from "../../components/button";
 import k from "../../images/k.png";
 import { AiFillSetting } from "react-icons/ai";
+import { useEffect } from "react";
 
 const Settings = () => {
   const token = `Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjM0NzY2MTQzLCJqdGkiOiI4ZmFkOGU4ODU1OGI0ZGFiOGJlZGI1YWNhYTYxOWQwMiIsInVzZXJfaWQiOjE1fQ.MyM-dshWnP1BhPl-jbGWJGvTpe_ujZzKuEN1N6so-pY`;
   const { decodedToken, isExpired } = useJwt(token);
   const [userInput, setUserInput] = useState("");
   const [showCard, setShowCard] = useState(false);
-  const [userGroup, setUserGroup] = useState([]);
-  const [userInfo, setUserInfo] = useState({
-    username: localStorage.getItem("@KenzieHealth:userName"),
-  });
+  const [userInfo, setUserInfo] = useState("");
 
-  const handleNewUserName = ({ id }) => {
+  const userName = () => {
+    setUserInfo(localStorage.getItem("@KenzieHealth:username"));
+  };
+  const handleNewUserName = (data) => {
+    const id = decodedToken.user_id;
+
     api
-      .patch(`/users/${id}`, userInput, {
+      .patch(`/users/${id}/`, userInput, {
         headers: {
           Authorization: token,
         },
       })
-      .then(() => console.log("sucesso"))
+      .then(() => {
+        localStorage.setItem("@KenzieHealth:username", data.username);
+        console.log("sucesso");
+      })
 
-      .catch((err) => console.log(err));
-    localStorage.setItem("@KenzieHealth:userName", userInput);
+      .catch((err) => console.log(err.message));
   };
   const open = () => {
     setShowCard(!showCard);
   };
 
+  useEffect(() => {
+    userName();
+  });
   return (
     <>
       <Bar />
@@ -52,7 +60,7 @@ const Settings = () => {
                 <h2>Seu Perfil: </h2>
                 <div>
                   <img src={k} alt="" />
-                  <h3>Username: {userInfo.username}</h3>
+                  <h3>Username: {userInfo}</h3>
                 </div>
               </div>
               <Button onClick={open}>Change Username</Button>
@@ -60,6 +68,7 @@ const Settings = () => {
                 <CardCreateSettings
                   open={open}
                   handleNewUserName={handleNewUserName}
+                  userName={userName}
                 />
               )}
             </div>

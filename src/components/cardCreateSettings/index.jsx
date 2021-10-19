@@ -7,9 +7,9 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { AiOutlineCloseCircle } from "react-icons/ai";
 import toast from "react-hot-toast";
 
-const CardCreateSettings = ({ open, handleNewUserName }) => {
+const CardCreateSettings = ({ open, handleNewUserName, userName }) => {
   const formSchema = yup.object().shape({
-    userName: yup.string().required(),
+    username: yup.string().required(),
   });
 
   const {
@@ -22,10 +22,11 @@ const CardCreateSettings = ({ open, handleNewUserName }) => {
 
   const notify = () => toast.success("UserName alterado com sucesso!");
 
-  const onSubmit = (id) => {
-    handleNewUserName(id);
+  const onSubmit = (data) => {
+    handleNewUserName(data);
     open();
     notify();
+    userName();
   };
   return (
     <>
@@ -34,7 +35,7 @@ const CardCreateSettings = ({ open, handleNewUserName }) => {
           <h1 className="title">Mudar Nome de Usuario</h1>
           <AiOutlineCloseCircle onClick={open} />
           <TextField
-            {...register("userName")}
+            {...register("username")}
             label="New Username"
             type="text"
           ></TextField>

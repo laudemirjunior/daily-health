@@ -4,9 +4,18 @@ import { BsFillPeopleFill } from "react-icons/bs";
 import { BiLogOut } from "react-icons/bi";
 import k from "../../images/k.png";
 import { useHistory } from "react-router";
-
+import { useState, useEffect } from "react";
 const Hamburguer = () => {
   const history = useHistory();
+  const [userInfo, setUserInfo] = useState("");
+  const userName = () => {
+    setUserInfo(localStorage.getItem("@KenzieHealth:username"));
+  };
+
+  useEffect(() => {
+    userName();
+    console.log(userInfo);
+  });
 
   const logout = () => {
     localStorage.clear();
@@ -19,7 +28,7 @@ const Hamburguer = () => {
     <StyleHamburguer>
       <div>
         <img src={k} alt="" />
-        <p>Name</p>
+        <p>{userInfo}</p>
       </div>
       <div>
         <div
@@ -71,7 +80,6 @@ const Hamburguer = () => {
       </div>
     </StyleHamburguer>
   );
-
 };
 
 export default Hamburguer;
