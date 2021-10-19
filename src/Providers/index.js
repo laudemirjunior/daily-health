@@ -4,6 +4,7 @@ import { GroupListProvider } from "./groupList";
 import { HabitListProvider } from "./habitsList";
 import { MyGroupListProvider } from "./myGroupList";
 import { AuthenticatedProvider } from "./authenticated";
+import { NameUserProvider } from "./nameUser";
 
 const Providers = ({ children }) => {
   return (
@@ -12,7 +13,9 @@ const Providers = ({ children }) => {
         <MyGroupListProvider>
           <HabitListProvider>
             <AuthenticatedProvider>
-              <GroupListProvider>{children}</GroupListProvider>
+              <NameUserProvider>
+                <GroupListProvider>{children}</GroupListProvider>
+              </NameUserProvider>
             </AuthenticatedProvider>
           </HabitListProvider>
         </MyGroupListProvider>

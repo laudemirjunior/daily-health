@@ -12,7 +12,10 @@ export const StyleButton = styled.button`
   font-size: 22px;
   color: var(--white);
   font-weight: bold;
+  transition: 0.3s;
   :hover {
     filter: saturate(2);
+    box-shadow: 0 15px 15px rgba(0, 0, 0, 0.16);
+    transform: translate(0, -5px);
   }
 `;

@@ -5,11 +5,13 @@ import { BiLogOut } from "react-icons/bi";
 import k from "../../images/k.png";
 import { useHistory } from "react-router";
 import { AuthenticatedContext } from "../../Providers/authenticated";
+import { NameUserContext } from "../../Providers/nameUser";
 import { useContext } from "react";
 
 const Hamburguer = () => {
   const history = useHistory();
   const { setAuthenticated } = useContext(AuthenticatedContext);
+  const { nameUser } = useContext(NameUserContext);
   const logout = () => {
     history.push("/");
     localStorage.clear();
@@ -17,14 +19,12 @@ const Hamburguer = () => {
   };
 
   const local = history.location.pathname;
-  const name = localStorage.getItem(`@KenzieHealth:userName`);
-  console.log(name);
 
   return (
     <StyleHamburguer>
       <div>
         <img src={k} alt="" />
-        <p>{name}</p>
+        <p>{nameUser}</p>
       </div>
       <div>
         <div

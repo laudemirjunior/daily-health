@@ -16,11 +16,14 @@ import VisibilityIcon from "@material-ui/icons/Visibility";
 import VisibilityOffIcon from "@material-ui/icons/VisibilityOff";
 import { Redirect } from "react-router";
 import { AuthenticatedContext } from "../../Providers/authenticated";
+import { NameUserContext } from "../../Providers/nameUser";
 import { useContext } from "react";
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState("password");
   const { authenticated, setAuthenticated } = useContext(AuthenticatedContext);
+  const { setNameUser } = useContext(NameUserContext);
+
   const history = useHistory();
 
   const schema = yup.object().shape({
@@ -38,7 +41,7 @@ const Login = () => {
     api
       .post("/sessions/", data)
       .then((response) => {
-        localStorage.setItem("@KenzieHealth:userName", data.username);
+        setNameUser(data.username);
         localStorage.setItem(
           "@KenzieHealth:token",
           JSON.stringify(response.data.access)
@@ -136,9 +139,8 @@ const Login = () => {
 
             <Button>entrar</Button>
             <span>
-              Nao tem cadastro?
               <Link to={"/signup"} className="link">
-                Crie uma conta
+                Crie uma conta aqui!
               </Link>
             </span>
           </Form>

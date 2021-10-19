@@ -63,6 +63,13 @@ export const Countainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 40px;
+  .link {
+    border-bottom: 1px solid #ddd;
+    transition: color 0.25s ease-in;
+  }
+  .link:hover {
+    color: #777;
+  }
   h1 {
     color: var(--white);
     font-size: 84px;

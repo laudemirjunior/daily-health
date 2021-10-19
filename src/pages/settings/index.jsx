@@ -1,48 +1,46 @@
 import Bar from "../../components/bar";
 import Hamburguer from "../../components/hamburguer";
 import CardCreateSettings from "../../components/cardCreateSettings";
-import { MainContainer } from "./styles.js";
+import { MainContainer, CardWrapper, CardHeading } from "./styles.js";
 import { useJwt } from "react-jwt";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import api from "../../services";
 import Button from "../../components/button";
 import k from "../../images/k.png";
 import { AiFillSetting } from "react-icons/ai";
-import { Redirect } from "react-router";
-import { AuthenticatedContext } from "../../Providers/authenticated";
-import { useContext } from "react";
+import { useHistory } from "react-router";
+import { NameUserContext } from "../../Providers/nameUser";
+import { MyGroupListContext } from "../../Providers/myGroupList";
+import { HabitListContext } from "../../Providers/habitsList";
 
 const Settings = () => {
-  const [tokenLocal] = useState(
-    JSON.parse(localStorage.getItem("@KenzieHealth:token")) || ""
-  );
-  const token = `Bearer ${tokenLocal}`;
+  const token = `Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjM0NzY2MTQzLCJqdGkiOiI4ZmFkOGU4ODU1OGI0ZGFiOGJlZGI1YWNhYTYxOWQwMiIsInVzZXJfaWQiOjE1fQ.MyM-dshWnP1BhPl-jbGWJGvTpe_ujZzKuEN1N6so-pY`;
   const { decodedToken, isExpired } = useJwt(token);
   const [userInput, setUserInput] = useState("");
   const [showCard, setShowCard] = useState(false);
+  const { myGroupList } = useContext(MyGroupListContext);
+  const { habitList } = useContext(HabitListContext);
+  const history = useHistory();
+  const { nameUser, setNameUser } = useContext(NameUserContext);
 
-  const [userInfo, setUserInfo] = useState({
-    username: localStorage.getItem("@KenzieHealth:userName"),
-  });
-  const { authenticated } = useContext(AuthenticatedContext);
-  const handleNewUserName = ({ id }) => {
+  const handleNewUserName = (data) => {
+    const id = decodedToken.user_id;
     api
-      .patch(`/users/${id}`, userInput, {
+      .patch(`/users/${id}/`, userInput, {
         headers: {
           Authorization: token,
         },
       })
-      .then(() => console.log("sucesso"))
+      .then(() => console.log("sucess"))
+      .then(() => {
+        setNameUser(data.userName);
+      })
 
-      .catch((err) => console.log(err));
-    localStorage.setItem("@KenzieHealth:userName", userInput);
+      .catch((err) => console.log(err.message));
   };
   const open = () => {
     setShowCard(!showCard);
   };
-  if (!authenticated) {
-    return <Redirect to="/" />;
-  }
 
   return (
     <>
@@ -57,13 +55,20 @@ const Settings = () => {
               <h1 className="title">
                 Settings <AiFillSetting />
               </h1>
-              <div className="profile">
-                <h2>Seu Perfil: </h2>
+              <CardWrapper>
+                <CardHeading>Seu Perfil: </CardHeading>
                 <div>
                   <img src={k} alt="" />
-                  <h3>Username: {userInfo.username}</h3>
+                  <span>Username: {nameUser}</span>
+                  <span>
+                    Voce Participa de {myGroupList.length} grupos diferentes!
+                  </span>
+                  <span>
+                    Atualmente voce esta tentando ter {habitList.length} habitos
+                    novos!
+                  </span>
                 </div>
-              </div>
+              </CardWrapper>
               <Button onClick={open}>Change Username</Button>
               {showCard && (
                 <CardCreateSettings

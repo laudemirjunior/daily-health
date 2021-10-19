@@ -3,7 +3,7 @@ import { TextField, InputAdornment, IconButton } from "@material-ui/core";
 import { Countainer, Form, Poligon, AnimateDiv } from "./styles";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
 import Button from "../../components/button";
 import api from "../../services/";
@@ -185,6 +185,9 @@ const SignUp = () => {
               }}
             />{" "}
             <Button>Cadastrar</Button>
+            <Link to={"/login"} className="link">
+              Entre aqui!
+            </Link>
           </Form>
         </Countainer>
       </div>

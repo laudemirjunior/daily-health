@@ -50,6 +50,14 @@ export const Countainer = styled.div`
     font-weight: bold;
     font-size: 84px;
   }
+  .link {
+    border-bottom: 1px solid #ddd;
+    transition: color 0.25s ease-in;
+    color: var(--background);
+  }
+  .link:hover {
+    color: #777;
+  }
   @media screen and (min-width: 768px) {
     background-color: var(--background);
     height: calc(100vh - 60px);
