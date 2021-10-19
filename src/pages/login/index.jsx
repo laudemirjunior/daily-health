@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { TextField, InputAdornment, IconButton } from "@material-ui/core";
-import { Countainer, Form, Animate_div, Poligon } from "./styles";
+import { Countainer, Form, Animate_div, Poligon, AnimateDiv } from "./styles";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useHistory, Link } from "react-router-dom";
@@ -8,7 +8,6 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import api from "../../services";
 import Button from "../../components/button";
-import axios from "axios";
 import * as yup from "yup";
 import Lottie from "react-lottie";
 import animationData from "../../animation/animate-login";
@@ -17,7 +16,6 @@ import VisibilityIcon from "@material-ui/icons/Visibility";
 import VisibilityOffIcon from "@material-ui/icons/VisibilityOff";
 
 const Login = () => {
-  const [error, setError] = useState("");
   const [showPassword, setShowPassword] = useState("password");
 
   const history = useHistory();
@@ -67,7 +65,7 @@ const Login = () => {
     <>
       <Bar />
       <div style={{ display: "flex" }}>
-        <Animate_div>
+        <AnimateDiv>
           <Lottie
             options={defaultOptions}
             height={"27vw"}
@@ -76,7 +74,7 @@ const Login = () => {
             isStopped={animationState.isStopped}
             isPaused={animationState.isPaused}
           />
-        </Animate_div>
+        </AnimateDiv>
         <Poligon></Poligon>
         <Countainer>
           <h1> Login </h1>

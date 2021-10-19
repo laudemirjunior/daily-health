@@ -14,19 +14,20 @@ const Hamburguer = () => {
   };
 
   const local = history.location.pathname;
+  const name = localStorage.getItem("@KenzieHealth:userName");
 
   return (
     <StyleHamburguer>
       <div>
         <img src={k} alt="" />
-        <p>Name</p>
+        <p>{name}</p>
       </div>
       <div>
         <div
           style={
             local === "/dashboard"
-              ? { backgroundColor: "var(--background)" }
-              : { backgroundColor: "transparent" }
+              ? { background: "var(--bar)" }
+              : { background: "transparent" }
           }
         >
           <AiFillAppstore />
@@ -35,8 +36,8 @@ const Hamburguer = () => {
         <div
           style={
             local === "/habits"
-              ? { backgroundColor: "var(--background)" }
-              : { backgroundColor: "transparent" }
+              ? { background: "var(--bar)" }
+              : { background: "transparent" }
           }
         >
           <AiFillCarryOut />
@@ -45,8 +46,8 @@ const Hamburguer = () => {
         <div
           style={
             local === "/groups"
-              ? { backgroundColor: "var(--background)" }
-              : { backgroundColor: "transparent" }
+              ? { background: "var(--bar)" }
+              : { background: "transparent" }
           }
         >
           <BsFillPeopleFill />
@@ -55,8 +56,8 @@ const Hamburguer = () => {
         <div
           style={
             local === "/settings"
-              ? { backgroundColor: "var(--background)" }
-              : { backgroundColor: "transparent" }
+              ? { background: "var(--bar)" }
+              : { background: "transparent" }
           }
         >
           <AiFillSetting />
@@ -71,7 +72,6 @@ const Hamburguer = () => {
       </div>
     </StyleHamburguer>
   );
-
 };
 
 export default Hamburguer;

@@ -14,10 +14,10 @@ const CardMyGroups = ({ item }) => {
 
   return (
     <StyleCardTask>
-      <div onClick={() => handleClick(item)}>
-        <span>Nome: {item.name}</span>
-        <span>Descrição: {item.description}</span>
-        <span>Categoria: {item.category}</span>
+      <div className="info" onClick={() => handleClick(item)}>
+        <h2>Nome: {item.name}</h2>
+        <h3>Descrição: {item.description}</h3>
+        <h4>Categoria: {item.category}</h4>
       </div>
       <div className="svg">
         <AiOutlineLogout

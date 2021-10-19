@@ -10,11 +10,11 @@ const CardActivities = ({ item }) => {
   return (
     <StyleCardTask>
       <div>
-        <span>Titulo: {item.title}</span>
-        <span>
+        <h2>Titulo: {item.title}</h2>
+        <h4>
           Data: {moment(item.realization_time).subtract(10, "days").calendar()}
-        </span>
-        <span>Hora: {moment(item.realization_time).format("LT")}</span>
+        </h4>
+        <h4>Hora: {moment(item.realization_time).format("LT")}</h4>
       </div>
       <AiOutlineCloseCircle
         onClick={() => deleteActivity(item.id)}

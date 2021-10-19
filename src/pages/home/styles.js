@@ -10,15 +10,13 @@ export const Container = styled.div`
   align-items: center;
   justify-content: center;
   .background {
-    width: 60%;
+    width: 80%;
     height: 100%;
     display: none;
     flex-direction: column;
     background: url(${background});
     background-repeat: no-repeat;
-    background-position: left;
-    background-position: 30% 45%;
-    background-size: cover;
+    background-position: right;
     h1 {
       width: 350px;
       height: 350px;
@@ -26,6 +24,7 @@ export const Container = styled.div`
     }
   }
   .buttons {
+    min-width: 300px;
     width: 40%;
     height: 100%;
     display: flex;

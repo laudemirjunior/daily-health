@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { TextField, InputAdornment, IconButton } from "@material-ui/core";
-import { Countainer, Form, Animate_div, Poligon } from "./styles";
+import { Countainer, Form, Poligon, AnimateDiv } from "./styles";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useHistory, Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
 import Button from "../../components/button";
 import api from "../../services/";
@@ -16,8 +16,8 @@ import VisibilityOffIcon from "@material-ui/icons/VisibilityOff";
 import { toast } from "react-toastify";
 
 const SignUp = () => {
-  const [error, setError] = useState("");
   const [showPassword, setShowPassword] = useState("password");
+  const [showPasswordTwo, setShowPasswordTwo] = useState("password");
 
   const history = useHistory();
 
@@ -60,10 +60,12 @@ const SignUp = () => {
       });
   };
 
+  // eslint-disable-next-line no-unused-vars
   const [animationState, setAnimationState] = useState({
     isStopped: false,
     isPaused: false,
   });
+
   const defaultOptions = {
     loop: true,
     autoplay: true,
@@ -77,100 +79,107 @@ const SignUp = () => {
     <>
       <Bar />
       <div style={{ display: "flex" }}>
-        <Animate_div>
+        <AnimateDiv>
           <Lottie
             options={defaultOptions}
-            height={"38vw"}
-            width={"38vw"}
+            height={"33vw"}
+            width={"33vw"}
             speed={0.95}
             isStopped={animationState.isStopped}
             isPaused={animationState.isPaused}
           />
-        </Animate_div>
+        </AnimateDiv>
         <Poligon></Poligon>
         <Countainer>
-          <h1> Cadastro </h1>
+          <h1>Cadastro</h1>
           <Form onSubmit={handleSubmit(handleForm)}>
-            <div>
-              <TextField
-                className="input"
-                label="Username"
-                type="text"
-                margin="normal"
-                variant="outlined"
-                color="primary"
-                {...register("username")}
-                error={!!errors.username}
-              />
-            </div>
-            <p className="error">{errors.username?.message}</p>
-            <div>
-              <TextField
-                className="input"
-                label="E-mail"
-                type="text"
-                margin="normal"
-                variant="outlined"
-                color="primary"
-                {...register("email")}
-                error={!!errors.email}
-              />
-            </div>
-            <p className="error">{errors.email?.message}</p>
-            <div>
-              <TextField
-                className="input"
-                label="Senha"
-                type="password"
-                margin="normal"
-                variant="outlined"
-                color="primary"
-                {...register("password")}
-                error={!!errors.password}
-                InputProps={{
-                  endAdornment: (
-                    <InputAdornment>
-                      <IconButton
-                        className="visibilityButton"
-                        onClick={() =>
-                          showPassword === "password"
-                            ? setShowPassword("text")
-                            : setShowPassword("password")
-                        }
-                        aria-label="toggle password visibility"
-                      >
-                        {showPassword === "password" ? (
-                          <VisibilityOffIcon />
-                        ) : (
-                          <VisibilityIcon />
-                        )}
-                      </IconButton>
-                    </InputAdornment>
-                  ),
-                }}
-              />
-            </div>
-            <p className="error password_error">{errors.password?.message}</p>
-            <div>
-              <TextField
-                className="input"
-                label="Confirmar senha"
-                type="password"
-                margin="normal"
-                variant="outlined"
-                color="primary"
-                {...register("confirm_password")}
-                error={!!errors.confirm_password}
-              />
-            </div>
-            <p className="error">{errors.confirm_password?.message}</p>
-            <Button type="submit">Cadastrar</Button>
-            <span>
-              Ja tem uma Conta?
-              <Link to={"/login"} className="link">
-                Faca o Login
-              </Link>
-            </span>
+            <TextField
+              className="input"
+              label="Username"
+              type="text"
+              margin="normal"
+              variant="outlined"
+              color="primary"
+              {...register("username")}
+              helperText={errors.username?.message}
+              error={!!errors.username}
+            />
+            <TextField
+              className="input"
+              label="E-mail"
+              type="text"
+              margin="normal"
+              variant="outlined"
+              color="primary"
+              {...register("email")}
+              helperText={errors.email?.message}
+              error={!!errors.email}
+            />
+            <TextField
+              className="input"
+              label="Senha"
+              type="password"
+              margin="normal"
+              variant="outlined"
+              color="primary"
+              {...register("password")}
+              helperText={errors.password?.message}
+              error={!!errors.password}
+              InputProps={{
+                endAdornment: (
+                  <InputAdornment>
+                    <IconButton
+                      className="visibilityButton"
+                      onClick={() =>
+                        showPassword === "password"
+                          ? setShowPassword("text")
+                          : setShowPassword("password")
+                      }
+                      aria-label="toggle password visibility"
+                    >
+                      {showPassword === "password" ? (
+                        <VisibilityOffIcon />
+                      ) : (
+                        <VisibilityIcon />
+                      )}
+                    </IconButton>
+                  </InputAdornment>
+                ),
+              }}
+            />
+            <TextField
+              className="input"
+              label="Confirmar senha"
+              type="password"
+              margin="normal"
+              variant="outlined"
+              color="primary"
+              {...register("confirm_password")}
+              helperText={errors.confirm_password?.message}
+              error={!!errors.confirm_password}
+              InputProps={{
+                endAdornment: (
+                  <InputAdornment>
+                    <IconButton
+                      className="visibilityButton"
+                      onClick={() =>
+                        showPasswordTwo === "password"
+                          ? setShowPasswordTwo("text")
+                          : setShowPasswordTwo("password")
+                      }
+                      aria-label="toggle password visibility"
+                    >
+                      {showPasswordTwo === "password" ? (
+                        <VisibilityOffIcon />
+                      ) : (
+                        <VisibilityIcon />
+                      )}
+                    </IconButton>
+                  </InputAdornment>
+                ),
+              }}
+            />{" "}
+            <Button>Cadastrar</Button>
           </Form>
         </Countainer>
       </div>

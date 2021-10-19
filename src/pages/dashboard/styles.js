@@ -6,6 +6,7 @@ export const MainContainer = styled.div`
   display: flex;
   justify-content: space-around;
   align-items: center;
+  padding: 0 10px;
   .container {
     width: 100%;
     max-width: 1500px;
@@ -47,7 +48,7 @@ export const MainContainer = styled.div`
     flex-direction: column;
     align-items: center;
     gap: 20px;
-    background-color: var(--backgroundOpacity);
+    background-color: var(--background);
     border-radius: 20px;
     padding: 10px;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
