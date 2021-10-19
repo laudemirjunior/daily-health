@@ -20,14 +20,18 @@ export const Form = styled.form`
   }
   button {
     margin-top: 16px;
-    color: var(--white)
+    color: var(--white);
   }
-  .input{
+  .input {
     width: 240px;
   }
-  .visibilityButton{
+  .visibilityButton {
     color: grey;
     margin: inherit;
+  }
+  .link {
+    color: var(--background);
+    margin-left: 10px;
   }
   @media screen and (min-width: 768px) {
     display: flex;
