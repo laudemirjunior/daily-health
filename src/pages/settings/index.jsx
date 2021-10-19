@@ -29,6 +29,7 @@ const Settings = () => {
           Authorization: token,
         },
       })
+      .then(() => localStorage.clear("@KenzieHealth:username"))
       .then(() => {
         localStorage.setItem("@KenzieHealth:username", data.username);
         console.log("sucesso");

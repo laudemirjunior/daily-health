@@ -9,9 +9,9 @@ const Hamburguer = () => {
   const history = useHistory();
   const [userInfo, setUserInfo] = useState("");
   const userName = () => {
-    setUserInfo(localStorage.getItem("@KenzieHealth:username"));
+    setUserInfo();
   };
-
+  const nome = localStorage.getItem(`@KenzieHealth:username`);
   useEffect(() => {
     userName();
     console.log(userInfo);
@@ -28,7 +28,7 @@ const Hamburguer = () => {
     <StyleHamburguer>
       <div>
         <img src={k} alt="" />
-        <p>{userInfo}</p>
+        <p>{nome}</p>
       </div>
       <div>
         <div
