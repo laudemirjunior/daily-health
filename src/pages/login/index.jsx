@@ -13,7 +13,6 @@ import * as yup from "yup";
 import Lottie from "react-lottie";
 import animationData from "../../animation/animate-login";
 import Bar from "../../components/bar";
-
 import VisibilityIcon from "@material-ui/icons/Visibility";
 import VisibilityOffIcon from "@material-ui/icons/VisibilityOff";
 

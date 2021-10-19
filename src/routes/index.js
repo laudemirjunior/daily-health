@@ -9,6 +9,13 @@ import Habits from "../pages/habits";
 import Groups from "../pages/groups";
 import Settings from "../pages/settings";
 import GroupsID from "../pages/groupsID";
+import SignUp from "../pages/signup";
+import Login from "../pages/login";
+import AboutUs from "../pages/aboutus";
+import PinkOctober from "../pages/pinkoctober";
+import Habits from "../pages/habits";
+import Groups from "../pages/groups";
+import Settings from "../pages/settings";
 
 function Routes() {
   return (
@@ -16,7 +23,8 @@ function Routes() {
       <Route exact path="/">
         <Home />
       </Route>
-      <Route path="/signup">
+
+       <Route path="/signup">
         <SignUp />
       </Route>
       <Route path="/login">
