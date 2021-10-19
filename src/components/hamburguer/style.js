@@ -6,7 +6,7 @@ export const StyleHamburguer = styled.div`
   height: 80%;
   border-radius: 20px;
   color: var(--white);
-  background-color: var(--background);
+  background-color: var(--menu);
   display: flex;
   justify-content: space-around;
   align-items: center;

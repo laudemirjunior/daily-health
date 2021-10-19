@@ -10,7 +10,7 @@ export const StyleCardTask = styled.div`
   display: flex;
   justify-content: space-between;
   padding: 10px;
-  border: 1px solid black;
+  border-left: 25px solid var(--bar);
   div {
     display: flex;
     justify-content: space-between;

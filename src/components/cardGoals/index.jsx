@@ -10,10 +10,10 @@ const CardGoals = ({ item }) => {
     <>
       <StyleCardTask>
         <div>
-          <span>Título: {item.title}</span>
-          <span>Dificuldade: {item.difficulty}</span>
-          <span>Quanto conquistado: {item.how_much_achieved}</span>
-          <span>Alcançou: {item.achieved === true ? "Sim" : "Não"}</span>
+          <h3>Título: {item.title}</h3>
+          <h4>Dificuldade: {item.difficulty}</h4>
+          <h5>Quanto conquistado: {item.how_much_achieved}</h5>
+          <h5>Alcançou: {item.achieved === true ? "Sim" : "Não"}</h5>
         </div>
         <div className="actions">
           <AiOutlineCloseCircle

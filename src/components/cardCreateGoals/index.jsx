@@ -18,9 +18,8 @@ const CardCreateGoals = ({ openShowGoals }) => {
     difficulty: yup.string().required("Dificuldade obrigatória!"),
     achieved: yup
       .number()
-      .required("Quanto para alcançar obrigatória!")
-      .positive()
-      .integer(),
+      .typeError("Quanto para alcançar deve seu um número!")
+      .required("Quanto para alcançar obrigatória!"),
   });
 
   const {

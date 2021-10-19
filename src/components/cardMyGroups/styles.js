@@ -10,11 +10,17 @@ export const StyleCardTask = styled.div`
   display: flex;
   justify-content: space-between;
   padding: 10px;
-  border: 1px solid var(--black);
+  border-left: 25px solid var(--iceCreamBlue);
+  :hover {
+    background-color: var(--iceCreamBlue);
+  }
   div {
     display: flex;
     justify-content: space-between;
     flex-direction: column;
+  }
+  .info {
+    width: 90%;
   }
   .svg {
     display: flex;

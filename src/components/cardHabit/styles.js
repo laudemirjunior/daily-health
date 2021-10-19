@@ -33,7 +33,7 @@ export const StyleCardTask = styled.div`
     margin: auto;
     width: 100px;
     height: 10px;
-    background-color: var(--button);
+    background-color: var(--iceCreamBlue);
     border-radius: 5px;
     overflow: hidden;
   }

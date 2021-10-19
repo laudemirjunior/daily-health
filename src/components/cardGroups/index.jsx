@@ -9,9 +9,9 @@ const CardGroups = ({ item }) => {
   return (
     <StyleCardTask>
       <div>
-        <span>Nome: {item.name}</span>
-        <span>Descrição: {item.description}</span>
-        <span>Categoria: {item.category}</span>
+        <h2>Nome: {item.name}</h2>
+        <h3>Descrição: {item.description}</h3>
+        <h4>Categoria: {item.category}</h4>
       </div>
       <div className="svg">
         <AiOutlineLogin
