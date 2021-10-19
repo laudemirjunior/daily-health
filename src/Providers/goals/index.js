@@ -5,7 +5,10 @@ export const GoalsContext = createContext();
 
 export const GoalsProvider = ({ children }) => {
   const [goalsList, setGoalsList] = useState([]);
-  const token = `Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjM0NzY2MTQzLCJqdGkiOiI4ZmFkOGU4ODU1OGI0ZGFiOGJlZGI1YWNhYTYxOWQwMiIsInVzZXJfaWQiOjE1fQ.MyM-dshWnP1BhPl-jbGWJGvTpe_ujZzKuEN1N6so-pY`;
+  const [tokenLocal] = useState(
+    JSON.parse(localStorage.getItem("@KenzieHealth:token")) || ""
+  );
+  const token = `Bearer ${tokenLocal}`;
   const notifySearchGoals = () => toast.error("Erro ao carregar suas metas!");
   const notifyCreateGoals = () => toast.error("Erro ao criar sua meta!");
   const notifyUpdateGoals = () => toast.error("Erro ao atualizar sua meta!");

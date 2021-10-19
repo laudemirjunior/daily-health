@@ -14,10 +14,13 @@ import animationData from "../../animation/animate-login";
 import Bar from "../../components/bar";
 import VisibilityIcon from "@material-ui/icons/Visibility";
 import VisibilityOffIcon from "@material-ui/icons/VisibilityOff";
+import { Redirect } from "react-router";
+import { AuthenticatedContext } from "../../Providers/authenticated";
+import { useContext } from "react";
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState("password");
-
+  const { authenticated, setAuthenticated } = useContext(AuthenticatedContext);
   const history = useHistory();
 
   const schema = yup.object().shape({
@@ -41,6 +44,7 @@ const Login = () => {
           JSON.stringify(response.data.access)
         );
         toast.success("Login Feito com Sucesso!");
+        setAuthenticated(true);
         history.push("/dashboard");
       })
       .catch((err) => {
@@ -61,6 +65,9 @@ const Login = () => {
     },
   };
 
+  if (authenticated) {
+    return <Redirect to="/dashboard" />;
+  }
   return (
     <>
       <Bar />

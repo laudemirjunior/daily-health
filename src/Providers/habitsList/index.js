@@ -8,7 +8,10 @@ export const HabitListContext = createContext();
 export const HabitListProvider = ({ children }) => {
   const user = localStorage.getItem("user");
   const [habitList, setHabitList] = useState([]);
-  const token = `Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjM0NzY2MTQzLCJqdGkiOiI4ZmFkOGU4ODU1OGI0ZGFiOGJlZGI1YWNhYTYxOWQwMiIsInVzZXJfaWQiOjE1fQ.MyM-dshWnP1BhPl-jbGWJGvTpe_ujZzKuEN1N6so-pY`;
+  const [tokenLocal] = useState(
+    JSON.parse(localStorage.getItem("@KenzieHealth:token")) || ""
+  );
+  const token = `Bearer ${tokenLocal}`;
   const { decodedToken, isExpired } = useJwt(token);
   const notifyGetHabitList = () =>
     toast.error("Erro ao carregar seus hábitos!");

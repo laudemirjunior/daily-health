@@ -13,11 +13,14 @@ import { AuthenticatedContext } from "../../Providers/authenticated";
 import { useContext } from "react";
 
 const Settings = () => {
-  const token = `Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjM0NzY2MTQzLCJqdGkiOiI4ZmFkOGU4ODU1OGI0ZGFiOGJlZGI1YWNhYTYxOWQwMiIsInVzZXJfaWQiOjE1fQ.MyM-dshWnP1BhPl-jbGWJGvTpe_ujZzKuEN1N6so-pY`;
+  const [tokenLocal] = useState(
+    JSON.parse(localStorage.getItem("@KenzieHealth:token")) || ""
+  );
+  const token = `Bearer ${tokenLocal}`;
   const { decodedToken, isExpired } = useJwt(token);
   const [userInput, setUserInput] = useState("");
   const [showCard, setShowCard] = useState(false);
-  const [userGroup, setUserGroup] = useState([]);
+
   const [userInfo, setUserInfo] = useState({
     username: localStorage.getItem("@KenzieHealth:userName"),
   });

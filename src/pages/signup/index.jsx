@@ -14,13 +14,16 @@ import Bar from "../../components/bar";
 import VisibilityIcon from "@material-ui/icons/Visibility";
 import VisibilityOffIcon from "@material-ui/icons/VisibilityOff";
 import { toast } from "react-toastify";
+import { Redirect } from "react-router";
+import { AuthenticatedContext } from "../../Providers/authenticated";
+import { useContext } from "react";
 
 const SignUp = () => {
   const [showPassword, setShowPassword] = useState("password");
   const [showPasswordTwo, setShowPasswordTwo] = useState("password");
   console.log(showPassword);
   const history = useHistory();
-
+  const { authenticated } = useContext(AuthenticatedContext);
   const schema = yup.object().shape({
     username: yup.string().required("Campo obrigatório*"),
     email: yup.string().email("Email inválido*").required("Campo obrigatório*"),
@@ -74,7 +77,9 @@ const SignUp = () => {
       preserveAspectRatio: "xMidYMid slice",
     },
   };
-
+  if (authenticated) {
+    return <Redirect to="/dashboard" />;
+  }
   return (
     <>
       <Bar />

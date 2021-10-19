@@ -4,13 +4,16 @@ import { BsFillPeopleFill } from "react-icons/bs";
 import { BiLogOut } from "react-icons/bi";
 import k from "../../images/k.png";
 import { useHistory } from "react-router";
+import { AuthenticatedContext } from "../../Providers/authenticated";
+import { useContext } from "react";
 
 const Hamburguer = () => {
   const history = useHistory();
-
+  const { setAuthenticated } = useContext(AuthenticatedContext);
   const logout = () => {
-    localStorage.clear();
     history.push("/");
+    localStorage.clear();
+    setAuthenticated(false);
   };
 
   const local = history.location.pathname;
