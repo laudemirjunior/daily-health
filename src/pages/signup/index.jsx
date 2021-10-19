@@ -1,22 +1,23 @@
 import { useState } from 'react'
-import { TextField } from "@material-ui/core"
+import { TextField, InputAdornment, IconButton } from "@material-ui/core"
 import { Countainer, Form, Animate_div,Poligon } from "./styles"
 import {useForm} from 'react-hook-form'
 import {yupResolver} from '@hookform/resolvers/yup'
 import { useHistory,Link } from 'react-router-dom'
-import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
-import { ToastContainer } from 'react-toastify'
 import Button from '../../components/button'
 import axios from 'axios'
 import * as yup from 'yup'
 import Lottie from "react-lottie";
 import animationData from "../../animation/animate-sign-up.json";
 import Bar from "../../components/bar"
+import VisibilityIcon from "@material-ui/icons/Visibility";
+import VisibilityOffIcon from "@material-ui/icons/VisibilityOff";
 
 const SignUp = () => {
 
   const [error, setError] = useState('')
+  const [showPassword, setShowPassword] = useState('password');
 
   const history = useHistory()
 
@@ -62,6 +63,8 @@ const SignUp = () => {
   };
 
   return (
+    <>
+    <Bar />
     <div style={{display:'flex'}}>
       <Animate_div>
         <Lottie
@@ -77,11 +80,11 @@ const SignUp = () => {
             
       </Poligon>
       <Countainer>
-        <Bar />
         <h1> Cadastro </h1>
         <Form onSubmit={handleSubmit(handleForm)}>
           <div>
-            <TextField 
+            <TextField
+              className='input' 
               label='Username'
               type='text'
               margin='normal'
@@ -94,6 +97,7 @@ const SignUp = () => {
             <p className='error'>{errors.username?.message}</p>                     
           <div>
             <TextField 
+              className='input'
               label='E-mail'
               type='text'
               margin='normal'
@@ -101,11 +105,12 @@ const SignUp = () => {
               color='primary'
               {...register('email')}
               error={!!errors.email}
-            /> 
+              /> 
           </div>
             <p className='error'>{errors.email?.message}</p>                     
           <div>
             <TextField 
+              className='input'
               label='Senha'
               type='password'
               margin='normal'
@@ -113,11 +118,27 @@ const SignUp = () => {
               color='primary'
               {...register('password')}
               error={!!errors.password}
+              InputProps={{
+                endAdornment: (
+                  <InputAdornment>
+                    <IconButton
+                    className='visibilityButton' 
+                    onClick={() => showPassword === 'password' ? setShowPassword('text') 
+                      : setShowPassword('password')
+                    }
+                    aria-label="toggle password visibility"
+                    >
+                      {showPassword === 'password' ? <VisibilityOffIcon /> : <VisibilityIcon />}
+                    </IconButton>
+                  </InputAdornment>
+                ),
+              }}
             />      
           </div>
              <p className='error password_error'>{errors.password?.message}</p>
              <div>
-            <TextField 
+            <TextField
+              className='input'
               label='Confirmar senha'
               type='password'
               margin='normal'
@@ -128,23 +149,11 @@ const SignUp = () => {
             />      
           </div>
              <p className='error'>{errors.confirm_password?.message}</p>         
-            <Button text='Cadastrar'></Button>
+            <Button>Cadastrar</Button>
         </Form>
-        <ToastContainer 
-          position="top-center"
-          autoClose={2000}
-          style={{ marginBottom: '500px' }}
-          hideProgressBar={false}
-          newestOnTop={false}
-          closeOnClick
-          rtl={false}
-          theme='colored'
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
-      /> 
       </Countainer>
     </div>
+    </>
 
   )
 };

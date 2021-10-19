@@ -25,6 +25,7 @@ export const Form = styled.form`
 
         button{
             margin-top: 20px;
+            color: var(--white)
         }
 
         .error{
@@ -35,7 +36,14 @@ export const Form = styled.form`
             color: red;
             padding-bottom: 18px;
         }
-    
+        .input{
+            width: 240px;
+        }
+        .visibilityButton{
+            color: grey;
+            margin: inherit;
+        }
+            
 
     @media screen and (min-width: 768px){
 

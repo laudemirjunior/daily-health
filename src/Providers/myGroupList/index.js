@@ -30,13 +30,14 @@ export const MyGroupListProvider = ({ children }) => {
   }, []);
 
   const createGroup = (groupInfo) => {
+    console.log(groupInfo);
     api
-      .post("/groups/", {
+      .post("/groups/", groupInfo, {
         headers: {
           Authorization: token,
         },
-        groupInfo,
       })
+      .then(() => getMyGroupList())
       .catch(() => notifyCreateGroup());
   };
 

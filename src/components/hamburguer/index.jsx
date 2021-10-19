@@ -71,6 +71,7 @@ const Hamburguer = () => {
       </div>
     </StyleHamburguer>
   );
+
 };
 
 export default Hamburguer;

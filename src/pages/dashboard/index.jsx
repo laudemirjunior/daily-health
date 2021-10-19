@@ -50,6 +50,5 @@ const Dashboard = () => {
       </MainContainer>
     </>
   );
-};
-
+}
 export default Dashboard;
