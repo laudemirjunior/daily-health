@@ -1,6 +1,6 @@
 import Bar from "../../components/bar";
 import Hamburguer from "../../components/hamburguer";
-import { MainContainer, ContainerOne } from "./styles.js";
+import { MainContainer, ContainerOne, Poligon } from "./styles.js";
 import { useContext, useState } from "react";
 import Button from "../../components/button";
 import CardCreate from "../../components/cardCreate";
@@ -42,6 +42,7 @@ const Habits = () => {
             </div>
           </div>
         </div>
+        <Poligon />
       </MainContainer>
     </>
   );

@@ -1,6 +1,6 @@
 import Bar from "../../components/bar";
 import Hamburguer from "../../components/hamburguer";
-import { MainContainer } from "./styles.js";
+import { MainContainer, Poligon } from "./styles.js";
 import { useContext, useState } from "react";
 import CardMyGroups from "../../components/cardMyGroups";
 import Button from "../../components/button";
@@ -44,6 +44,7 @@ const Groups = () => {
             </div>
           </div>
         </div>
+        <Poligon />
       </MainContainer>
     </>
   );

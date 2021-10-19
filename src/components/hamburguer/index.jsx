@@ -26,7 +26,7 @@ const Hamburguer = () => {
         <div
           style={
             local === "/dashboard"
-              ? { background: "var(--bar)" }
+              ? { background: "var(--white)" }
               : { background: "transparent" }
           }
         >
@@ -36,7 +36,7 @@ const Hamburguer = () => {
         <div
           style={
             local === "/habits"
-              ? { background: "var(--bar)" }
+              ? { background: "var(--white)" }
               : { background: "transparent" }
           }
         >
@@ -46,7 +46,7 @@ const Hamburguer = () => {
         <div
           style={
             local === "/groups"
-              ? { background: "var(--bar)" }
+              ? { background: "var(--white)" }
               : { background: "transparent" }
           }
         >
@@ -56,7 +56,7 @@ const Hamburguer = () => {
         <div
           style={
             local === "/settings"
-              ? { background: "var(--bar)" }
+              ? { background: "var(--white)" }
               : { background: "transparent" }
           }
         >
@@ -64,6 +64,7 @@ const Hamburguer = () => {
           <span onClick={() => history.push("/settings")}>Setttings</span>
         </div>
       </div>
+
       <div>
         <div>
           <BiLogOut />

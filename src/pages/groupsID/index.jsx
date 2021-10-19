@@ -1,6 +1,6 @@
 import Bar from "../../components/bar";
 import Hamburguer from "../../components/hamburguer";
-import { MainContainer } from "./styles.js";
+import { MainContainer, Poligon } from "./styles.js";
 import Button from "../../components/button";
 import { useContext, useEffect, useState } from "react";
 import { ActivitiesContext } from "../../Providers/activities";
@@ -62,6 +62,7 @@ const GroupsID = () => {
             </div>
           </div>
         </div>
+        <Poligon />
       </MainContainer>
     </>
   );

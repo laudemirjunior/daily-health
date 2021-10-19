@@ -28,7 +28,13 @@ const CardHabit = ({ item, removeHabit, updateHabit }) => {
         <div className="actions">
           <AiOutlineCloseCircle
             onClick={() => removeHabit(item)}
-            style={{ color: "red", marginRight: "7px" }}
+            style={{
+              color: "red",
+              marginRight: "7px",
+              backgroundColor: "white",
+              borderRadius: "50%",
+              boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
+            }}
           />
           <div className="progress">
             <div
@@ -39,6 +45,7 @@ const CardHabit = ({ item, removeHabit, updateHabit }) => {
             ></div>
           </div>
           <div
+            style={{ backgroundColor: "var(--white)", color: "black" }}
             className="active"
             onClick={() => {
               updateHabit(item.how_much_achieved + 1, item.id);

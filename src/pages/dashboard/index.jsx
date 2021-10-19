@@ -1,6 +1,6 @@
 import Bar from "../../components/bar";
 import Hamburguer from "../../components/hamburguer";
-import { MainContainer } from "./styles.js";
+import { MainContainer, Poligon } from "./styles.js";
 import CardHabit from "../../components/cardHabit";
 import CardMyGroups from "../../components/cardMyGroups";
 import { HabitListContext } from "../../Providers/habitsList";
@@ -41,7 +41,8 @@ const Dashboard = () => {
           </div>
         </div>
       </MainContainer>
+      <Poligon />
     </>
   );
-}
+};
 export default Dashboard;
