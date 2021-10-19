@@ -1,24 +1,26 @@
 import { useState } from "react";
 import { TextField, InputAdornment, IconButton } from "@material-ui/core";
-import { Countainer, Form, AnimateDiv, Poligon, MainContainer } from "./styles";
+import { Countainer, Form, Animate_div, Poligon, AnimateDiv } from "./styles";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useHistory, Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import api from "../../services";
 import Button from "../../components/button";
-import axios from "axios";
 import * as yup from "yup";
 import Lottie from "react-lottie";
 import animationData from "../../animation/animate-login";
 import Bar from "../../components/bar";
 import VisibilityIcon from "@material-ui/icons/Visibility";
 import VisibilityOffIcon from "@material-ui/icons/VisibilityOff";
+import { Redirect } from "react-router";
+import { AuthenticatedContext } from "../../Providers/authenticated";
+import { useContext } from "react";
 
 const Login = () => {
-  const [error, setError] = useState("");
   const [showPassword, setShowPassword] = useState("password");
-
+  const { authenticated, setAuthenticated } = useContext(AuthenticatedContext);
   const history = useHistory();
 
   const schema = yup.object().shape({
@@ -33,17 +35,21 @@ const Login = () => {
   } = useForm({ resolver: yupResolver(schema) });
 
   const handleForm = (data) => {
-    axios
-      .post("https://kenzie-habits.herokuapp.com/sessions/", data)
+    api
+      .post("/sessions/", data)
       .then((response) => {
-        console.log(response.data);
-        const { access } = response.data;
-
-        localStorage.setItem("@Doit:token", JSON.stringify(access));
-
-        return history.push("/dashboard");
+        localStorage.setItem("@KenzieHealth:userName", data.username);
+        localStorage.setItem(
+          "@KenzieHealth:token",
+          JSON.stringify(response.data.access)
+        );
+        toast.success("Login Feito com Sucesso!");
+        setAuthenticated(true);
+        history.push("/dashboard");
       })
-      .catch((err) => toast.error("Username / senha inválidos!"));
+      .catch((err) => {
+        toast.error("Username / senha inválidos!");
+      });
   };
 
   const [animationState, setAnimationState] = useState({
@@ -59,6 +65,9 @@ const Login = () => {
     },
   };
 
+  if (authenticated) {
+    return <Redirect to="/dashboard" />;
+  }
   return (
     <>
       <Bar />
@@ -66,8 +75,8 @@ const Login = () => {
         <AnimateDiv>
           <Lottie
             options={defaultOptions}
-            height={"30vw"}
-            width={"40vw"}
+            height={"27vw"}
+            width={"50vw"}
             speed={0.5}
             isStopped={animationState.isStopped}
             isPaused={animationState.isPaused}
@@ -75,8 +84,8 @@ const Login = () => {
         </AnimateDiv>
         <Poligon></Poligon>
         <Countainer>
-          <h1> Login </h1>
           <Form onSubmit={handleSubmit(handleForm)}>
+            <h1> Login </h1>
             <div>
               <TextField
                 label="Username"
@@ -125,10 +134,12 @@ const Login = () => {
               />
             </div>
 
-            <Button>Entrar</Button>
+            <Button>entrar</Button>
             <span>
-              {" "}
-              Nao tem cadastro? Crie uma conta <Link to={"/signup"}>aqui</Link>
+              Nao tem cadastro?
+              <Link to={"/signup"} className="link">
+                Crie uma conta
+              </Link>
             </span>
           </Form>
         </Countainer>

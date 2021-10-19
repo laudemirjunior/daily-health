@@ -2,36 +2,42 @@ import styled from "styled-components";
 
 export const Form = styled.form`
   display: flex;
-  background-color: var(--white);
   flex-direction: column;
   gap: 20px;
   align-items: center;
-  height: 350px;
+  height: 500px;
   width: 100%;
   max-width: 350px;
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
   border-radius: 10px;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.18);
   span {
     font-size: 13px;
   }
   a {
     text-decoration: none;
   }
+  button {
+    margin-top: 16px;
+  }
   .input {
     width: 240px;
   }
-  @media screen and (min-width: 768px) {
-    display: flex;
-    background-color: var(--white);
-    justify-content: center;
-    flex-direction: column;
-    align-items: center;
-    border-radius: 10px;
+  .visibilityButton {
+    color: grey;
+    margin: inherit;
+  }
+  .link {
+    color: var(--background);
+    margin-left: 10px;
   }
 `;
 export const Poligon = styled.div`
   position: absolute;
-  background-color: var(--background);
+  background-color: var(--menu);
   left: 0px;
   z-index: -1;
   height: calc(100vh - 60px);
@@ -51,15 +57,15 @@ export const Countainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 40px;
+  justify-content: center;
+
   h1 {
-    color: var(--white);
-    font-size: 84px;
-    margin-top: 11%;
+    font-size: 70px;
     margin-bottom: 20px;
   }
 
   @media screen and (min-width: 768px) {
-    background-color: var(--background);
+    background-color: var(--menu);
     height: calc(100vh - 60px);
     width: 50vw;
   }

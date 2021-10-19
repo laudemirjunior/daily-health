@@ -37,4 +37,10 @@ export const StyleHamburguer = styled.div`
       }
     }
   }
+  .infos {
+    display: block;
+    @media (min-width: 768px) {
+      display: none;
+    }
+  }
 `;

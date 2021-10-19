@@ -1,43 +1,41 @@
 import { useState } from "react";
 import { TextField, InputAdornment, IconButton } from "@material-ui/core";
-import { Countainer, Form, AnimateDiv, Poligon } from "./styles";
+import { Countainer, Form, Poligon, AnimateDiv } from "./styles";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useHistory } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
 import Button from "../../components/button";
-import axios from "axios";
+import api from "../../services/";
 import * as yup from "yup";
 import Lottie from "react-lottie";
 import animationData from "../../animation/animate-sign-up.json";
 import Bar from "../../components/bar";
 import VisibilityIcon from "@material-ui/icons/Visibility";
 import VisibilityOffIcon from "@material-ui/icons/VisibilityOff";
+import { toast } from "react-toastify";
+import { Redirect } from "react-router";
+import { AuthenticatedContext } from "../../Providers/authenticated";
+import { useContext } from "react";
 
 const SignUp = () => {
-  // eslint-disable-next-line no-unused-vars
-  const [error, setError] = useState("");
   const [showPassword, setShowPassword] = useState("password");
   const [showPasswordTwo, setShowPasswordTwo] = useState("password");
-
+  console.log(showPassword);
   const history = useHistory();
-
+  const { authenticated } = useContext(AuthenticatedContext);
   const schema = yup.object().shape({
     username: yup.string().required("Campo obrigatório*"),
     email: yup.string().email("Email inválido*").required("Campo obrigatório*"),
     password: yup
       .string()
       .required("Campo obrigatório*")
-      .min(8, "Mínimo de 8 dígitos*")
-      .matches(
-        /^((?=.*[!@#$%^&*()\-_=+{};:,<.>]){1})(?=.*\d)((?=.*[a-z]){1})((?=.*[A-Z]){1}).*$/,
-        "Senha deve conter ao menos uma letra maiúscula, uma minúscula, um número e um caracter especial*"
-      ),
+      .min(8, "Mínimo de 8 dígitos*"),
     confirm_password: yup
       .string()
       .required("Você deve confirmar sua senha!")
       .oneOf(
-        [yup.ref("Password")],
+        [yup.ref("password")],
         "Senha não confere com a senha criada acima!"
       ),
   });
@@ -49,11 +47,20 @@ const SignUp = () => {
   } = useForm({ resolver: yupResolver(schema) });
 
   const handleForm = (data) => {
-    axios
-      .post("https://kenzie-habits.herokuapp.com/users/", data)
-      .then((response) => console.log(response))
+    const newUser = {
+      username: data.username,
+      email: data.email,
+      password: data.password,
+    };
+
+    api
+      .post("/users/", newUser)
+      .then(() => toast.success("Conta Criada Com Sucesso!"))
       .then((_) => history.push("/login"))
-      .catch((err) => setError(err));
+      .catch((err) => {
+        console.log(err);
+        toast.error("Erro ao Criar a Conta");
+      });
   };
 
   // eslint-disable-next-line no-unused-vars
@@ -70,25 +77,17 @@ const SignUp = () => {
       preserveAspectRatio: "xMidYMid slice",
     },
   };
-
+  if (authenticated) {
+    return <Redirect to="/dashboard" />;
+  }
   return (
     <>
       <Bar />
       <div style={{ display: "flex" }}>
-        <AnimateDiv>
-          <Lottie
-            options={defaultOptions}
-            height={"33vw"}
-            width={"33vw"}
-            speed={0.95}
-            isStopped={animationState.isStopped}
-            isPaused={animationState.isPaused}
-          />
-        </AnimateDiv>
         <Poligon></Poligon>
         <Countainer>
-          <h1>Cadastro</h1>
           <Form onSubmit={handleSubmit(handleForm)}>
+            <h1>Cadastro</h1>
             <TextField
               className="input"
               label="Username"
@@ -114,7 +113,7 @@ const SignUp = () => {
             <TextField
               className="input"
               label="Senha"
-              type="password"
+              type={showPassword}
               margin="normal"
               variant="outlined"
               color="primary"
@@ -146,7 +145,7 @@ const SignUp = () => {
             <TextField
               className="input"
               label="Confirmar senha"
-              type="password"
+              type={showPasswordTwo}
               margin="normal"
               variant="outlined"
               color="primary"
@@ -178,6 +177,16 @@ const SignUp = () => {
             <Button>Cadastrar</Button>
           </Form>
         </Countainer>
+        <AnimateDiv>
+          <Lottie
+            options={defaultOptions}
+            height={"33vw"}
+            width={"33vw"}
+            speed={0.95}
+            isStopped={animationState.isStopped}
+            isPaused={animationState.isPaused}
+          />
+        </AnimateDiv>
       </div>
     </>
   );

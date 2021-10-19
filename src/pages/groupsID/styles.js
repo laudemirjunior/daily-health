@@ -27,7 +27,7 @@ export const MainContainer = styled.div`
   }
   .cards {
     width: 100%;
-    height: 80%;
+    height: 95%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -57,9 +57,6 @@ export const MainContainer = styled.div`
     -webkit-backdrop-filter: blur(4px);
     border-radius: 10px;
     border: 1px solid rgba(255, 255, 255, 0.18);
-    h1 {
-      color: var(--white);
-    }
   }
 `;
 

@@ -10,12 +10,14 @@ import CardActivities from "../../components/cardActivities";
 import CardCreateActivities from "../../components/cardCreateActivities";
 import CardGoals from "../../components/cardGoals";
 import CardCreateGoals from "../../components/cardCreateGoals";
+import { Redirect } from "react-router";
+import { AuthenticatedContext } from "../../Providers/authenticated";
 
 const GroupsID = () => {
   const { searchActivities, activitiesList } = useContext(ActivitiesContext);
   const { searchGoals, goalsList } = useContext(GoalsContext);
   const { id } = useParams();
-
+  const { authenticated } = useContext(AuthenticatedContext);
   useEffect(() => {
     searchActivities(id);
     searchGoals(id);
@@ -32,7 +34,9 @@ const GroupsID = () => {
   const openShowGoals = () => {
     setOpenGoals(!openGoals);
   };
-
+  if (!authenticated) {
+    return <Redirect to="/" />;
+  }
   return (
     <>
       <Bar />

@@ -28,7 +28,7 @@ export const MainContainer = styled.div`
   }
   .cards {
     width: 100%;
-    height: 80%;
+    height: 95%;
     display: flex;
     align-items: center;
     justify-content: center;
