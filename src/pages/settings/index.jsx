@@ -8,6 +8,9 @@ import api from "../../services";
 import Button from "../../components/button";
 import k from "../../images/k.png";
 import { AiFillSetting } from "react-icons/ai";
+import { Redirect } from "react-router";
+import { AuthenticatedContext } from "../../Providers/authenticated";
+import { useContext } from "react";
 
 const Settings = () => {
   const token = `Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjM0NzY2MTQzLCJqdGkiOiI4ZmFkOGU4ODU1OGI0ZGFiOGJlZGI1YWNhYTYxOWQwMiIsInVzZXJfaWQiOjE1fQ.MyM-dshWnP1BhPl-jbGWJGvTpe_ujZzKuEN1N6so-pY`;
@@ -18,7 +21,7 @@ const Settings = () => {
   const [userInfo, setUserInfo] = useState({
     username: localStorage.getItem("@KenzieHealth:userName"),
   });
-
+  const { authenticated } = useContext(AuthenticatedContext);
   const handleNewUserName = ({ id }) => {
     api
       .patch(`/users/${id}`, userInput, {
@@ -34,6 +37,9 @@ const Settings = () => {
   const open = () => {
     setShowCard(!showCard);
   };
+  if (!authenticated) {
+    return <Redirect to="/" />;
+  }
 
   return (
     <>
