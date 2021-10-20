@@ -28,11 +28,10 @@ export const MainContainer = styled.div`
   }
   .smallContainer {
     width: 100%;
-    height: 80%;
+    height: 95%;
   }
   .card {
     width: 100%;
-    max-width: 900px;
     min-width: 320px;
     height: 100%;
     overflow-y: scroll;
@@ -77,16 +76,18 @@ export const CardWrapper = styled.div`
   padding: 20px;
   align-self: center;
   min-width: 200px;
-  width: 48%;
+  width: 70%;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 40px;
   height: 100%;
   max-height: 340px;
   background-image: url(${background});
   background-size: 100% 100%;
+  color: white;
   div {
     display: flex;
     flex-direction: column;
+    width: 80%;
   }
   span {
     font-size: 15px;

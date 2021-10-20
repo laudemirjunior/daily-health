@@ -4,11 +4,12 @@ import { toast } from "react-toastify";
 export const GroupListContext = createContext();
 
 export const GroupListProvider = ({ children }) => {
-  const [groupList, setgroupList] = useState([]);
-  const [tokenLocal] = useState(
+  const [token] = useState(
     JSON.parse(localStorage.getItem("@KenzieHealth:token")) || ""
   );
-  const token = `Bearer ${tokenLocal}`;
+
+  const [groupList, setgroupList] = useState([]);
+
   const notifyGroupList = () => toast.error("Erro ao carregar os grupos!");
 
   useEffect(() => {
@@ -16,7 +17,7 @@ export const GroupListProvider = ({ children }) => {
       api
         .get("/groups/", {
           headers: {
-            Authorization: token,
+            Authorization: `Bearer ${token}`,
           },
         })
         .then((response) => {

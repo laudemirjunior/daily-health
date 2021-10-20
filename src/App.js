@@ -6,7 +6,7 @@ import { useContext } from "react";
 import { DarkModeContext } from "./Providers/darkMode";
 
 function App() {
-  const { change, reverse } = useContext(DarkModeContext);
+  const { change } = useContext(DarkModeContext);
 
   return (
     <div className="App">

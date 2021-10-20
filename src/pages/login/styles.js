@@ -31,7 +31,7 @@ export const Form = styled.form`
     margin: inherit;
   }
   .link {
-    color: var(--background);
+    color: var(--menu);
     margin-left: 10px;
   }
 `;
@@ -80,14 +80,17 @@ export const Countainer = styled.div`
 
 export const AnimateDiv = styled.div`
   display: none;
-
+  background-color: white;
   @media screen and (min-width: 768px) {
     display: flex;
-    background-color: var(--white);
     justify-content: center;
     align-items: center;
     flex-direction: column;
     height: calc(100vh - 60px);
     width: 50vw;
   }
+`;
+
+export const MainContainer = styled.div`
+  display: flex;
 `;

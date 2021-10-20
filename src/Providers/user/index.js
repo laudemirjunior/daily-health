@@ -21,6 +21,8 @@ export const UserProvider = ({ children }) => {
       .then(() => {
         toast.success("Login feito com Sucesso!");
         setAuthenticated(true);
+        history.go(0);
+        history.push("/dashboard");
       })
       .catch(() => {
         toast.error("Username ou senha inválidos!");

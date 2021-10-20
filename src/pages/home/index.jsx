@@ -1,5 +1,5 @@
 import Bar from "../../components/bar";
-import { Container, Poligon } from "./styles";
+import { Container, Poligon, MainContainer } from "./styles";
 import Buttons from "../../components/button";
 import { useHistory } from "react-router";
 import { Redirect } from "react-router";
@@ -15,7 +15,7 @@ const Home = () => {
   }
 
   return (
-    <>
+    <MainContainer>
       <Bar />
       <Container>
         <div className="background">
@@ -30,7 +30,7 @@ const Home = () => {
           <Buttons onClick={() => history.push("/signup")}>Sign Up</Buttons>
         </div>
       </Container>
-    </>
+    </MainContainer>
   );
 };
 

@@ -12,7 +12,7 @@ export const StyleCardTask = styled.div`
   justify-content: space-between;
   background-size: 100% 100%;
   padding: 10px;
-  color: var(--white);
+  color: white;
   div {
     display: flex;
     justify-content: space-between;

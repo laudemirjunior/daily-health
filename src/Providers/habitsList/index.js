@@ -6,9 +6,11 @@ import { toast } from "react-toastify";
 export const HabitListContext = createContext();
 
 export const HabitListProvider = ({ children }) => {
-  const [habitList, setHabitList] = useState([]);
+  const [token] = useState(
+    JSON.parse(localStorage.getItem("@KenzieHealth:token")) || ""
+  );
 
-  const token = JSON.parse(localStorage.getItem("@KenzieHealth:token")) || "";
+  const [habitList, setHabitList] = useState([]);
 
   const { decodedToken, isExpired } = useJwt(token);
 
@@ -30,10 +32,8 @@ export const HabitListProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    if (localStorage.getItem("@KenzieHealth:token")) {
-      getHabitList();
-    }
-  }, [habitList]);
+    getHabitList();
+  }, []);
 
   const removeHabit = (habit) => {
     api

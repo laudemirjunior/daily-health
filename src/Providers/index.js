@@ -9,21 +9,21 @@ import { DarkModeProvider } from "./darkMode";
 
 const Providers = ({ children }) => {
   return (
-    <DarkModeProvider>
-      <NameUserProvider>
-        <UserProvider>
-          <GoalsProvider>
-            <ActivitiesProvider>
-              <MyGroupListProvider>
-                <HabitListProvider>
+    <HabitListProvider>
+      <DarkModeProvider>
+        <NameUserProvider>
+          <UserProvider>
+            <GoalsProvider>
+              <ActivitiesProvider>
+                <MyGroupListProvider>
                   <GroupListProvider>{children}</GroupListProvider>
-                </HabitListProvider>
-              </MyGroupListProvider>
-            </ActivitiesProvider>
-          </GoalsProvider>
-        </UserProvider>
-      </NameUserProvider>
-    </DarkModeProvider>
+                </MyGroupListProvider>
+              </ActivitiesProvider>
+            </GoalsProvider>
+          </UserProvider>
+        </NameUserProvider>
+      </DarkModeProvider>
+    </HabitListProvider>
   );
 };
 

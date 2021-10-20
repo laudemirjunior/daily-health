@@ -40,13 +40,13 @@ export const StyleCardTask = styled.div`
     margin: auto;
     width: 100px;
     height: 10px;
-    background-color: var(--blue);
+    background-color: #006400;
     border-radius: 5px;
     overflow: hidden;
   }
   .percentage {
     height: 10px;
-    background-color: var(--bar);
+    background-color: #00ff00;
     border-radius: 5px;
   }
   .iconHabit {

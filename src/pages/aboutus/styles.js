@@ -6,6 +6,7 @@ export const MainContainer = styled.div`
   flex-direction: column;
   margin-top: 20px;
   justify-content: space-between;
+  color: white;
   img {
     width: 80px;
     height: 80px;
@@ -40,13 +41,11 @@ export const LeftContainer = styled.div`
   }
 `;
 export const RigthContainer = styled.div`
-  background: rgba(253, 127, 170, 0.8);
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 50px 0px 0px 0px;
   width: 100%;
   height: 600px;
   padding: 100px;
-  color: var(--white);
   margin-top: 20px;
   ul {
     list-style: none;
@@ -68,7 +67,7 @@ export const RigthContainer = styled.div`
 
   @media (min-width: 900px) {
     height: 800px;
-    background: rgba(253, 127, 170, 0.8);
+    background: var(--menu);
     border-radius: 100px 0px 34px 100px;
     width: 48%;
   }

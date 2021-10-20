@@ -4,11 +4,12 @@ import api from "../../services";
 export const MyGroupListContext = createContext();
 
 export const MyGroupListProvider = ({ children }) => {
-  const [myGroupList, setMygroupList] = useState([]);
-
   const [token] = useState(
     JSON.parse(localStorage.getItem("@KenzieHealth:token")) || ""
   );
+
+  const [myGroupList, setMygroupList] = useState([]);
+
   const notifyGetMyGroupList = () =>
     toast.error("Erro ao carregar sua lista de grupos!");
   const notifyCreateGroup = () => toast.error("Erro ao criar seu grupo!");
@@ -27,9 +28,7 @@ export const MyGroupListProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    if (localStorage.getItem("@KenzieHealth:token")) {
-      getMyGroupList();
-    }
+    getMyGroupList();
   }, []);
 
   const createGroup = (groupInfo) => {

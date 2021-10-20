@@ -5,10 +5,12 @@ import { toast } from "react-toastify";
 export const ActivitiesContext = createContext();
 
 export const ActivitiesProvider = ({ children }) => {
-  const [activitiesList, setActivitiesList] = useState([]);
   const [token] = useState(
     JSON.parse(localStorage.getItem("@KenzieHealth:token")) || ""
   );
+
+  const [activitiesList, setActivitiesList] = useState([]);
+
   const notifySearchActivities = () =>
     toast.error("Erro ao carregar as atividade!");
   const notifyCreateActivity = () => toast.error("Erro ao criar a atividade!");

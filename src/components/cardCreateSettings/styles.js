@@ -6,19 +6,15 @@ export const StyleCardCreate = styled.div`
   background-color: white;
   position: absolute;
   border-radius: 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-around;
-  color: black;
   form {
-    height: inherit;
-    display: flex;
+    text-align: center;
     align-items: center;
+    color: black;
+    height: 400px;
+    display: flex;
     flex-direction: column;
     justify-content: space-around;
     padding: 20px;
-    color: black;
     .title {
       color: black;
     }
@@ -27,9 +23,7 @@ export const StyleCardCreate = styled.div`
       top: 0;
       right: 0;
       margin: 10px;
-      font-size: 30px;
       color: red;
-      cursor: pointer;
     }
   }
 `;

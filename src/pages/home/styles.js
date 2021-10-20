@@ -1,6 +1,10 @@
 import styled from "styled-components";
 import background from "../../images/background-home.png";
 
+export const MainContainer = styled.div`
+  background-color: white;
+`;
+
 export const Container = styled.div`
   margin: auto;
   width: 100%;
@@ -9,6 +13,7 @@ export const Container = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  color: black;
   .background {
     width: 80%;
     height: 100%;

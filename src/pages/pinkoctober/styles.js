@@ -5,7 +5,7 @@ export const Container = styled.div`
   width: 100%;
   height: 100%;
   justify-content: center;
-  color: var(--white);
+  color: white;
   font-size: 14px;
 
   h3 {
