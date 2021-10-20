@@ -24,6 +24,7 @@ export const StyleBar = styled.div`
   }
   .buttons {
     display: flex;
+    align-items: center;
   }
   .info {
     display: none;

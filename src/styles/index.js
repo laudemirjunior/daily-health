@@ -14,11 +14,11 @@ const GlobalStyle = createGlobalStyle`
       min-height: 100vh;
   }
   :root {
-    --white: #ffffff;
-    --black: #000000;
-    --menu: #FD7FAA;
-    --bar: #F2527D;
-    --blue: #88E8F2;
+    --white: ${(props) => (props.change ? "#ffffff" : "#000000")};
+    --black: ${(props) => (props.change ? "#000000" : "#ffffff")};
+    --menu:${(props) => (props.change ? "#FD7FAA" : "#04BEC4")};
+    --bar:  ${(props) => (props.change ? "#F2527D" : "#034C8C")};
+    --blue: ${(props) => (props.change ? "#88E8F2" : "#FD7FAA")};
   }
   button, span, svg {
     cursor: pointer;
