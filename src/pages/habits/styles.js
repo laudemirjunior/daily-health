@@ -82,7 +82,6 @@ export const Poligon = styled.div`
   left: 0;
   z-index: -1;
   height: calc(100vh - 60px);
-  width: 100vw;
-  clip-path: polygon(100% 0, 0 0, 0 100%);
-  opacity: 0.6;
+  width: 100%;
+  clip-path: polygon(0 0, 100% 0, 100% 20%, 0 70%);
 `;

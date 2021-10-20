@@ -6,24 +6,21 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useHistory } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
 import Button from "../../components/button";
-import api from "../../services/";
 import * as yup from "yup";
 import Lottie from "react-lottie";
 import animationData from "../../animation/animate-sign-up.json";
 import Bar from "../../components/bar";
 import VisibilityIcon from "@material-ui/icons/Visibility";
 import VisibilityOffIcon from "@material-ui/icons/VisibilityOff";
-import { toast } from "react-toastify";
 import { Redirect } from "react-router";
-import { AuthenticatedContext } from "../../Providers/authenticated";
+import { UserContext } from "../../Providers/user";
 import { useContext } from "react";
 
 const SignUp = () => {
   const [showPassword, setShowPassword] = useState("password");
   const [showPasswordTwo, setShowPasswordTwo] = useState("password");
   console.log(showPassword);
-  const history = useHistory();
-  const { authenticated } = useContext(AuthenticatedContext);
+  const { authenticated, constSignUp } = useContext(UserContext);
   const schema = yup.object().shape({
     username: yup.string().required("Campo obrigatório*"),
     email: yup.string().email("Email inválido*").required("Campo obrigatório*"),
@@ -47,20 +44,11 @@ const SignUp = () => {
   } = useForm({ resolver: yupResolver(schema) });
 
   const handleForm = (data) => {
-    const newUser = {
+    constSignUp({
       username: data.username,
       email: data.email,
       password: data.password,
-    };
-
-    api
-      .post("/users/", newUser)
-      .then(() => toast.success("Conta Criada Com Sucesso!"))
-      .then((_) => history.push("/login"))
-      .catch((err) => {
-        console.log(err);
-        toast.error("Erro ao Criar a Conta");
-      });
+    });
   };
 
   // eslint-disable-next-line no-unused-vars

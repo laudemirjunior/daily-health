@@ -2,14 +2,13 @@ import Bar from "../../components/bar";
 import Hamburguer from "../../components/hamburguer";
 import CardCreateSettings from "../../components/cardCreateSettings";
 import { MainContainer } from "./styles.js";
-import { useJwt } from "react-jwt";
 import { useState } from "react";
 import api from "../../services";
 import Button from "../../components/button";
 import k from "../../images/k.png";
 import { AiFillSetting } from "react-icons/ai";
 import { Redirect } from "react-router";
-import { AuthenticatedContext } from "../../Providers/authenticated";
+import { UserContext } from "../../Providers/user";
 import { useContext } from "react";
 
 const Settings = () => {
@@ -17,14 +16,13 @@ const Settings = () => {
     JSON.parse(localStorage.getItem("@KenzieHealth:token")) || ""
   );
   const token = `Bearer ${tokenLocal}`;
-  const { decodedToken, isExpired } = useJwt(token);
   const [userInput, setUserInput] = useState("");
   const [showCard, setShowCard] = useState(false);
 
   const [userInfo, setUserInfo] = useState({
     username: localStorage.getItem("@KenzieHealth:userName"),
   });
-  const { authenticated } = useContext(AuthenticatedContext);
+  const { authenticated } = useContext(UserContext);
   const handleNewUserName = ({ id }) => {
     api
       .patch(`/users/${id}`, userInput, {

@@ -6,11 +6,12 @@ import { toast } from "react-toastify";
 export const HabitListContext = createContext();
 
 export const HabitListProvider = ({ children }) => {
-  const user = localStorage.getItem("user");
   const [habitList, setHabitList] = useState([]);
-  const tokenLocal =
-    JSON.parse(localStorage.getItem("@KenzieHealth:token")) || "";
-  const { decodedToken, isExpired } = useJwt(tokenLocal);
+
+  const token = JSON.parse(localStorage.getItem("@KenzieHealth:token")) || "";
+
+  const { decodedToken, isExpired } = useJwt(token);
+
   const notifyGetHabitList = () =>
     toast.error("Erro ao carregar seus hábitos!");
   const notifyRemoveHabit = () => toast.error("Erro ao remover seu hábito!");
@@ -21,7 +22,7 @@ export const HabitListProvider = ({ children }) => {
     api
       .get("/habits/personal/", {
         headers: {
-          Authorization: `Bearer ${tokenLocal}`,
+          Authorization: `Bearer ${token}`,
         },
       })
       .then((response) => setHabitList(response.data))
@@ -30,13 +31,13 @@ export const HabitListProvider = ({ children }) => {
 
   useEffect(() => {
     getHabitList();
-  }, []);
+  }, [token]);
 
   const removeHabit = (habit) => {
     api
       .delete(`/habits/${habit.id}/`, {
         headers: {
-          Authorization: `Bearer ${tokenLocal}`,
+          Authorization: `Bearer ${token}`,
         },
       })
       .then(() => getHabitList())
@@ -52,7 +53,7 @@ export const HabitListProvider = ({ children }) => {
     api
       .post("/habits/", newHabit, {
         headers: {
-          Authorization: `Bearer ${tokenLocal}`,
+          Authorization: `Bearer ${token}`,
         },
       })
       .then(() => getHabitList())
@@ -64,7 +65,7 @@ export const HabitListProvider = ({ children }) => {
     api
       .patch(`/habits/${item}/`, newHabit, {
         headers: {
-          Authorization: `Bearer ${tokenLocal}`,
+          Authorization: `Bearer ${token}`,
         },
       })
       .then(() => getHabitList())

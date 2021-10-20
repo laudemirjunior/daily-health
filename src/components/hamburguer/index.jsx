@@ -6,7 +6,7 @@ import { BsInfoCircle, BsFlower2 } from "react-icons/bs";
 import k from "../../images/k.png";
 import { useHistory } from "react-router";
 import { useContext } from "react";
-import { AuthenticatedContext } from "../../Providers/authenticated";
+import { UserContext } from "../../Providers/user";
 
 const Hamburguer = () => {
   const history = useHistory();
@@ -19,7 +19,7 @@ const Hamburguer = () => {
   const local = history.location.pathname;
   const name = localStorage.getItem("@KenzieHealth:userName");
 
-  const { authenticated } = useContext(AuthenticatedContext);
+  const { authenticated } = useContext(UserContext);
 
   return (
     <StyleHamburguer>

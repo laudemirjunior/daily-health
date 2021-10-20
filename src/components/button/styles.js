@@ -13,6 +13,6 @@ export const StyleButton = styled.button`
   color: var(--white);
   font-weight: bold;
   :hover {
-    filter: saturate(2);
+    filter: brightness(0.9);
   }
 `;

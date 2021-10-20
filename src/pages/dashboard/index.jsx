@@ -4,16 +4,15 @@ import { MainContainer, Poligon } from "./styles.js";
 import CardHabit from "../../components/cardHabit";
 import CardMyGroups from "../../components/cardMyGroups";
 import { HabitListContext } from "../../Providers/habitsList";
-import { AuthenticatedContext } from "../../Providers/authenticated";
+import { UserContext } from "../../Providers/user";
 import { MyGroupListContext } from "../../Providers/myGroupList";
 import { useContext } from "react";
 import { Redirect } from "react-router";
-import { useEffect } from "react";
 
 const Dashboard = () => {
   const { habitList, removeHabit, updateHabit } = useContext(HabitListContext);
   const { myGroupList } = useContext(MyGroupListContext);
-  const { authenticated } = useContext(AuthenticatedContext);
+  const { authenticated } = useContext(UserContext);
 
   if (!authenticated) {
     return <Redirect to="/" />;

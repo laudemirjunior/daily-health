@@ -39,9 +39,9 @@ const CardCreateGoals = ({ openShowGoals }) => {
       how_much_achieved: achieved,
       group: id,
     });
+    // searchGoals(id);
     openShowGoals();
     notify();
-    searchGoals(id);
   };
 
   return (

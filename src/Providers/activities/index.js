@@ -6,10 +6,9 @@ export const ActivitiesContext = createContext();
 
 export const ActivitiesProvider = ({ children }) => {
   const [activitiesList, setActivitiesList] = useState([]);
-  const [tokenLocal] = useState(
+  const [token] = useState(
     JSON.parse(localStorage.getItem("@KenzieHealth:token")) || ""
   );
-  const token = `Bearer ${tokenLocal}`;
   const notifySearchActivities = () =>
     toast.error("Erro ao carregar as atividade!");
   const notifyCreateActivity = () => toast.error("Erro ao criar a atividade!");
@@ -22,7 +21,7 @@ export const ActivitiesProvider = ({ children }) => {
     api
       .get(`/activities/?group=${id}&page=1`, {
         headers: {
-          Authorization: token,
+          Authorization: `Bearer ${token}`,
         },
       })
       .then((response) => {
@@ -35,7 +34,7 @@ export const ActivitiesProvider = ({ children }) => {
     api
       .post("/activities/", activity, {
         headers: {
-          Authorization: token,
+          Authorization: `Bearer ${token}`,
         },
       })
       .catch(() => notifyCreateActivity());
@@ -45,7 +44,7 @@ export const ActivitiesProvider = ({ children }) => {
     api
       .patch(`/activities/${id}/`, title, {
         headers: {
-          Authorization: token,
+          Authorization: `Bearer ${token}`,
         },
       })
       .catch(() => notifyUpdateAtivity());
@@ -55,7 +54,7 @@ export const ActivitiesProvider = ({ children }) => {
     api
       .delete(`/activities/${id}/`, {
         headers: {
-          Authorization: token,
+          Authorization: `Bearer ${token}`,
         },
       })
       .catch(() => notifyDeleteActivity());
