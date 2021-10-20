@@ -10,7 +10,7 @@ export const StyleCardTask = styled.div`
   display: flex;
   justify-content: space-between;
   padding: 10px;
-  border-left: 25px solid var(--blue);
+  border-left: 25px solid ${props=>props.theme.colors.cards};
   div {
     display: flex;
     justify-content: space-between;

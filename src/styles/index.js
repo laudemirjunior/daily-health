@@ -1,6 +1,7 @@
 import { createGlobalStyle } from "styled-components";
 
 const GlobalStyle = createGlobalStyle`
+
   * {
     margin: 0;
     padding: 0;
@@ -16,8 +17,8 @@ const GlobalStyle = createGlobalStyle`
   :root {
     --white: #ffffff;
     --black: #000000;
-    --menu: #FD7FAA;
-    --background: #fd7faad6;
+    --menu: ${props=>props.theme.colors.backgroundButton};
+    --background: ${props=>props.theme.colors.background};
     --bar: #F2527D;
     --iceCreamBlue: #88E8F2;
     --blue: #89C2D9;
@@ -42,7 +43,7 @@ const GlobalStyle = createGlobalStyle`
   }
 
   *::-webkit-scrollbar-thumb {
-    background-color: #F2527D;
+    background-color: ${props=>props.theme.colors.scroll};
     border-radius: 10px;
     border: 3px solid #ffffff;
   }

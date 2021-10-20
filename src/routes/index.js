@@ -10,38 +10,38 @@ import Groups from "../pages/groups";
 import Settings from "../pages/settings";
 import GroupsID from "../pages/groupsID";
 
-function Routes() {
+function Routes({opositeTheme}) {
   return (
     <Switch>
       <Route exact path="/">
-        <Home />
+        <Home opositeTheme={opositeTheme}/>
       </Route>
       <Route path="/signup">
-        <SignUp />
+        <SignUp opositeTheme={opositeTheme}/>
       </Route>
       <Route path="/login">
-        <Login />
+        <Login opositeTheme={opositeTheme}/>
       </Route>
       <Route path="/aboutus">
-        <AboutUs />
+        <AboutUs opositeTheme={opositeTheme}/>
       </Route>
       <Route path="/pinkoctober">
-        <PinkOctober />
+        <PinkOctober opositeTheme={opositeTheme}/>
       </Route>
       <Route path="/dashboard">
-        <Dashboard />
+        <Dashboard opositeTheme={opositeTheme}/>
       </Route>
       <Route path="/habits">
-        <Habits />
+        <Habits opositeTheme={opositeTheme}/>
       </Route>
       <Route exact path="/groups">
-        <Groups />
+        <Groups opositeTheme={opositeTheme}/>
       </Route>
       <Route path="/groups/:id">
-        <GroupsID />
+        <GroupsID opositeTheme={opositeTheme}/>
       </Route>
       <Route path="/settings">
-        <Settings />
+        <Settings opositeTheme={opositeTheme}/>
       </Route>
     </Switch>
   );

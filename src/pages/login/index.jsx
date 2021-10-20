@@ -18,7 +18,7 @@ import { Redirect } from "react-router";
 import { AuthenticatedContext } from "../../Providers/authenticated";
 import { useContext } from "react";
 
-const Login = () => {
+const Login = ({opositeTheme}) => {
   const [showPassword, setShowPassword] = useState("password");
   const { authenticated, setAuthenticated } = useContext(AuthenticatedContext);
   const history = useHistory();
@@ -70,7 +70,7 @@ const Login = () => {
   }
   return (
     <>
-      <Bar />
+      <Bar opositeTheme={opositeTheme}/>
       <div style={{ display: "flex" }}>
         <AnimateDiv>
           <Lottie

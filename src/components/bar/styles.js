@@ -32,6 +32,10 @@ export const StyleBar = styled.div`
     padding: 10px;
     border-left: 1px solid var(--black);
   }
+  .info.button{
+    display:block;
+    border-left:none;
+  }
   .FaBars {
     display: block;
     margin-right: 30px;

@@ -18,7 +18,7 @@ import { Redirect } from "react-router";
 import { AuthenticatedContext } from "../../Providers/authenticated";
 import { useContext } from "react";
 
-const SignUp = () => {
+const SignUp = ({opositeTheme}) => {
   const [showPassword, setShowPassword] = useState("password");
   const [showPasswordTwo, setShowPasswordTwo] = useState("password");
   console.log(showPassword);
@@ -82,7 +82,7 @@ const SignUp = () => {
   }
   return (
     <>
-      <Bar />
+      <Bar opositeTheme={opositeTheme}/>
       <div style={{ display: "flex" }}>
         <AnimateDiv>
           <Lottie

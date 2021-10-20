@@ -6,7 +6,7 @@ import { Redirect } from "react-router";
 import { AuthenticatedContext } from "../../Providers/authenticated";
 import { useContext } from "react";
 
-const Home = () => {
+const Home = ({opositeTheme}) => {
   const history = useHistory();
   const { authenticated } = useContext(AuthenticatedContext);
   if (authenticated) {
@@ -14,7 +14,7 @@ const Home = () => {
   }
   return (
     <>
-      <Bar />
+    <Bar opositeTheme={opositeTheme}/>
       <Container>
         <div className="background">
           <h1>Monitore seus habitos</h1>

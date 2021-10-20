@@ -9,7 +9,7 @@ import { MyGroupListContext } from "../../Providers/myGroupList";
 import { useContext } from "react";
 import { Redirect } from "react-router";
 
-const Dashboard = () => {
+const Dashboard = ({opositeTheme}) => {
   const { habitList, removeHabit, updateHabit } = useContext(HabitListContext);
   const { myGroupList } = useContext(MyGroupListContext);
   const { authenticated } = useContext(AuthenticatedContext);
@@ -20,7 +20,7 @@ const Dashboard = () => {
 
   return (
     <>
-      <Bar />
+      <Bar opositeTheme={opositeTheme}/>
       <MainContainer>
         <div className="container">
           <div className="menu">

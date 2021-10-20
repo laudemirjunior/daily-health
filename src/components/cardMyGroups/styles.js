@@ -10,9 +10,9 @@ export const StyleCardTask = styled.div`
   display: flex;
   justify-content: space-between;
   padding: 10px;
-  border-left: 25px solid var(--iceCreamBlue);
+  border-left: 25px solid ${props=>props.theme.colors.cards};
   :hover {
-    background-color: var(--iceCreamBlue);
+    background-color: ${props=>props.theme.colors.cards};
   }
   div {
     display: flex;
