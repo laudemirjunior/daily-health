@@ -5,7 +5,6 @@ export const GroupListContext = createContext();
 
 export const GroupListProvider = ({ children }) => {
   const [groupList, setgroupList] = useState([]);
-  const [link, setLink] = useState("https://kenzie-habits.herokuapp.com");
   const [tokenLocal] = useState(
     JSON.parse(localStorage.getItem("@KenzieHealth:token")) || ""
   );
@@ -13,18 +12,16 @@ export const GroupListProvider = ({ children }) => {
   const notifyGroupList = () => toast.error("Erro ao carregar os grupos!");
 
   useEffect(() => {
-    if (localStorage.getItem("@KenzieHealth:token")) {
-      api
-        .get("/groups/", {
-          headers: {
-            Authorization: token,
-          },
-        })
-        .then((response) => {
-          setgroupList(response.data.results);
-        })
-        .catch(() => notifyGroupList());
-    }
+    api
+      .get("/groups/", {
+        headers: {
+          Authorization: token,
+        },
+      })
+      .then((response) => {
+        setgroupList(response.data.results);
+      })
+      .catch(() => notifyGroupList());
   }, []);
 
   return (

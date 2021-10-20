@@ -1,5 +1,10 @@
 import Bar from "../../components/bar";
-import { MainContainer, LeftContainer, RigthContainer } from "./styles.js";
+import {
+  MainContainer,
+  LeftContainer,
+  RigthContainer,
+  Poligon,
+} from "./styles.js";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 
 const AboutUs = () => {
@@ -78,6 +83,7 @@ const AboutUs = () => {
           </ul>
         </RigthContainer>
       </MainContainer>
+      <Poligon />
     </div>
   );
 };

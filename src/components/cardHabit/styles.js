@@ -30,6 +30,11 @@ export const StyleCardTask = styled.div`
     border-radius: 30px;
     cursor: pointer;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.5);
+    transition: 0.5s;
+  }
+  .active:hover {
+    box-shadow: 0 6px 6px rgba(0, 0, 0, 0.16);
+    transform: translate(0, -5px);
   }
   .progress {
     margin: auto;
@@ -43,5 +48,12 @@ export const StyleCardTask = styled.div`
     height: 10px;
     background-color: var(--bar);
     border-radius: 5px;
+  }
+  .iconHabit {
+    transition: 0.4s;
+  }
+  .iconHabit:hover {
+    box-shadow: 0 6px 6px rgba(0, 0, 0, 0.16);
+    transform: translate(0, -5px);
   }
 `;

@@ -13,7 +13,7 @@ export const Container = styled.div`
   }
   div {
     margin-top: 50px;
-    background-color: var(--background);
+    background-color: var(--menu);
     padding: 50px;
     width: 80%;
     height: 900px;

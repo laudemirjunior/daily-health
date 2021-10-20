@@ -27,7 +27,12 @@ export const StyleCardTask = styled.div`
   .svg {
     display: flex;
     justify-content: center;
-    svg {
-    }
+  }
+  .iconGroup {
+    transition: 0.4s;
+  }
+  .iconGroup:hover {
+    box-shadow: 0 15px 15px rgba(0, 0, 0, 0.16);
+    transform: translate(0, -5px);
   }
 `;

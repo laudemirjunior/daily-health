@@ -25,15 +25,15 @@ export const MainContainer = styled.div`
   }
 `;
 export const LeftContainer = styled.div`
-  background: #ffffff;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  background: rgba(255, 255, 255, 0.25);
+  box-shadow: 0 8px 32px 0 rgb(31 38 135 / 37%);
   border-radius: 0px 0px 40px 0px;
   width: 100%;
   height: 600px;
   padding: 100px;
   @media (min-width: 900px) {
-    background: rgba(255, 255, 255, 0.8);
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    background: rgba(255, 255, 255, 0.25);
+    box-shadow: 0 8px 32px 0 rgb(31 38 135 / 37%);
     border-radius: 0px 200px 200px 0px;
     height: 800px;
     width: 48%;
@@ -72,4 +72,15 @@ export const RigthContainer = styled.div`
     border-radius: 100px 0px 34px 100px;
     width: 48%;
   }
+`;
+
+export const Poligon = styled.div`
+  position: absolute;
+  background-color: var(--blue);
+  top: 60px;
+  left: 0;
+  z-index: -1;
+  height: calc(100vh - 60px);
+  width: 100%;
+  clip-path: polygon(0 0, 100% 0, 100% 20%, 0 70%);
 `;

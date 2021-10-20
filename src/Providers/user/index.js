@@ -17,7 +17,9 @@ export const UserProvider = ({ children }) => {
           "@KenzieHealth:token",
           JSON.stringify(response.data.access)
         );
-        toast.success("Login feito com ucesso!");
+      })
+      .then(() => {
+        toast.success("Login feito com Sucesso!");
         setAuthenticated(true);
         history.go(0);
         history.push("/dashboard");

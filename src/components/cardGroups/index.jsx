@@ -22,6 +22,7 @@ const CardGroups = ({ item }) => {
             borderRadius: "50%",
             boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
           }}
+          className="iconGroup"
         />
       </div>
     </StyleCardTask>
