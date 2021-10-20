@@ -28,7 +28,7 @@ export const MyGroupListProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    if (localStorage.getItem("@KenzieHealth:token")) {
+    if (JSON.parse(localStorage.getItem("@KenzieHealth:token"))) {
       getMyGroupList();
     }
   }, []);

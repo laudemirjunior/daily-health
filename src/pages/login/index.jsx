@@ -52,6 +52,7 @@ const Login = () => {
         getAllGroups();
       })
       .then(async () => {
+        setNameUser(data.username);
         await toast.success("Login feito com Sucesso!");
         return <Redirect to={"/dashboard"} />;
       })
@@ -60,14 +61,12 @@ const Login = () => {
       });
   };
   const handleForm = (data) => {
-    setNameUser(data.username);
     constLogin(data);
   };
   const [animationState, setAnimationState] = useState({
     isStopped: false,
     isPaused: false,
   });
-
   const defaultOptions = {
     loop: true,
     autoplay: true,

@@ -46,7 +46,7 @@ const CardHabit = ({ item, removeHabit, updateHabit }) => {
             ></div>
           </div>
           <div
-            style={{ backgroundColor: "var(--white)", color: "black" }}
+            style={{ backgroundColor: "white", color: "black" }}
             className="active"
             onClick={() => {
               updateHabit(item.how_much_achieved + 1, item.id);

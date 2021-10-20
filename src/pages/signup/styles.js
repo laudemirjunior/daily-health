@@ -53,7 +53,7 @@ export const Countainer = styled.div`
   .link {
     border-bottom: 1px solid #ddd;
     transition: color 0.25s ease-in;
-    color: var(--background);
+    color: var(--menu);
   }
   .link:hover {
     color: #777;
@@ -67,6 +67,7 @@ export const Countainer = styled.div`
 
 export const AnimateDiv = styled.div`
   display: none;
+  background-color: white;
   @media screen and (min-width: 768px) {
     display: flex;
     justify-content: center;

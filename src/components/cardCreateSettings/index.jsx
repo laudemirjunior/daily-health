@@ -31,7 +31,7 @@ const CardCreateSettings = ({ open, handleNewUserName }) => {
     <>
       <StyleCardCreate>
         <form onSubmit={handleSubmit(onSubmit)}>
-          <h1 className="title">Mudar Nome de Usuario</h1>
+          <h2 className="title">Mudar Nome de Usuario</h2>
           <AiOutlineCloseCircle onClick={open} />
           <TextField
             {...register("userName")}
