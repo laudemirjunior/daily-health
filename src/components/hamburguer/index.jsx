@@ -23,6 +23,11 @@ const Hamburguer = () => {
 
   return (
     <StyleHamburguer>
+      {authenticated ? null : (
+        <div>
+          <h3>Kenzie Health</h3>
+        </div>
+      )}
       {authenticated && (
         <>
           <div>
@@ -102,11 +107,6 @@ const Hamburguer = () => {
           <div>
             <BiLogOut />
             <span onClick={() => logout()}>Logout</span>
-          </div>
-        )}
-        {authenticated ? null : (
-          <div>
-            <span>Entre ou cadastra-se!</span>
           </div>
         )}
       </div>

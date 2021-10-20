@@ -8,6 +8,7 @@ export const MyGroupListProvider = ({ children }) => {
   const [myGroupList, setMygroupList] = useState([]);
 
   const token = `Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjM0NzY2MTQzLCJqdGkiOiI4ZmFkOGU4ODU1OGI0ZGFiOGJlZGI1YWNhYTYxOWQwMiIsInVzZXJfaWQiOjE1fQ.MyM-dshWnP1BhPl-jbGWJGvTpe_ujZzKuEN1N6so-pY`;
+
   const notifyGetMyGroupList = () =>
     toast.error("Erro ao carregar sua lista de grupos!");
   const notifyCreateGroup = () => toast.error("Erro ao criar seu grupo!");
@@ -22,7 +23,7 @@ export const MyGroupListProvider = ({ children }) => {
         },
       })
       .then((response) => setMygroupList(response.data))
-      .catch((err) => notifyGetMyGroupList());
+      .catch(() => notifyGetMyGroupList());
   };
 
   useEffect(() => {

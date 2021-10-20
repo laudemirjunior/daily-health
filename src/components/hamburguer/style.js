@@ -11,6 +11,7 @@ export const StyleHamburguer = styled.div`
   align-items: center;
   flex-direction: column;
   color: var(--black);
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   div {
     width: 150px;
     height: 50%;
