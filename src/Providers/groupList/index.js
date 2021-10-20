@@ -5,6 +5,7 @@ export const GroupListContext = createContext();
 
 export const GroupListProvider = ({ children }) => {
   const [groupList, setgroupList] = useState([]);
+  const [link, setLink] = useState("https://kenzie-habits.herokuapp.com");
   const [tokenLocal] = useState(
     JSON.parse(localStorage.getItem("@KenzieHealth:token")) || ""
   );
