@@ -17,12 +17,11 @@ export const MyGroupListProvider = ({ children }) => {
   const notifySubscribe = () => toast.error("Erro ao se escrever no grupo!");
   const notifyUnSubscribe = () => toast.error("Erro ao desinscrever do grupo!");
 
-  const getMyGroupList = (firstToken) => {
-    const actualToken = firstToken ? firstToken : tokenLocal;
+  const getMyGroupList = () => {
     api
       .get("/groups/subscriptions/", {
         headers: {
-          Authorization: `Bearer ${actualToken}`,
+          Authorization: token,
         },
       })
       .then((response) => setMygroupList(response.data))

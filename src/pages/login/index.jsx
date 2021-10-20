@@ -18,15 +18,12 @@ import { Redirect } from "react-router";
 import { AuthenticatedContext } from "../../Providers/authenticated";
 import { NameUserContext } from "../../Providers/nameUser";
 import { useContext } from "react";
-import { HabitListContext } from "../../Providers/habitsList";
-import { MyGroupListContext } from "../../Providers/myGroupList";
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState("password");
   const { authenticated, setAuthenticated } = useContext(AuthenticatedContext);
   const { setNameUser } = useContext(NameUserContext);
-  const { getHabitList } = useContext(HabitListContext);
-  const { getMyGroupList } = useContext(MyGroupListContext);
+
   const history = useHistory();
 
   const schema = yup.object().shape({
@@ -49,12 +46,11 @@ const Login = () => {
           "@KenzieHealth:token",
           JSON.stringify(response.data.access)
         );
-        getHabitList(response.data.access);
-        getMyGroupList(response.data.access);
       })
       .then(() => {
         toast.success("Login Feito com Sucesso!");
         setAuthenticated(true);
+        history.go(0);
         history.push("/dashboard");
       })
       .catch((err) => {

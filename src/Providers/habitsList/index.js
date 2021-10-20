@@ -12,6 +12,7 @@ export const HabitListProvider = ({ children }) => {
   const [habitList, setHabitList] = useState([]);
 
   const token = `Bearer ${tokenLocal}`;
+
   const { decodedToken, isExpired } = useJwt(token);
 
   const notifyGetHabitList = () =>
@@ -20,12 +21,11 @@ export const HabitListProvider = ({ children }) => {
   const notifyCreateHabit = () => toast.error("Erro ao criar seu hábito!");
   const notifyUpdateHabit = () => toast.error("Erro ao atualizar seu hábito!");
 
-  const getHabitList = (firstToken) => {
-    const actualToken = firstToken ? firstToken : tokenLocal;
+  const getHabitList = () => {
     api
       .get("/habits/personal/", {
         headers: {
-          Authorization: `Bearer ${actualToken}`,
+          Authorization: token,
         },
       })
       .then((response) => setHabitList(response.data))
@@ -79,7 +79,13 @@ export const HabitListProvider = ({ children }) => {
 
   return (
     <HabitListContext.Provider
-      value={{ habitList, removeHabit, createHabit, updateHabit, getHabitList }}
+      value={{
+        habitList,
+        removeHabit,
+        createHabit,
+        updateHabit,
+        getHabitList,
+      }}
     >
       {children}
     </HabitListContext.Provider>
