@@ -74,7 +74,8 @@ export const CardWrapper = styled.div`
   overflow: hidden;
   padding: 20px;
   align-self: center;
-  width: 250px;
+  min-width: 200px;
+  width: 48%;
   box-shadow: 0 0 20px rgb(0 0 0 / 5%), 0 0px 40px rgb(0 0 0 / 8%);
   border-radius: 5px;
   height: 100%;

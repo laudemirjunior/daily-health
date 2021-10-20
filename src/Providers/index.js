@@ -8,19 +8,19 @@ import { NameUserProvider } from "./nameUser";
 
 const Providers = ({ children }) => {
   return (
-    <GoalsProvider>
-      <ActivitiesProvider>
-        <MyGroupListProvider>
-          <HabitListProvider>
+    <HabitListProvider>
+      <MyGroupListProvider>
+        <GoalsProvider>
+          <ActivitiesProvider>
             <AuthenticatedProvider>
               <NameUserProvider>
                 <GroupListProvider>{children}</GroupListProvider>
               </NameUserProvider>
             </AuthenticatedProvider>
-          </HabitListProvider>
-        </MyGroupListProvider>
-      </ActivitiesProvider>
-    </GoalsProvider>
+          </ActivitiesProvider>
+        </GoalsProvider>
+      </MyGroupListProvider>
+    </HabitListProvider>
   );
 };
 

@@ -7,18 +7,22 @@ export const MyGroupListProvider = ({ children }) => {
   const user = localStorage.getItem("user");
   const [myGroupList, setMygroupList] = useState([]);
 
-  const token = `Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjM0NzY2MTQzLCJqdGkiOiI4ZmFkOGU4ODU1OGI0ZGFiOGJlZGI1YWNhYTYxOWQwMiIsInVzZXJfaWQiOjE1fQ.MyM-dshWnP1BhPl-jbGWJGvTpe_ujZzKuEN1N6so-pY`;
+  const [tokenLocal] = useState(
+    JSON.parse(localStorage.getItem("@KenzieHealth:token")) || ""
+  );
+  const token = `Bearer ${tokenLocal}`;
   const notifyGetMyGroupList = () =>
     toast.error("Erro ao carregar sua lista de grupos!");
   const notifyCreateGroup = () => toast.error("Erro ao criar seu grupo!");
   const notifySubscribe = () => toast.error("Erro ao se escrever no grupo!");
   const notifyUnSubscribe = () => toast.error("Erro ao desinscrever do grupo!");
 
-  const getMyGroupList = () => {
+  const getMyGroupList = (firstToken) => {
+    const actualToken = firstToken ? firstToken : tokenLocal;
     api
       .get("/groups/subscriptions/", {
         headers: {
-          Authorization: token,
+          Authorization: `Bearer ${actualToken}`,
         },
       })
       .then((response) => setMygroupList(response.data))
@@ -26,7 +30,9 @@ export const MyGroupListProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    getMyGroupList();
+    if (localStorage.getItem("@KenzieHealth:token")) {
+      getMyGroupList();
+    }
   }, []);
 
   const createGroup = (groupInfo) => {
@@ -71,6 +77,7 @@ export const MyGroupListProvider = ({ children }) => {
         createGroup,
         subscribe,
         unSubscribe,
+        getMyGroupList,
       }}
     >
       {children}

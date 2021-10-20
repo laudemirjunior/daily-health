@@ -10,13 +10,15 @@ import { AuthenticatedContext } from "../../Providers/authenticated";
 import { Redirect } from "react-router";
 
 const Habits = () => {
+  const { habitList, removeHabit, createHabit, updateHabit } =
+    useContext(HabitListContext);
+  console.log(habitList);
   const [showCard, setShowCard] = useState(false);
   const { authenticated } = useContext(AuthenticatedContext);
   const open = () => {
     setShowCard(!showCard);
   };
-  const { habitList, removeHabit, createHabit, updateHabit } =
-    useContext(HabitListContext);
+
   if (!authenticated) {
     return <Redirect to="/" />;
   }

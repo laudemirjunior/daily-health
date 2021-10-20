@@ -6,24 +6,26 @@ import { toast } from "react-toastify";
 export const HabitListContext = createContext();
 
 export const HabitListProvider = ({ children }) => {
-  const user = localStorage.getItem("user");
-  const [habitList, setHabitList] = useState([]);
   const [tokenLocal] = useState(
     JSON.parse(localStorage.getItem("@KenzieHealth:token")) || ""
   );
+  const [habitList, setHabitList] = useState([]);
+
   const token = `Bearer ${tokenLocal}`;
   const { decodedToken, isExpired } = useJwt(token);
+
   const notifyGetHabitList = () =>
     toast.error("Erro ao carregar seus hábitos!");
   const notifyRemoveHabit = () => toast.error("Erro ao remover seu hábito!");
   const notifyCreateHabit = () => toast.error("Erro ao criar seu hábito!");
   const notifyUpdateHabit = () => toast.error("Erro ao atualizar seu hábito!");
 
-  const getHabitList = () => {
+  const getHabitList = (firstToken) => {
+    const actualToken = firstToken ? firstToken : tokenLocal;
     api
       .get("/habits/personal/", {
         headers: {
-          Authorization: token,
+          Authorization: `Bearer ${actualToken}`,
         },
       })
       .then((response) => setHabitList(response.data))
@@ -31,7 +33,9 @@ export const HabitListProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    getHabitList();
+    if (localStorage.getItem("@KenzieHealth:token")) {
+      getHabitList();
+    }
   }, []);
 
   const removeHabit = (habit) => {
@@ -75,7 +79,7 @@ export const HabitListProvider = ({ children }) => {
 
   return (
     <HabitListContext.Provider
-      value={{ habitList, removeHabit, createHabit, updateHabit }}
+      value={{ habitList, removeHabit, createHabit, updateHabit, getHabitList }}
     >
       {children}
     </HabitListContext.Provider>

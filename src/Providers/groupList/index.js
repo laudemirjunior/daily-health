@@ -12,16 +12,18 @@ export const GroupListProvider = ({ children }) => {
   const notifyGroupList = () => toast.error("Erro ao carregar os grupos!");
 
   useEffect(() => {
-    api
-      .get("/groups/", {
-        headers: {
-          Authorization: token,
-        },
-      })
-      .then((response) => {
-        setgroupList(response.data.results);
-      })
-      .catch(() => notifyGroupList());
+    if (localStorage.getItem("@KenzieHealth:token")) {
+      api
+        .get("/groups/", {
+          headers: {
+            Authorization: token,
+          },
+        })
+        .then((response) => {
+          setgroupList(response.data.results);
+        })
+        .catch(() => notifyGroupList());
+    }
   }, []);
 
   return (
