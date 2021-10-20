@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import background from "../../images/background1.png";
 
 export const MainContainer = styled.div`
   width: 100vw;
@@ -25,7 +26,7 @@ export const MainContainer = styled.div`
       display: flex;
     }
   }
-  .cards {
+  .smallContainer {
     width: 100%;
     height: 80%;
   }
@@ -38,7 +39,8 @@ export const MainContainer = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    background-color: var(--background);
+    background: rgba(255, 255, 255, 0.25);
+    box-shadow: 0 8px 32px 0 rgb(31 38 135 / 37%);
     border-radius: 20px;
     padding: 20px;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -46,7 +48,7 @@ export const MainContainer = styled.div`
     font-size: 20px;
     gap: 10px;
     h1 {
-      color: var(--white);
+      color: var(--black);
       align-self: center;
       display: flex;
       flex-direction: row;
@@ -76,10 +78,12 @@ export const CardWrapper = styled.div`
   align-self: center;
   min-width: 200px;
   width: 48%;
-  box-shadow: 0 0 20px rgb(0 0 0 / 5%), 0 0px 40px rgb(0 0 0 / 8%);
-  border-radius: 5px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 40px;
   height: 100%;
   max-height: 340px;
+  background-image: url(${background});
+  background-size: 100% 100%;
   div {
     display: flex;
     flex-direction: column;
@@ -99,4 +103,15 @@ export const CardHeading = styled.h1`
 export const CardBody = styled.div`
   padding-right: 32px;
   padding-left: 32px;
+`;
+
+export const Poligon = styled.div`
+  position: absolute;
+  background-color: var(--blue);
+  top: 60px;
+  left: 0;
+  z-index: -1;
+  height: calc(100vh - 60px);
+  width: 100%;
+  clip-path: polygon(0 0, 100% 0, 100% 20%, 0 70%);
 `;

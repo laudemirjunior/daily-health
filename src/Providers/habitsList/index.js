@@ -33,7 +33,7 @@ export const HabitListProvider = ({ children }) => {
     if (localStorage.getItem("@KenzieHealth:token")) {
       getHabitList();
     }
-  }, []);
+  }, [habitList]);
 
   const removeHabit = (habit) => {
     api

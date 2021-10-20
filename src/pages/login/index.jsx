@@ -11,12 +11,15 @@ import animationData from "../../animation/animate-login";
 import Bar from "../../components/bar";
 import VisibilityIcon from "@material-ui/icons/Visibility";
 import VisibilityOffIcon from "@material-ui/icons/VisibilityOff";
-import { Redirect } from "react-router";
+import { Redirect, useHistory } from "react-router";
 import { UserContext } from "../../Providers/user";
+import { NameUserContext } from "../../Providers/nameUser";
 import { useContext } from "react";
 
 const Login = () => {
+  const history = useHistory();
   const [showPassword, setShowPassword] = useState("password");
+  const { setNameUser } = useContext(NameUserContext);
   const { constLogin, authenticated } = useContext(UserContext);
 
   const schema = yup.object().shape({
@@ -31,13 +34,16 @@ const Login = () => {
   } = useForm({ resolver: yupResolver(schema) });
 
   const handleForm = (data) => {
+    setNameUser(data.username);
     constLogin(data);
+    history.push("/dashboard");
   };
 
   const [animationState, setAnimationState] = useState({
     isStopped: false,
     isPaused: false,
   });
+
   const defaultOptions = {
     loop: true,
     autoplay: true,

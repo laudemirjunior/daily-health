@@ -1,7 +1,7 @@
 import Bar from "../../components/bar";
 import Hamburguer from "../../components/hamburguer";
 import CardCreateSettings from "../../components/cardCreateSettings";
-import { MainContainer, CardWrapper, CardHeading } from "./styles.js";
+import { MainContainer, CardWrapper, CardHeading, Poligon } from "./styles.js";
 import { useJwt } from "react-jwt";
 import { useState, useContext } from "react";
 import api from "../../services";
@@ -12,10 +12,13 @@ import { useHistory } from "react-router";
 import { NameUserContext } from "../../Providers/nameUser";
 import { MyGroupListContext } from "../../Providers/myGroupList";
 import { HabitListContext } from "../../Providers/habitsList";
+import { toast } from "react-toastify";
 
 const Settings = () => {
-  const token = `Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjM0NzY2MTQzLCJqdGkiOiI4ZmFkOGU4ODU1OGI0ZGFiOGJlZGI1YWNhYTYxOWQwMiIsInVzZXJfaWQiOjE1fQ.MyM-dshWnP1BhPl-jbGWJGvTpe_ujZzKuEN1N6so-pY`;
+  const token = JSON.parse(localStorage.getItem("@KenzieHealth:token")) || "";
+
   const { decodedToken, isExpired } = useJwt(token);
+
   const [userInput, setUserInput] = useState("");
   const [showCard, setShowCard] = useState(false);
   const { myGroupList } = useContext(MyGroupListContext);
@@ -28,15 +31,15 @@ const Settings = () => {
     api
       .patch(`/users/${id}/`, userInput, {
         headers: {
-          Authorization: token,
+          Authorization: `Bearer ${token}`,
         },
       })
-      .then(() => console.log("sucess"))
+      .then(() => toast.success(`Seu novo Username é: ${data.userName}`))
       .then(() => {
         setNameUser(data.userName);
       })
 
-      .catch((err) => console.log(err.message));
+      .catch((err) => toast.error("Erro ao mudar seu Username!"));
   };
   const open = () => {
     setShowCard(!showCard);
@@ -50,7 +53,7 @@ const Settings = () => {
           <div className="menu">
             <Hamburguer />
           </div>
-          <div className="cards">
+          <div className="smallContainer">
             <div className="card">
               <h1 className="title">
                 Settings <AiFillSetting />
@@ -80,6 +83,7 @@ const Settings = () => {
           </div>
         </div>
       </MainContainer>
+      <Poligon />
     </>
   );
 };

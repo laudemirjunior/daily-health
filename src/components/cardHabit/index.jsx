@@ -35,6 +35,7 @@ const CardHabit = ({ item, removeHabit, updateHabit }) => {
               borderRadius: "50%",
               boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
             }}
+            className="iconHabit"
           />
           <div className="progress">
             <div
