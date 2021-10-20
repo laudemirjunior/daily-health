@@ -13,14 +13,13 @@ import Bar from "../../components/bar";
 import VisibilityIcon from "@material-ui/icons/Visibility";
 import VisibilityOffIcon from "@material-ui/icons/VisibilityOff";
 import { Redirect } from "react-router";
-import { UserContext } from "../../Providers/user";
-import { useContext } from "react";
+import api from "../../services";
+import { toast } from "react-toastify";
+import { useHistory } from "react-router";
 
 const SignUp = () => {
   const [showPassword, setShowPassword] = useState("password");
   const [showPasswordTwo, setShowPasswordTwo] = useState("password");
-  console.log(showPassword);
-  const { authenticated, constSignUp } = useContext(UserContext);
   const schema = yup.object().shape({
     username: yup.string().required("Campo obrigatório*"),
     email: yup.string().email("Email inválido*").required("Campo obrigatório*"),
@@ -36,6 +35,19 @@ const SignUp = () => {
         "Senha não confere com a senha criada acima!"
       ),
   });
+  const history = useHistory();
+
+  const constSignUp = (data) => {
+    api
+      .post("/users/", data)
+      .then(() => {
+        toast.success("Conta Criada Com Sucesso!");
+        history.push("/login");
+      })
+      .catch(() => {
+        toast.error("Erro ao Criar a Conta");
+      });
+  };
 
   const {
     register,
@@ -65,7 +77,7 @@ const SignUp = () => {
       preserveAspectRatio: "xMidYMid slice",
     },
   };
-  if (authenticated) {
+  if (localStorage.getItem("@KenzieHealth:token")) {
     return <Redirect to="/dashboard" />;
   }
   return (

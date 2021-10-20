@@ -7,29 +7,25 @@ import k from "../../images/k.png";
 import { useHistory } from "react-router";
 import { useContext } from "react";
 import { NameUserContext } from "../../Providers/nameUser";
-import { UserContext } from "../../Providers/user";
 
 const Hamburguer = () => {
   const history = useHistory();
-  const logout = () => {
+  const logout = async () => {
     localStorage.clear();
-    setAuthenticated(false);
-    history.push("/");
+    await history.push("/");
   };
 
   const local = history.location.pathname;
   const { nameUser } = useContext(NameUserContext);
 
-  const { authenticated, setAuthenticated } = useContext(UserContext);
-
   return (
     <StyleHamburguer>
-      {authenticated ? null : (
+      {localStorage.getItem("@KenzieHealth:token") ? null : (
         <div>
           <h3>Kenzie Health</h3>
         </div>
       )}
-      {authenticated && (
+      {localStorage.getItem("@KenzieHealth:token") && (
         <>
           <div>
             <img src={k} alt="" />
@@ -104,7 +100,7 @@ const Hamburguer = () => {
         </div>
       </div>
       <div>
-        {authenticated && (
+        {localStorage.getItem("@KenzieHealth:token") && (
           <div>
             <BiLogOut />
             <span onClick={() => logout()}>Logout</span>

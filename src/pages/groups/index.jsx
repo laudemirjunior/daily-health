@@ -8,19 +8,19 @@ import CardCreateGroup from "../../components/cardCreateGroup";
 import CardGroups from "../../components/cardGroups";
 import { GroupListContext } from "../../Providers/groupList";
 import { MyGroupListContext } from "../../Providers/myGroupList";
-import { UserContext } from "../../Providers/user";
+
 import { Redirect } from "react-router";
 
 const Groups = () => {
   const [showCard, setShowCard] = useState(false);
-  const { authenticated } = useContext(UserContext);
+
   const open = () => {
     setShowCard(!showCard);
   };
 
   const { groupList } = useContext(GroupListContext);
   const { myGroupList } = useContext(MyGroupListContext);
-  if (!authenticated) {
+  if (!localStorage.getItem("@KenzieHealth:token")) {
     return <Redirect to="/" />;
   }
 

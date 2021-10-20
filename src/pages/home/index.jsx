@@ -3,14 +3,11 @@ import { Container, Poligon } from "./styles";
 import Buttons from "../../components/button";
 import { useHistory } from "react-router";
 import { Redirect } from "react-router";
-import { UserContext } from "../../Providers/user";
-import { useContext } from "react";
 
 const Home = () => {
   const history = useHistory();
-  const { authenticated } = useContext(UserContext);
 
-  if (authenticated) {
+  if (localStorage.getItem("@KenzieHealth:token")) {
     return <Redirect to="/dashboard" />;
   }
 

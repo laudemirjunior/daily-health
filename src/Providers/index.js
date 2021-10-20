@@ -3,27 +3,27 @@ import { GoalsProvider } from "./goals";
 import { GroupListProvider } from "./groupList";
 import { HabitListProvider } from "./habitsList";
 import { MyGroupListProvider } from "./myGroupList";
-import { UserProvider } from "./user";
+import { AuthProvider } from "./auth";
 import { NameUserProvider } from "./nameUser";
 import { DarkModeProvider } from "./darkMode";
 
 const Providers = ({ children }) => {
   return (
-    <DarkModeProvider>
-      <NameUserProvider>
-        <UserProvider>
-          <GoalsProvider>
-            <ActivitiesProvider>
-              <MyGroupListProvider>
-                <HabitListProvider>
+    <AuthProvider>
+      <HabitListProvider>
+        <DarkModeProvider>
+          <NameUserProvider>
+            <GoalsProvider>
+              <ActivitiesProvider>
+                <MyGroupListProvider>
                   <GroupListProvider>{children}</GroupListProvider>
-                </HabitListProvider>
-              </MyGroupListProvider>
-            </ActivitiesProvider>
-          </GoalsProvider>
-        </UserProvider>
-      </NameUserProvider>
-    </DarkModeProvider>
+                </MyGroupListProvider>
+              </ActivitiesProvider>
+            </GoalsProvider>
+          </NameUserProvider>
+        </DarkModeProvider>
+      </HabitListProvider>
+    </AuthProvider>
   );
 };
 

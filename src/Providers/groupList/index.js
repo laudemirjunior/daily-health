@@ -5,29 +5,29 @@ export const GroupListContext = createContext();
 
 export const GroupListProvider = ({ children }) => {
   const [groupList, setgroupList] = useState([]);
-  const [tokenLocal] = useState(
-    JSON.parse(localStorage.getItem("@KenzieHealth:token")) || ""
-  );
-  const token = `Bearer ${tokenLocal}`;
   const notifyGroupList = () => toast.error("Erro ao carregar os grupos!");
 
+  const getAllGroups = () => {
+    const token = JSON.parse(localStorage.getItem("@KenzieHealth:token"));
+    api
+      .get("/groups/", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((response) => {
+        setgroupList(response.data.results);
+      })
+      .catch(() => notifyGroupList());
+  };
   useEffect(() => {
     if (JSON.parse(localStorage.getItem("@KenzieHealth:token"))) {
-      api
-        .get("/groups/", {
-          headers: {
-            Authorization: token,
-          },
-        })
-        .then((response) => {
-          setgroupList(response.data.results);
-        })
-        .catch(() => notifyGroupList());
+      getAllGroups();
     }
   }, []);
 
   return (
-    <GroupListContext.Provider value={{ groupList }}>
+    <GroupListContext.Provider value={{ groupList, getAllGroups }}>
       {children}
     </GroupListContext.Provider>
   );

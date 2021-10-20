@@ -11,16 +11,23 @@ import animationData from "../../animation/animate-login";
 import Bar from "../../components/bar";
 import VisibilityIcon from "@material-ui/icons/Visibility";
 import VisibilityOffIcon from "@material-ui/icons/VisibilityOff";
-import { Redirect, useHistory } from "react-router";
-import { UserContext } from "../../Providers/user";
+import { Redirect } from "react-router";
 import { NameUserContext } from "../../Providers/nameUser";
+import { AuthContext } from "../../Providers/auth";
+import { HabitListContext } from "../../Providers/habitsList";
+import { MyGroupListContext } from "../../Providers/myGroupList";
+import { GroupListContext } from "../../Providers/groupList";
 import { useContext } from "react";
+import api from "../../services";
+import { toast } from "react-toastify";
 
 const Login = () => {
-  const history = useHistory();
   const [showPassword, setShowPassword] = useState("password");
   const { setNameUser } = useContext(NameUserContext);
-  const { constLogin, authenticated } = useContext(UserContext);
+  const { getHabitList } = useContext(HabitListContext);
+  const { getMyGroupList } = useContext(MyGroupListContext);
+  const { getAllGroups } = useContext(GroupListContext);
+  const { up } = useContext(AuthContext);
 
   const schema = yup.object().shape({
     username: yup.string().required("Ensira seu username*"),
@@ -33,12 +40,29 @@ const Login = () => {
     formState: { errors },
   } = useForm({ resolver: yupResolver(schema) });
 
+  const constLogin = async (data) => {
+    await api
+      .post("/sessions/", data)
+      .then(async (response) => {
+        await up(JSON.stringify(response.data.access));
+      })
+      .then(async () => {
+        await getHabitList();
+        getMyGroupList();
+        getAllGroups();
+      })
+      .then(async () => {
+        await toast.success("Login feito com Sucesso!");
+        return <Redirect to={"/dashboard"} />;
+      })
+      .catch(() => {
+        toast.error("Username ou senha inválidos!");
+      });
+  };
   const handleForm = (data) => {
     setNameUser(data.username);
     constLogin(data);
-    history.push("/dashboard");
   };
-
   const [animationState, setAnimationState] = useState({
     isStopped: false,
     isPaused: false,
@@ -53,7 +77,7 @@ const Login = () => {
     },
   };
 
-  if (authenticated) {
+  if (localStorage.getItem("@KenzieHealth:token")) {
     return <Redirect to="/dashboard" />;
   }
 

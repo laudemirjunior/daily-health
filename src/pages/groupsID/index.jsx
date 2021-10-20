@@ -10,14 +10,12 @@ import CardCreateActivities from "../../components/cardCreateActivities";
 import CardGoals from "../../components/cardGoals";
 import CardCreateGoals from "../../components/cardCreateGoals";
 import { Redirect, useParams } from "react-router";
-import { UserContext } from "../../Providers/user";
 import { useEffect } from "react";
 
 const GroupsID = () => {
   const { id } = useParams();
   const { activitiesList, searchActivities } = useContext(ActivitiesContext);
   const { goalsList, searchGoals } = useContext(GoalsContext);
-  const { authenticated } = useContext(UserContext);
   const [openActivities, setOpenActivities] = useState(false);
   const [openGoals, setOpenGoals] = useState(false);
 
@@ -36,7 +34,7 @@ const GroupsID = () => {
   const openShowGoals = () => {
     setOpenGoals(!openGoals);
   };
-  if (!authenticated) {
+  if (!localStorage.getItem("@KenzieHealth:token")) {
     return <Redirect to="/" />;
   }
 

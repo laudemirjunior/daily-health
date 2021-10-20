@@ -1,15 +1,14 @@
-import { createContext, useState, useEffect } from "react";
+import { createContext, useState, useEffect, useContext } from "react";
 import api from "../../services";
 import { useJwt } from "react-jwt";
 import { toast } from "react-toastify";
+import { AuthContext } from "../auth";
 
 export const HabitListContext = createContext();
 
 export const HabitListProvider = ({ children }) => {
   const [habitList, setHabitList] = useState([]);
-
-  const token = JSON.parse(localStorage.getItem("@KenzieHealth:token")) || "";
-
+  const { token } = useContext(AuthContext);
   const { decodedToken, isExpired } = useJwt(token);
 
   const notifyGetHabitList = () =>
@@ -19,6 +18,8 @@ export const HabitListProvider = ({ children }) => {
   const notifyUpdateHabit = () => toast.error("Erro ao atualizar seu hábito!");
 
   const getHabitList = () => {
+    const token = JSON.parse(localStorage.getItem("@KenzieHealth:token"));
+
     api
       .get("/habits/personal/", {
         headers: {
@@ -26,16 +27,14 @@ export const HabitListProvider = ({ children }) => {
         },
       })
       .then((response) => setHabitList(response.data))
-      .catch(() => notifyGetHabitList());
+      .catch((err) => {
+        console.log(err);
+        notifyGetHabitList();
+      });
   };
 
-  useEffect(() => {
-    if (localStorage.getItem("@KenzieHealth:token")) {
-      getHabitList();
-    }
-  }, [habitList]);
-
   const removeHabit = (habit) => {
+    const token = JSON.parse(localStorage.getItem("@KenzieHealth:token"));
     api
       .delete(`/habits/${habit.id}/`, {
         headers: {
@@ -46,7 +45,9 @@ export const HabitListProvider = ({ children }) => {
       .catch(() => notifyRemoveHabit());
   };
 
-  const createHabit = (habit) => {
+  const CreateHabit = (habit) => {
+    const token = JSON.parse(localStorage.getItem("@KenzieHealth:token"));
+
     let newHabit = {
       ...habit,
       how_much_achieved: 0,
@@ -63,6 +64,7 @@ export const HabitListProvider = ({ children }) => {
   };
 
   const updateHabit = (habit, item) => {
+    const token = JSON.parse(localStorage.getItem("@KenzieHealth:token"));
     const newHabit = { how_much_achieved: habit };
     api
       .patch(`/habits/${item}/`, newHabit, {
@@ -74,12 +76,18 @@ export const HabitListProvider = ({ children }) => {
       .catch(() => notifyUpdateHabit());
   };
 
+  useEffect(() => {
+    if (localStorage.getItem("@KenzieHealth:token")) {
+      getHabitList();
+    }
+  }, []);
+
   return (
     <HabitListContext.Provider
       value={{
         habitList,
         removeHabit,
-        createHabit,
+        CreateHabit,
         updateHabit,
         getHabitList,
       }}
@@ -88,3 +96,5 @@ export const HabitListProvider = ({ children }) => {
     </HabitListContext.Provider>
   );
 };
+
+export const useHabit = () => useContext(HabitListContext);

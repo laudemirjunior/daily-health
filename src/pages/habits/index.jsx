@@ -6,20 +6,20 @@ import Button from "../../components/button";
 import CardCreateHabits from "../../components/cardCreateHabits";
 import CardHabit from "../../components/cardHabit";
 import { HabitListContext } from "../../Providers/habitsList";
-import { UserContext } from "../../Providers/user";
+
 import { Redirect } from "react-router";
 
 const Habits = () => {
-  const { habitList, removeHabit, createHabit, updateHabit } =
+  const { habitList, removeHabit, CreateHabit, updateHabit } =
     useContext(HabitListContext);
-  console.log(habitList);
+
   const [showCard, setShowCard] = useState(false);
-  const { authenticated } = useContext(UserContext);
+
   const open = () => {
     setShowCard(!showCard);
   };
 
-  if (!authenticated) {
+  if (!localStorage.getItem("@KenzieHealth:token")) {
     return <Redirect to="/" />;
   }
 
@@ -36,7 +36,7 @@ const Habits = () => {
               <h1 className="title">Meus hábitos</h1>
               <Button onClick={() => open()}>Criar hábito</Button>
               {showCard && (
-                <CardCreateHabits createHabit={createHabit} open={open} />
+                <CardCreateHabits createHabit={CreateHabit} open={open} />
               )}
               <ContainerOne>
                 {habitList.map((item) => {

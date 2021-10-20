@@ -1,4 +1,4 @@
-import { createContext, useState, useEffect } from "react";
+import { createContext, useState, useEffect, useContext } from "react";
 import { toast } from "react-toastify";
 import api from "../../services";
 export const MyGroupListContext = createContext();
@@ -6,9 +6,6 @@ export const MyGroupListContext = createContext();
 export const MyGroupListProvider = ({ children }) => {
   const [myGroupList, setMygroupList] = useState([]);
 
-  const [token] = useState(
-    JSON.parse(localStorage.getItem("@KenzieHealth:token")) || ""
-  );
   const notifyGetMyGroupList = () =>
     toast.error("Erro ao carregar sua lista de grupos!");
   const notifyCreateGroup = () => toast.error("Erro ao criar seu grupo!");
@@ -16,6 +13,7 @@ export const MyGroupListProvider = ({ children }) => {
   const notifyUnSubscribe = () => toast.error("Erro ao desinscrever do grupo!");
 
   const getMyGroupList = () => {
+    const token = JSON.parse(localStorage.getItem("@KenzieHealth:token"));
     api
       .get("/groups/subscriptions/", {
         headers: {
@@ -23,7 +21,10 @@ export const MyGroupListProvider = ({ children }) => {
         },
       })
       .then((response) => setMygroupList(response.data))
-      .catch(() => notifyGetMyGroupList());
+      .catch((err) => {
+        console.log(err);
+        notifyGetMyGroupList();
+      });
   };
 
   useEffect(() => {
@@ -33,7 +34,7 @@ export const MyGroupListProvider = ({ children }) => {
   }, []);
 
   const createGroup = (groupInfo) => {
-    console.log(groupInfo);
+    const token = JSON.parse(localStorage.getItem("@KenzieHealth:token"));
     api
       .post("/groups/", groupInfo, {
         headers: {
@@ -45,6 +46,7 @@ export const MyGroupListProvider = ({ children }) => {
   };
 
   const subscribe = (group) => {
+    const token = JSON.parse(localStorage.getItem("@KenzieHealth:token"));
     api
       .post(`/groups/${group.id}/subscribe/`, null, {
         headers: {
@@ -56,6 +58,7 @@ export const MyGroupListProvider = ({ children }) => {
   };
 
   const unSubscribe = (group) => {
+    const token = JSON.parse(localStorage.getItem("@KenzieHealth:token"));
     api
       .delete(`/groups/${group.id}/unsubscribe/`, {
         headers: {
