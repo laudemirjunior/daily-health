@@ -17,10 +17,8 @@ const GlobalStyle = createGlobalStyle`
     --white: #ffffff;
     --black: #000000;
     --menu: #FD7FAA;
-    --background: #fd7faad6;
     --bar: #F2527D;
-    --iceCreamBlue: #88E8F2;
-    --blue: #89C2D9;
+    --blue: #88E8F2;
   }
   button, span, svg {
     cursor: pointer;

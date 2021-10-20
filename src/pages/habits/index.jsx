@@ -1,12 +1,12 @@
 import Bar from "../../components/bar";
 import Hamburguer from "../../components/hamburguer";
-import { MainContainer, ContainerOne } from "./styles.js";
+import { MainContainer, ContainerOne, Poligon } from "./styles.js";
 import { useContext, useState } from "react";
 import Button from "../../components/button";
-import CardCreate from "../../components/cardCreate";
+import CardCreateHabits from "../../components/cardCreateHabits";
 import CardHabit from "../../components/cardHabit";
 import { HabitListContext } from "../../Providers/habitsList";
-import { AuthenticatedContext } from "../../Providers/authenticated";
+import { UserContext } from "../../Providers/user";
 import { Redirect } from "react-router";
 
 const Habits = () => {
@@ -14,7 +14,7 @@ const Habits = () => {
     useContext(HabitListContext);
   console.log(habitList);
   const [showCard, setShowCard] = useState(false);
-  const { authenticated } = useContext(AuthenticatedContext);
+  const { authenticated } = useContext(UserContext);
   const open = () => {
     setShowCard(!showCard);
   };
@@ -35,7 +35,9 @@ const Habits = () => {
             <div className="card">
               <h1 className="title">Meus hábitos</h1>
               <Button onClick={() => open()}>Criar hábito</Button>
-              {showCard && <CardCreate createHabit={createHabit} open={open} />}
+              {showCard && (
+                <CardCreateHabits createHabit={createHabit} open={open} />
+              )}
               <ContainerOne>
                 {habitList.map((item) => {
                   return (
@@ -52,6 +54,7 @@ const Habits = () => {
             </div>
           </div>
         </div>
+        <Poligon />
       </MainContainer>
     </>
   );

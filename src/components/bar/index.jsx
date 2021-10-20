@@ -3,13 +3,13 @@ import { FaBars } from "react-icons/fa";
 import Hamburguer from "../hamburguer";
 import { useState } from "react";
 import { useHistory } from "react-router";
-import { AuthenticatedContext } from "../../Providers/authenticated";
+import { UserContext } from "../../Providers/user";
 import { useContext } from "react";
 
 export default function Bar() {
   const [open, setOpen] = useState(true);
   const history = useHistory();
-  const { authenticated } = useContext(AuthenticatedContext);
+  const { authenticated } = useContext(UserContext);
 
   return (
     <StyleBar>
@@ -38,4 +38,3 @@ export default function Bar() {
     </StyleBar>
   );
 }
-

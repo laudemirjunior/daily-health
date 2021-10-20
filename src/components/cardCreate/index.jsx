@@ -60,9 +60,9 @@ const CardCreate = ({ createHabit, open }) => {
           helperText={errors.difficulty?.message}
           error={!!errors.difficulty}
         >
-          <MenuItem value={1}>Fácil</MenuItem>
-          <MenuItem value={2}>Médio</MenuItem>
-          <MenuItem value={3}>Difícil</MenuItem>
+          <MenuItem value={"Fácil"}>Fácil</MenuItem>
+          <MenuItem value={"Médio"}>Médio</MenuItem>
+          <MenuItem value={"Difícil"}>Difícil</MenuItem>
         </TextField>
         <TextField
           select
@@ -75,9 +75,9 @@ const CardCreate = ({ createHabit, open }) => {
           helperText={errors.frequency?.message}
           error={!!errors.frequency}
         >
-          <MenuItem value={1}>Diária</MenuItem>
-          <MenuItem value={2}>Semanal</MenuItem>
-          <MenuItem value={3}>Mensal</MenuItem>
+          <MenuItem value={"Diária"}>Diária</MenuItem>
+          <MenuItem value={"Semanal"}>Semanal</MenuItem>
+          <MenuItem value={"Mensal"}>Mensal</MenuItem>
         </TextField>
         <Button type="submit">Criar hábito</Button>
       </form>

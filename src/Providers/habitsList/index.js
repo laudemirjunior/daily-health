@@ -6,12 +6,9 @@ import { toast } from "react-toastify";
 export const HabitListContext = createContext();
 
 export const HabitListProvider = ({ children }) => {
-  const [tokenLocal] = useState(
-    JSON.parse(localStorage.getItem("@KenzieHealth:token")) || ""
-  );
   const [habitList, setHabitList] = useState([]);
 
-  const token = `Bearer ${tokenLocal}`;
+  const token = JSON.parse(localStorage.getItem("@KenzieHealth:token")) || "";
 
   const { decodedToken, isExpired } = useJwt(token);
 
@@ -25,7 +22,7 @@ export const HabitListProvider = ({ children }) => {
     api
       .get("/habits/personal/", {
         headers: {
-          Authorization: token,
+          Authorization: `Bearer ${token}`,
         },
       })
       .then((response) => setHabitList(response.data))
@@ -42,7 +39,7 @@ export const HabitListProvider = ({ children }) => {
     api
       .delete(`/habits/${habit.id}/`, {
         headers: {
-          Authorization: token,
+          Authorization: `Bearer ${token}`,
         },
       })
       .then(() => getHabitList())
@@ -58,7 +55,7 @@ export const HabitListProvider = ({ children }) => {
     api
       .post("/habits/", newHabit, {
         headers: {
-          Authorization: token,
+          Authorization: `Bearer ${token}`,
         },
       })
       .then(() => getHabitList())
@@ -70,7 +67,7 @@ export const HabitListProvider = ({ children }) => {
     api
       .patch(`/habits/${item}/`, newHabit, {
         headers: {
-          Authorization: token,
+          Authorization: `Bearer ${token}`,
         },
       })
       .then(() => getHabitList())

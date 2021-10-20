@@ -18,7 +18,12 @@ const CardGoals = ({ item }) => {
         <div className="actions">
           <AiOutlineCloseCircle
             onClick={() => deleteGoals(item.id)}
-            style={{ color: "red" }}
+            style={{
+              color: "red",
+              backgroundColor: "white",
+              borderRadius: "50%",
+              boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
+            }}
           />
           <div
             className="active"
@@ -26,7 +31,14 @@ const CardGoals = ({ item }) => {
               updateGoals(true, item.id);
             }}
           >
-            <AiOutlineCheckCircle style={{ color: "green" }} />
+            <AiOutlineCheckCircle
+              style={{
+                color: "green",
+                backgroundColor: "white",
+                borderRadius: "50%",
+                boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
+              }}
+            />
           </div>
         </div>
       </StyleCardTask>

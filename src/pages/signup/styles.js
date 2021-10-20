@@ -3,15 +3,18 @@ import styled from "styled-components";
 export const Form = styled.form`
   padding: 20px 0;
   display: flex;
-  background-color: var(--white);
   justify-content: space-around;
   flex-direction: column;
   align-items: center;
-  height: 480px;
+  height: 600px;
   width: 100%;
   max-width: 350px;
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
   border-radius: 10px;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.18);
   a {
     text-decoration: none;
   }
@@ -26,11 +29,12 @@ export const Form = styled.form`
 
 export const Poligon = styled.div`
   position: absolute;
-  background-color: var(--background);
+  background-color: var(--menu);
+  left: 0px;
   z-index: -1;
   height: calc(100vh - 60px);
   width: 100vw;
-  clip-path: polygon(0 0, 100% 0, 100% 70%, 0 20%);
+  clip-path: polygon(0 0, 100% 0, 100% 20%, 0 70%);
   @media screen and (min-width: 768px) {
     display: none;
   }
@@ -39,16 +43,12 @@ export const Poligon = styled.div`
 export const Countainer = styled.div`
   height: calc(100vh - 60px);
   width: 100vw;
-  align-content: center;
-  align-items: center;
   display: flex;
+  align-items: center;
+  justify-content: center;
   flex-direction: column;
   h1 {
-    margin-top: 11%;
-    margin-bottom: 20px;
-    color: var(--white);
-    font-weight: bold;
-    font-size: 84px;
+    font-size: 70px;
   }
   .link {
     border-bottom: 1px solid #ddd;
@@ -59,7 +59,7 @@ export const Countainer = styled.div`
     color: #777;
   }
   @media screen and (min-width: 768px) {
-    background-color: var(--background);
+    background-color: var(--menu);
     height: calc(100vh - 60px);
     width: 50%;
   }

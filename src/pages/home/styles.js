@@ -33,6 +33,7 @@ export const Container = styled.div`
     flex-direction: column;
     gap: 20px;
     h1 {
+      width: 260px;
       font-size: 60px;
       display: block;
     }
@@ -58,14 +59,13 @@ export const Container = styled.div`
 `;
 
 export const Poligon = styled.div`
-  overflow: hidden;
   position: absolute;
-  background-color: var(--background);
+  background-color: var(--menu);
+  top: 60px;
   left: 0px;
   z-index: -1;
   height: calc(100% - 60px);
   width: 100%;
-  border-color: green;
   clip-path: polygon(0 0, 100% 0, 100% 20%, 0 70%);
   @media screen and (min-width: 768px) {
     display: none;

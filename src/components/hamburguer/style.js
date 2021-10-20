@@ -5,12 +5,12 @@ export const StyleHamburguer = styled.div`
   min-width: 250px;
   height: 80%;
   border-radius: 20px;
-  color: var(--white);
   background-color: var(--menu);
   display: flex;
   justify-content: space-around;
   align-items: center;
   flex-direction: column;
+  color: var(--black);
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   div {
     width: 150px;
@@ -36,6 +36,12 @@ export const StyleHamburguer = styled.div`
       span {
         margin-left: 10px;
       }
+    }
+  }
+  .infos {
+    display: block;
+    @media (min-width: 768px) {
+      display: none;
     }
   }
 `;

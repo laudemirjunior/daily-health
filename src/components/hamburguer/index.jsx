@@ -2,77 +2,112 @@ import { StyleHamburguer } from "./style";
 import { AiFillAppstore, AiFillCarryOut, AiFillSetting } from "react-icons/ai";
 import { BsFillPeopleFill } from "react-icons/bs";
 import { BiLogOut } from "react-icons/bi";
+import { BsInfoCircle, BsFlower2 } from "react-icons/bs";
 import k from "../../images/k.png";
 import { useHistory } from "react-router";
-import { AuthenticatedContext } from "../../Providers/authenticated";
-import { NameUserContext } from "../../Providers/nameUser";
 import { useContext } from "react";
+import { UserContext } from "../../Providers/user";
 
 const Hamburguer = () => {
   const history = useHistory();
-  const { setAuthenticated } = useContext(AuthenticatedContext);
-  const { nameUser } = useContext(NameUserContext);
   const logout = () => {
-    history.push("/");
     localStorage.clear();
-    setAuthenticated(false);
+    history.push("/");
   };
 
   const local = history.location.pathname;
+  const name = localStorage.getItem("@KenzieHealth:userName");
+
+  const { authenticated } = useContext(UserContext);
 
   return (
     <StyleHamburguer>
-      <div>
-        <img src={k} alt="" />
-        <p>{nameUser}</p>
-      </div>
-      <div>
-        <div
-          style={
-            local === "/dashboard"
-              ? { background: "var(--bar)" }
-              : { background: "transparent" }
-          }
-        >
-          <AiFillAppstore />
-          <span onClick={() => history.push("/dashboard")}>Dashboard</span>
-        </div>
-        <div
-          style={
-            local === "/habits"
-              ? { background: "var(--bar)" }
-              : { background: "transparent" }
-          }
-        >
-          <AiFillCarryOut />
-          <span onClick={() => history.push("/habits")}>Habits</span>
-        </div>
-        <div
-          style={
-            local === "/groups"
-              ? { background: "var(--bar)" }
-              : { background: "transparent" }
-          }
-        >
-          <BsFillPeopleFill />
-          <span onClick={() => history.push("/groups")}>Groups</span>
-        </div>
-        <div
-          style={
-            local === "/settings"
-              ? { background: "var(--bar)" }
-              : { background: "transparent" }
-          }
-        >
-          <AiFillSetting />
-          <span onClick={() => history.push("/settings")}>Setttings</span>
-        </div>
-      </div>
-      <div>
+      {authenticated ? null : (
         <div>
-          <BiLogOut />
-          <span onClick={() => logout()}>Logout</span>
+          <h3>Kenzie Health</h3>
         </div>
+      )}
+      {authenticated && (
+        <>
+          <div>
+            <img src={k} alt="" />
+            <p>{name}</p>
+          </div>
+          <div>
+            <div
+              style={
+                local === "/dashboard"
+                  ? { background: "var(--white)" }
+                  : { background: "transparent" }
+              }
+            >
+              <AiFillAppstore />
+              <span onClick={() => history.push("/dashboard")}>Dashboard</span>
+            </div>
+            <div
+              style={
+                local === "/habits"
+                  ? { background: "var(--white)" }
+                  : { background: "transparent" }
+              }
+            >
+              <AiFillCarryOut />
+              <span onClick={() => history.push("/habits")}>Hábitos</span>
+            </div>
+            <div
+              style={
+                local === "/groups"
+                  ? { background: "var(--white)" }
+                  : { background: "transparent" }
+              }
+            >
+              <BsFillPeopleFill />
+              <span onClick={() => history.push("/groups")}>Grupos</span>
+            </div>
+            <div
+              style={
+                local === "/settings"
+                  ? { background: "var(--white)" }
+                  : { background: "transparent" }
+              }
+            >
+              <AiFillSetting />
+              <span onClick={() => history.push("/settings")}>
+                Configurações
+              </span>
+            </div>
+          </div>
+        </>
+      )}
+      <div className="infos" style={{ height: "100px", marginTop: "20px" }}>
+        <div
+          style={
+            local === "/pinkoctober"
+              ? { background: "var(--white)" }
+              : { background: "transparent" }
+          }
+        >
+          <BsFlower2 />
+          <span onClick={() => history.push("/pinkoctober")}>Outubro Rosa</span>
+        </div>
+        <div
+          style={
+            local === "/aboutus"
+              ? { background: "var(--white)" }
+              : { background: "transparent" }
+          }
+        >
+          <BsInfoCircle />
+          <span onClick={() => history.push("/aboutus")}>Sobre nós</span>
+        </div>
+      </div>
+      <div>
+        {authenticated && (
+          <div>
+            <BiLogOut />
+            <span onClick={() => logout()}>Logout</span>
+          </div>
+        )}
       </div>
     </StyleHamburguer>
   );

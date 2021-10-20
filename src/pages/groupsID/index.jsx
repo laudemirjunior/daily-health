@@ -1,35 +1,37 @@
 import Bar from "../../components/bar";
 import Hamburguer from "../../components/hamburguer";
-import { MainContainer } from "./styles.js";
+import { MainContainer, Poligon } from "./styles.js";
 import Button from "../../components/button";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import { ActivitiesContext } from "../../Providers/activities";
-import { useParams } from "react-router";
 import { GoalsContext } from "../../Providers/goals";
 import CardActivities from "../../components/cardActivities";
 import CardCreateActivities from "../../components/cardCreateActivities";
 import CardGoals from "../../components/cardGoals";
 import CardCreateGoals from "../../components/cardCreateGoals";
-import { Redirect } from "react-router";
-import { AuthenticatedContext } from "../../Providers/authenticated";
+import { Redirect, useParams } from "react-router";
+import { UserContext } from "../../Providers/user";
+import { useEffect } from "react";
 
 const GroupsID = () => {
-  const { searchActivities, activitiesList } = useContext(ActivitiesContext);
-  const { searchGoals, goalsList } = useContext(GoalsContext);
   const { id } = useParams();
-  const { authenticated } = useContext(AuthenticatedContext);
+  const { activitiesList, searchActivities } = useContext(ActivitiesContext);
+  const { goalsList, searchGoals } = useContext(GoalsContext);
+  const { authenticated } = useContext(UserContext);
+  const [openActivities, setOpenActivities] = useState(false);
+  const [openGoals, setOpenGoals] = useState(false);
+
   useEffect(() => {
     searchActivities(id);
-    searchGoals(id);
-  }, []);
+  }, [activitiesList]);
 
-  const [openActivities, setOpenActivities] = useState(false);
+  useEffect(() => {
+    searchGoals(id);
+  }, [goalsList]);
 
   const openShowActivities = () => {
     setOpenActivities(!openActivities);
   };
-
-  const [openGoals, setOpenGoals] = useState(false);
 
   const openShowGoals = () => {
     setOpenGoals(!openGoals);
@@ -37,6 +39,7 @@ const GroupsID = () => {
   if (!authenticated) {
     return <Redirect to="/" />;
   }
+
   return (
     <>
       <Bar />
@@ -66,6 +69,7 @@ const GroupsID = () => {
             </div>
           </div>
         </div>
+        <Poligon />
       </MainContainer>
     </>
   );

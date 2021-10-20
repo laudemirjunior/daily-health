@@ -1,12 +1,9 @@
 import { useState } from "react";
 import { TextField, InputAdornment, IconButton } from "@material-ui/core";
-import { Countainer, Form, Animate_div, Poligon, AnimateDiv } from "./styles";
+import { Countainer, Form, Poligon, AnimateDiv } from "./styles";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useHistory, Link } from "react-router-dom";
-import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import api from "../../services";
+import { Link } from "react-router-dom";
 import Button from "../../components/button";
 import * as yup from "yup";
 import Lottie from "react-lottie";
@@ -15,16 +12,12 @@ import Bar from "../../components/bar";
 import VisibilityIcon from "@material-ui/icons/Visibility";
 import VisibilityOffIcon from "@material-ui/icons/VisibilityOff";
 import { Redirect } from "react-router";
-import { AuthenticatedContext } from "../../Providers/authenticated";
-import { NameUserContext } from "../../Providers/nameUser";
+import { UserContext } from "../../Providers/user";
 import { useContext } from "react";
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState("password");
-  const { authenticated, setAuthenticated } = useContext(AuthenticatedContext);
-  const { setNameUser } = useContext(NameUserContext);
-
-  const history = useHistory();
+  const { constLogin, authenticated } = useContext(UserContext);
 
   const schema = yup.object().shape({
     username: yup.string().required("Ensira seu username*"),
@@ -38,25 +31,7 @@ const Login = () => {
   } = useForm({ resolver: yupResolver(schema) });
 
   const handleForm = (data) => {
-    api
-      .post("/sessions/", data)
-      .then((response) => {
-        setNameUser(data.username);
-        localStorage.setItem(
-          "@KenzieHealth:token",
-          JSON.stringify(response.data.access)
-        );
-      })
-      .then(() => {
-        toast.success("Login Feito com Sucesso!");
-        setAuthenticated(true);
-        history.go(0);
-        history.push("/dashboard");
-      })
-      .catch((err) => {
-        console.log(err);
-        toast.error("Username / senha inválidos!");
-      });
+    constLogin(data);
   };
 
   const [animationState, setAnimationState] = useState({
@@ -75,6 +50,7 @@ const Login = () => {
   if (authenticated) {
     return <Redirect to="/dashboard" />;
   }
+
   return (
     <>
       <Bar />
@@ -91,8 +67,8 @@ const Login = () => {
         </AnimateDiv>
         <Poligon></Poligon>
         <Countainer>
-          <h1> Login </h1>
           <Form onSubmit={handleSubmit(handleForm)}>
+            <h1> Login </h1>
             <div>
               <TextField
                 label="Username"
@@ -141,7 +117,7 @@ const Login = () => {
               />
             </div>
 
-            <Button>entrar</Button>
+            <Button>Entrar</Button>
             <span>
               <Link to={"/signup"} className="link">
                 Crie uma conta aqui!

@@ -1,6 +1,6 @@
 import Bar from "../../components/bar";
 import Hamburguer from "../../components/hamburguer";
-import { MainContainer } from "./styles.js";
+import { MainContainer, Poligon } from "./styles.js";
 import { useContext, useState } from "react";
 import CardMyGroups from "../../components/cardMyGroups";
 import Button from "../../components/button";
@@ -8,12 +8,12 @@ import CardCreateGroup from "../../components/cardCreateGroup";
 import CardGroups from "../../components/cardGroups";
 import { GroupListContext } from "../../Providers/groupList";
 import { MyGroupListContext } from "../../Providers/myGroupList";
-import { AuthenticatedContext } from "../../Providers/authenticated";
+import { UserContext } from "../../Providers/user";
 import { Redirect } from "react-router";
 
 const Groups = () => {
   const [showCard, setShowCard] = useState(false);
-  const { authenticated } = useContext(AuthenticatedContext);
+  const { authenticated } = useContext(UserContext);
   const open = () => {
     setShowCard(!showCard);
   };
@@ -49,6 +49,7 @@ const Groups = () => {
             </div>
           </div>
         </div>
+        <Poligon />
       </MainContainer>
     </>
   );

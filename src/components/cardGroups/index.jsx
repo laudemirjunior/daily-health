@@ -16,7 +16,12 @@ const CardGroups = ({ item }) => {
       <div className="svg">
         <AiOutlineLogin
           onClick={() => subscribe(item)}
-          style={{ color: "green" }}
+          style={{
+            color: "green",
+            backgroundColor: "white",
+            borderRadius: "50%",
+            boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
+          }}
         />
       </div>
     </StyleCardTask>

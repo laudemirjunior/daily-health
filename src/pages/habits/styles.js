@@ -6,6 +6,7 @@ export const MainContainer = styled.div`
   display: flex;
   justify-content: space-around;
   align-items: center;
+
   .container {
     width: 100%;
     max-width: 1500px;
@@ -27,7 +28,7 @@ export const MainContainer = styled.div`
   }
   .cards {
     width: 100%;
-    height: 80%;
+    height: 95%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -48,13 +49,14 @@ export const MainContainer = styled.div`
     flex-direction: column;
     align-items: center;
     gap: 20px;
-    background-color: var(--background);
     border-radius: 20px;
     padding: 20px;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    h1 {
-      color: var(--white);
-    }
+    background: rgba(255, 255, 255, 0.25);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
   }
 `;
 
@@ -73,4 +75,13 @@ export const ContainerOne = styled.div`
   }
 `;
 
-export default ContainerOne;
+export const Poligon = styled.div`
+  position: absolute;
+  background-color: var(--blue);
+  top: 60px;
+  left: 0;
+  z-index: -1;
+  height: calc(100vh - 60px);
+  width: 100%;
+  clip-path: polygon(0 0, 100% 0, 100% 20%, 0 70%);
+`;

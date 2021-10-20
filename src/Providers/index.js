@@ -3,24 +3,24 @@ import { GoalsProvider } from "./goals";
 import { GroupListProvider } from "./groupList";
 import { HabitListProvider } from "./habitsList";
 import { MyGroupListProvider } from "./myGroupList";
-import { AuthenticatedProvider } from "./authenticated";
+import { UserProvider } from "./user";
 import { NameUserProvider } from "./nameUser";
 
 const Providers = ({ children }) => {
   return (
-    <HabitListProvider>
-      <MyGroupListProvider>
+    <NameUserProvider>
+      <UserProvider>
         <GoalsProvider>
           <ActivitiesProvider>
-            <AuthenticatedProvider>
-              <NameUserProvider>
+            <MyGroupListProvider>
+              <HabitListProvider>
                 <GroupListProvider>{children}</GroupListProvider>
-              </NameUserProvider>
-            </AuthenticatedProvider>
+              </HabitListProvider>
+            </MyGroupListProvider>
           </ActivitiesProvider>
         </GoalsProvider>
-      </MyGroupListProvider>
-    </HabitListProvider>
+      </UserProvider>
+    </NameUserProvider>
   );
 };
 

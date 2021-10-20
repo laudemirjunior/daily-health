@@ -1,16 +1,18 @@
 import styled from "styled-components";
+import background from "../../images/background2.png";
 
 export const StyleCardTask = styled.div`
+  color: white;
   cursor: pointer;
   width: 100%;
   min-height: 130px;
-  background-color: var(--white);
+  background-image: url(${background});
   border-radius: 20px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  background-size: 100% 100%;
   display: flex;
   justify-content: space-between;
   padding: 10px;
-  border-left: 25px solid var(--iceCreamBlue);
   :hover {
     background-color: var(--iceCreamBlue);
   }
@@ -25,5 +27,7 @@ export const StyleCardTask = styled.div`
   .svg {
     display: flex;
     justify-content: center;
+    svg {
+    }
   }
 `;

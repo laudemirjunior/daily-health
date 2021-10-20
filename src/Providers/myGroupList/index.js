@@ -4,13 +4,11 @@ import api from "../../services";
 export const MyGroupListContext = createContext();
 
 export const MyGroupListProvider = ({ children }) => {
-  const user = localStorage.getItem("user");
   const [myGroupList, setMygroupList] = useState([]);
 
-  const [tokenLocal] = useState(
+  const [token] = useState(
     JSON.parse(localStorage.getItem("@KenzieHealth:token")) || ""
   );
-  const token = `Bearer ${tokenLocal}`;
   const notifyGetMyGroupList = () =>
     toast.error("Erro ao carregar sua lista de grupos!");
   const notifyCreateGroup = () => toast.error("Erro ao criar seu grupo!");
@@ -21,11 +19,11 @@ export const MyGroupListProvider = ({ children }) => {
     api
       .get("/groups/subscriptions/", {
         headers: {
-          Authorization: token,
+          Authorization: `Bearer ${token}`,
         },
       })
       .then((response) => setMygroupList(response.data))
-      .catch((err) => notifyGetMyGroupList());
+      .catch(() => notifyGetMyGroupList());
   };
 
   useEffect(() => {
@@ -39,7 +37,7 @@ export const MyGroupListProvider = ({ children }) => {
     api
       .post("/groups/", groupInfo, {
         headers: {
-          Authorization: token,
+          Authorization: `Bearer ${token}`,
         },
       })
       .then(() => getMyGroupList())
@@ -50,7 +48,7 @@ export const MyGroupListProvider = ({ children }) => {
     api
       .post(`/groups/${group.id}/subscribe/`, null, {
         headers: {
-          Authorization: token,
+          Authorization: `Bearer ${token}`,
         },
       })
       .then(() => getMyGroupList())
@@ -61,7 +59,7 @@ export const MyGroupListProvider = ({ children }) => {
     api
       .delete(`/groups/${group.id}/unsubscribe/`, {
         headers: {
-          Authorization: token,
+          Authorization: `Bearer ${token}`,
         },
       })
       .then(() => getMyGroupList())
