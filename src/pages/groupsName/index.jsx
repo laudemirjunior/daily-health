@@ -13,11 +13,14 @@ import { Redirect, useParams } from "react-router";
 import { useEffect } from "react";
 import { RiArrowGoBackLine } from "react-icons/ri";
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
+import CircularProgress from "@mui/material/CircularProgress";
 
 const GroupsID = () => {
   const { id } = useParams();
-  const { activitiesList, searchActivities } = useContext(ActivitiesContext);
-  const { goalsList, searchGoals } = useContext(GoalsContext);
+  const { activitiesList, searchActivities, loadingAct } =
+    useContext(ActivitiesContext);
+  const { goalsList, searchGoals, loading } = useContext(GoalsContext);
   const [openActivities, setOpenActivities] = useState(false);
   const [openGoals, setOpenGoals] = useState(false);
 
@@ -43,38 +46,58 @@ const GroupsID = () => {
   return (
     <>
       <Bar />
-      <MainContainer>
-        <div className="container">
-          <div className="menu">
-            <Hamburguer />
-          </div>
-          <div className="cards">
-            <div className="card">
-              <Link to="/groups">
-                <RiArrowGoBackLine className="back" />
-              </Link>
-              <h1>Minhas Metas</h1>
+      <motion.div
+        initial={{ opacity: 0.8 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0.8 }}
+        transition={{ duration: 0.5 }}
+      >
+        <MainContainer>
+          <div className="container">
+            <div className="menu">
+              <Hamburguer />
+            </div>
+            <div className="cards">
+              <div className="card">
+                <Link to="/groups">
+                  <RiArrowGoBackLine className="back" />
+                </Link>
+                <h1>Metas do Grupo</h1>
 
-              {goalsList.map((item) => {
-                return <CardGoals item={item} locket={false} />;
-              })}
-              {openGoals && <CardCreateGoals openShowGoals={openShowGoals} />}
-            </div>
-            <div className="card">
-              <h1>Minhas atividades</h1>
-              {activitiesList.map((item) => {
-                return (
-                  <CardActivities item={item} locket={false}></CardActivities>
-                );
-              })}
-              {openActivities && (
-                <CardCreateActivities openShowActivities={openShowActivities} />
-              )}
+                {loading ? (
+                  <CircularProgress />
+                ) : (
+                  goalsList.map((item) => {
+                    return <CardGoals item={item} locket={false} />;
+                  })
+                )}
+                {openGoals && <CardCreateGoals openShowGoals={openShowGoals} />}
+              </div>
+              <div className="card">
+                <h1>Atividades do Grupo</h1>
+                {loadingAct ? (
+                  <CircularProgress />
+                ) : (
+                  activitiesList.map((item) => {
+                    return (
+                      <CardActivities
+                        item={item}
+                        locket={false}
+                      ></CardActivities>
+                    );
+                  })
+                )}
+                {openActivities && (
+                  <CardCreateActivities
+                    openShowActivities={openShowActivities}
+                  />
+                )}
+              </div>
             </div>
           </div>
-        </div>
-        <Poligon />
-      </MainContainer>
+          <Poligon />
+        </MainContainer>
+      </motion.div>
     </>
   );
 };

@@ -6,7 +6,7 @@ import Button from "../../components/button";
 import CardCreateHabits from "../../components/cardCreateHabits";
 import CardHabit from "../../components/cardHabit";
 import { HabitListContext } from "../../Providers/habitsList";
-
+import { motion } from "framer-motion";
 import { Redirect } from "react-router";
 
 const Habits = () => {
@@ -26,36 +26,44 @@ const Habits = () => {
   return (
     <>
       <Bar />
-      <MainContainer>
-        <div className="container">
-          <div className="menu">
-            <Hamburguer />
-          </div>
-          <div className="cards">
-            <div className="card">
-              <h1 className="title">Meus hábitos</h1>
-              <Button onClick={() => open()}>Criar hábito</Button>
-              {showCard && (
-                <CardCreateHabits createHabit={CreateHabit} open={open} />
-              )}
-              <ContainerOne>
-                {habitList.map((item) => {
-                  return (
-                    <div className="one">
-                      <CardHabit
-                        item={item}
-                        removeHabit={removeHabit}
-                        updateHabit={updateHabit}
-                      />
-                    </div>
-                  );
-                })}
-              </ContainerOne>
+      <motion.div
+        initial={{ opacity: 0.8 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0.8 }}
+        transition={{ duration: 0.5 }}
+      >
+        <MainContainer>
+          <div className="container">
+            <div className="menu">
+              <Hamburguer />
+            </div>
+
+            <div className="cards">
+              <div className="card">
+                <h1 className="title">Meus hábitos</h1>
+                <Button onClick={() => open()}>Criar hábito</Button>
+                {showCard && (
+                  <CardCreateHabits createHabit={CreateHabit} open={open} />
+                )}
+                <ContainerOne>
+                  {habitList.map((item) => {
+                    return (
+                      <div className="one">
+                        <CardHabit
+                          item={item}
+                          removeHabit={removeHabit}
+                          updateHabit={updateHabit}
+                        />
+                      </div>
+                    );
+                  })}
+                </ContainerOne>
+              </div>
             </div>
           </div>
-        </div>
-        <Poligon />
-      </MainContainer>
+          <Poligon />
+        </MainContainer>
+      </motion.div>
     </>
   );
 };

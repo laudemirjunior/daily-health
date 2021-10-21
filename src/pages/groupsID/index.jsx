@@ -14,6 +14,8 @@ import { useEffect } from "react";
 import { RiArrowGoBackLine } from "react-icons/ri";
 import { Link } from "react-router-dom";
 import CircularProgress from "@mui/material/CircularProgress";
+import { motion } from "framer-motion";
+
 const GroupsID = () => {
   const { id } = useParams();
   const { activitiesList, searchActivities, loadingAct } =
@@ -44,48 +46,60 @@ const GroupsID = () => {
   return (
     <>
       <Bar />
-      <MainContainer>
-        <div className="container">
-          <div className="menu">
-            <Hamburguer />
-          </div>
-          <div className="cards">
-            <div className="card">
-              <Link to="/groups">
-                <RiArrowGoBackLine className="back" />
-              </Link>
-              <h1>Minhas Metas</h1>
+      <motion.div
+        initial={{ opacity: 0.8 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0.8 }}
+        transition={{ duration: 0.5 }}
+      >
+        <MainContainer>
+          <div className="container">
+            <div className="menu">
+              <Hamburguer />
+            </div>
+            <div className="cards">
+              <div className="card">
+                <Link to="/groups">
+                  <RiArrowGoBackLine className="back" />
+                </Link>
+                <h1>Metas do meu Grupo</h1>
 
-              <Button onClick={() => openShowGoals()}>Criar meta</Button>
-              {loading ? (
-                <CircularProgress />
-              ) : (
-                goalsList.map((item) => {
-                  return <CardGoals item={item} locket={true} />;
-                })
-              )}
-              {openGoals && <CardCreateGoals openShowGoals={openShowGoals} />}
-            </div>
-            <div className="card">
-              <h1>Minhas atividades</h1>
-              <Button onClick={openShowActivities}>Criar atividade</Button>
-              {loadingAct ? (
-                <CircularProgress />
-              ) : (
-                activitiesList.map((item) => {
-                  return (
-                    <CardActivities item={item} locket={true}></CardActivities>
-                  );
-                })
-              )}
-              {openActivities && (
-                <CardCreateActivities openShowActivities={openShowActivities} />
-              )}
+                <Button onClick={() => openShowGoals()}>Criar meta</Button>
+                {loading ? (
+                  <CircularProgress />
+                ) : (
+                  goalsList.map((item) => {
+                    return <CardGoals item={item} locket={true} />;
+                  })
+                )}
+                {openGoals && <CardCreateGoals openShowGoals={openShowGoals} />}
+              </div>
+              <div className="card">
+                <h1>Atividades do meu Grupo</h1>
+                <Button onClick={openShowActivities}>Criar atividade</Button>
+                {loadingAct ? (
+                  <CircularProgress />
+                ) : (
+                  activitiesList.map((item) => {
+                    return (
+                      <CardActivities
+                        item={item}
+                        locket={true}
+                      ></CardActivities>
+                    );
+                  })
+                )}
+                {openActivities && (
+                  <CardCreateActivities
+                    openShowActivities={openShowActivities}
+                  />
+                )}
+              </div>
             </div>
           </div>
-        </div>
-        <Poligon />
-      </MainContainer>
+          <Poligon />
+        </MainContainer>
+      </motion.div>
     </>
   );
 };

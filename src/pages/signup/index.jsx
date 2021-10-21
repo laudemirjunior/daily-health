@@ -16,6 +16,7 @@ import { Redirect } from "react-router";
 import api from "../../services";
 import { toast } from "react-toastify";
 import { useHistory } from "react-router";
+import { motion } from "framer-motion";
 
 const SignUp = () => {
   const [showPassword, setShowPassword] = useState("password");
@@ -83,114 +84,121 @@ const SignUp = () => {
   return (
     <>
       <Bar />
-      <div style={{ display: "flex" }}>
-        <Poligon></Poligon>
-        <Countainer>
-          <Form onSubmit={handleSubmit(handleForm)}>
-            <h1>Cadastro</h1>
-            <TextField
-              className="input"
-              label="Username"
-              type="text"
-              margin="normal"
-              variant="outlined"
-              color="primary"
-              {...register("username")}
-              helperText={errors.username?.message}
-              error={!!errors.username}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 0.5 }}
+      >
+        <div style={{ display: "flex" }}>
+          <Poligon></Poligon>
+          <Countainer>
+            <Form onSubmit={handleSubmit(handleForm)}>
+              <h1>Cadastro</h1>
+              <TextField
+                className="input"
+                label="Username"
+                type="text"
+                margin="normal"
+                variant="outlined"
+                color="primary"
+                {...register("username")}
+                helperText={errors.username?.message}
+                error={!!errors.username}
+              />
+              <TextField
+                className="input"
+                label="E-mail"
+                type="text"
+                margin="normal"
+                variant="outlined"
+                color="primary"
+                {...register("email")}
+                helperText={errors.email?.message}
+                error={!!errors.email}
+              />
+              <TextField
+                className="input"
+                label="Senha"
+                type={showPassword}
+                margin="normal"
+                variant="outlined"
+                color="primary"
+                {...register("password")}
+                helperText={errors.password?.message}
+                error={!!errors.password}
+                InputProps={{
+                  endAdornment: (
+                    <InputAdornment>
+                      <IconButton
+                        className="visibilityButton"
+                        onClick={() =>
+                          showPassword === "password"
+                            ? setShowPassword("text")
+                            : setShowPassword("password")
+                        }
+                        aria-label="toggle password visibility"
+                      >
+                        {showPassword === "password" ? (
+                          <VisibilityOffIcon />
+                        ) : (
+                          <VisibilityIcon />
+                        )}
+                      </IconButton>
+                    </InputAdornment>
+                  ),
+                }}
+              />
+              <TextField
+                className="input"
+                label="Confirmar senha"
+                type={showPasswordTwo}
+                margin="normal"
+                variant="outlined"
+                color="primary"
+                {...register("confirm_password")}
+                helperText={errors.confirm_password?.message}
+                error={!!errors.confirm_password}
+                InputProps={{
+                  endAdornment: (
+                    <InputAdornment>
+                      <IconButton
+                        className="visibilityButton"
+                        onClick={() =>
+                          showPasswordTwo === "password"
+                            ? setShowPasswordTwo("text")
+                            : setShowPasswordTwo("password")
+                        }
+                        aria-label="toggle password visibility"
+                      >
+                        {showPasswordTwo === "password" ? (
+                          <VisibilityOffIcon />
+                        ) : (
+                          <VisibilityIcon />
+                        )}
+                      </IconButton>
+                    </InputAdornment>
+                  ),
+                }}
+              />{" "}
+              <Button>Cadastrar</Button>
+              <Link to={"/login"} className="link">
+                Entre aqui!
+              </Link>
+            </Form>
+          </Countainer>
+          <AnimateDiv>
+            <Lottie
+              options={defaultOptions}
+              height={"33vw"}
+              width={"33vw"}
+              speed={0.95}
+              isStopped={animationState.isStopped}
+              isPaused={animationState.isPaused}
             />
-            <TextField
-              className="input"
-              label="E-mail"
-              type="text"
-              margin="normal"
-              variant="outlined"
-              color="primary"
-              {...register("email")}
-              helperText={errors.email?.message}
-              error={!!errors.email}
-            />
-            <TextField
-              className="input"
-              label="Senha"
-              type={showPassword}
-              margin="normal"
-              variant="outlined"
-              color="primary"
-              {...register("password")}
-              helperText={errors.password?.message}
-              error={!!errors.password}
-              InputProps={{
-                endAdornment: (
-                  <InputAdornment>
-                    <IconButton
-                      className="visibilityButton"
-                      onClick={() =>
-                        showPassword === "password"
-                          ? setShowPassword("text")
-                          : setShowPassword("password")
-                      }
-                      aria-label="toggle password visibility"
-                    >
-                      {showPassword === "password" ? (
-                        <VisibilityOffIcon />
-                      ) : (
-                        <VisibilityIcon />
-                      )}
-                    </IconButton>
-                  </InputAdornment>
-                ),
-              }}
-            />
-            <TextField
-              className="input"
-              label="Confirmar senha"
-              type={showPasswordTwo}
-              margin="normal"
-              variant="outlined"
-              color="primary"
-              {...register("confirm_password")}
-              helperText={errors.confirm_password?.message}
-              error={!!errors.confirm_password}
-              InputProps={{
-                endAdornment: (
-                  <InputAdornment>
-                    <IconButton
-                      className="visibilityButton"
-                      onClick={() =>
-                        showPasswordTwo === "password"
-                          ? setShowPasswordTwo("text")
-                          : setShowPasswordTwo("password")
-                      }
-                      aria-label="toggle password visibility"
-                    >
-                      {showPasswordTwo === "password" ? (
-                        <VisibilityOffIcon />
-                      ) : (
-                        <VisibilityIcon />
-                      )}
-                    </IconButton>
-                  </InputAdornment>
-                ),
-              }}
-            />{" "}
-            <Button>Cadastrar</Button>
-            <Link to={"/login"} className="link">
-              Entre aqui!
-            </Link>
-          </Form>
-        </Countainer>
-        <AnimateDiv>
-          <Lottie
-            options={defaultOptions}
-            height={"33vw"}
-            width={"33vw"}
-            speed={0.95}
-            isStopped={animationState.isStopped}
-            isPaused={animationState.isPaused}
-          />
-        </AnimateDiv>
-      </div>
+          </AnimateDiv>
+        </div>
+      </motion.div>
     </>
   );
 };

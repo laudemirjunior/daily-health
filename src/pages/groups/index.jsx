@@ -11,6 +11,7 @@ import { MyGroupListContext } from "../../Providers/myGroupList";
 import { Redirect } from "react-router";
 import { GrCaretPrevious, GrCaretNext } from "react-icons/gr";
 import CircularProgress from "@mui/material/CircularProgress";
+import { motion } from "framer-motion";
 
 const Groups = () => {
   const [showCard, setShowCard] = useState(false);
@@ -28,44 +29,51 @@ const Groups = () => {
   return (
     <>
       <Bar />
-      <MainContainer>
-        <div className="container">
-          <div className="menu">
-            <Hamburguer />
-          </div>
-          <div className="cards">
-            <div className="card">
-              <h1>Meus Grupos</h1>
-              <Button onClick={open}>Criar grupo</Button>
-              {showCard && <CardCreateGroup open={open} />}
-              {loadingMyGroup ? (
-                <CircularProgress />
-              ) : (
-                myGroupList.map((item) => {
-                  return <CardMyGroups item={item} />;
-                })
-              )}
+      <motion.div
+        initial={{ opacity: 0.8 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0.8 }}
+        transition={{ duration: 0.5 }}
+      >
+        <MainContainer>
+          <div className="container">
+            <div className="menu">
+              <Hamburguer />
             </div>
-            <div className="card">
-              <div className="btn">
-                <GrCaretPrevious className="buttonIcon" onClick={prev} />
-                <h1>Todos os Grupos</h1>
-                <GrCaretNext className="buttonIcon" onClick={next} />
+            <div className="cards">
+              <div className="card">
+                <h1>Meus Grupos</h1>
+                <Button onClick={open}>Criar grupo</Button>
+                {showCard && <CardCreateGroup open={open} />}
+                {loadingMyGroup ? (
+                  <CircularProgress />
+                ) : (
+                  myGroupList.map((item) => {
+                    return <CardMyGroups item={item} />;
+                  })
+                )}
               </div>
+              <div className="card">
+                <div className="btn">
+                  <GrCaretPrevious className="buttonIcon" onClick={prev} />
+                  <h1>Todos os Grupos</h1>
+                  <GrCaretNext className="buttonIcon" onClick={next} />
+                </div>
 
-              {loading ? (
-                <CircularProgress />
-              ) : (
-                groupList.map((item) => {
-                  return <CardGroups item={item} />;
-                })
-              )}
+                {loading ? (
+                  <CircularProgress />
+                ) : (
+                  groupList.map((item) => {
+                    return <CardGroups item={item} />;
+                  })
+                )}
+              </div>
             </div>
           </div>
-        </div>
 
-        <Poligon />
-      </MainContainer>
+          <Poligon />
+        </MainContainer>
+      </motion.div>
     </>
   );
 };

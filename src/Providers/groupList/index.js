@@ -33,6 +33,8 @@ export const GroupListProvider = ({ children }) => {
     if (number <= pag) {
       setNumber(number + 1);
       getAllGroups();
+    } else {
+      toast.error("Pagina seguinte nao existe!");
     }
   };
 
@@ -40,6 +42,8 @@ export const GroupListProvider = ({ children }) => {
     if (number > 0) {
       setNumber(number - 1);
       getAllGroups();
+    } else {
+      toast.error("Pagina anterior nao existe!");
     }
   };
 

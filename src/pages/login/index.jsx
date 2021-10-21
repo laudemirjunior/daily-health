@@ -20,6 +20,7 @@ import { GroupListContext } from "../../Providers/groupList";
 import { useContext } from "react";
 import api from "../../services";
 import { toast } from "react-toastify";
+import { motion } from "framer-motion";
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState("password");
@@ -85,78 +86,85 @@ const Login = () => {
   return (
     <>
       <Bar />
-      <div style={{ display: "flex" }}>
-        <AnimateDiv>
-          <Lottie
-            options={defaultOptions}
-            height={"27vw"}
-            width={"50vw"}
-            speed={0.5}
-            isStopped={animationState.isStopped}
-            isPaused={animationState.isPaused}
-          />
-        </AnimateDiv>
-        <Poligon></Poligon>
-        <Countainer>
-          <Form onSubmit={handleSubmit(handleForm)}>
-            <h1> Login </h1>
-            <div>
-              <TextField
-                label="Username"
-                className="input"
-                type="text"
-                margin="normal"
-                variant="outlined"
-                color="primary"
-                {...register("username")}
-                helperText={errors.username?.message}
-                error={!!errors.username}
-              />
-            </div>
-            <div>
-              <TextField
-                label="Senha"
-                className="input"
-                type={showPassword}
-                margin="normal"
-                variant="outlined"
-                color="primary"
-                {...register("password")}
-                helperText={errors.password?.message}
-                error={!!errors.password}
-                InputProps={{
-                  endAdornment: (
-                    <InputAdornment>
-                      <IconButton
-                        className="visibilityButton"
-                        onClick={() =>
-                          showPassword === "password"
-                            ? setShowPassword("text")
-                            : setShowPassword("password")
-                        }
-                        aria-label="toggle password visibility"
-                      >
-                        {showPassword === "password" ? (
-                          <VisibilityOffIcon />
-                        ) : (
-                          <VisibilityIcon />
-                        )}
-                      </IconButton>
-                    </InputAdornment>
-                  ),
-                }}
-              />
-            </div>
+      <motion.div
+        initial={{ opacity: 0.5 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0.5 }}
+        transition={{ duration: 0.5 }}
+      >
+        <div style={{ display: "flex" }}>
+          <AnimateDiv>
+            <Lottie
+              options={defaultOptions}
+              height={"27vw"}
+              width={"50vw"}
+              speed={0.5}
+              isStopped={animationState.isStopped}
+              isPaused={animationState.isPaused}
+            />
+          </AnimateDiv>
+          <Poligon></Poligon>
+          <Countainer>
+            <Form onSubmit={handleSubmit(handleForm)}>
+              <h1> Login </h1>
+              <div>
+                <TextField
+                  label="Username"
+                  className="input"
+                  type="text"
+                  margin="normal"
+                  variant="outlined"
+                  color="primary"
+                  {...register("username")}
+                  helperText={errors.username?.message}
+                  error={!!errors.username}
+                />
+              </div>
+              <div>
+                <TextField
+                  label="Senha"
+                  className="input"
+                  type={showPassword}
+                  margin="normal"
+                  variant="outlined"
+                  color="primary"
+                  {...register("password")}
+                  helperText={errors.password?.message}
+                  error={!!errors.password}
+                  InputProps={{
+                    endAdornment: (
+                      <InputAdornment>
+                        <IconButton
+                          className="visibilityButton"
+                          onClick={() =>
+                            showPassword === "password"
+                              ? setShowPassword("text")
+                              : setShowPassword("password")
+                          }
+                          aria-label="toggle password visibility"
+                        >
+                          {showPassword === "password" ? (
+                            <VisibilityOffIcon />
+                          ) : (
+                            <VisibilityIcon />
+                          )}
+                        </IconButton>
+                      </InputAdornment>
+                    ),
+                  }}
+                />
+              </div>
 
-            <Button>Entrar</Button>
-            <span>
-              <Link to={"/signup"} className="link">
-                Crie uma conta aqui!
-              </Link>
-            </span>
-          </Form>
-        </Countainer>
-      </div>
+              <Button>Entrar</Button>
+              <span>
+                <Link to={"/signup"} className="link">
+                  Crie uma conta aqui!
+                </Link>
+              </span>
+            </Form>
+          </Countainer>
+        </div>
+      </motion.div>
     </>
   );
 };
