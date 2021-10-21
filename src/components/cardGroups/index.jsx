@@ -30,7 +30,7 @@ const CardGroups = ({ item }) => {
           }}
           className="iconGroup"
         />
-        <Button onClick={() => handleClick(item)}>Entrar</Button>
+        <Button onClick={() => handleClick(item)}>Ver mais</Button>
       </div>
     </StyleCardTask>
   );

@@ -9,6 +9,7 @@ import CardGroups from "../../components/cardGroups";
 import { GroupListContext } from "../../Providers/groupList";
 import { MyGroupListContext } from "../../Providers/myGroupList";
 import { Redirect } from "react-router";
+import { GrCaretPrevious, GrCaretNext } from "react-icons/gr";
 
 const Groups = () => {
   const [showCard, setShowCard] = useState(false);
@@ -17,7 +18,7 @@ const Groups = () => {
     setShowCard(!showCard);
   };
 
-  const { groupList } = useContext(GroupListContext);
+  const { groupList, next, prev } = useContext(GroupListContext);
   const { myGroupList } = useContext(MyGroupListContext);
   if (!localStorage.getItem("@KenzieHealth:token")) {
     return <Redirect to="/" />;
@@ -41,7 +42,11 @@ const Groups = () => {
               })}
             </div>
             <div className="card">
-              <h1>Todos os Grupos</h1>
+              <div className="btn">
+                <GrCaretPrevious onClick={prev} />
+                <h1>Todos os Grupos</h1>
+                <GrCaretNext onClick={next} />
+              </div>
               {groupList.map((item) => {
                 return <CardGroups item={item} />;
               })}

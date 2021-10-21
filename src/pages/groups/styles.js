@@ -37,6 +37,11 @@ export const MainContainer = styled.div`
       justify-content: space-between;
       flex-wrap: nowrap;
     }
+    .btn {
+      display: flex;
+      justify-content: space-around;
+      width: 100%;
+    }
   }
 
   .card {

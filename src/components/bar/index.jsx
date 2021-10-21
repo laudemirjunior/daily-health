@@ -31,7 +31,6 @@ export default function Bar() {
           <div onClick={reverse}>
             {change ? <MdDarkMode /> : <MdLightMode />}
           </div>
-
           <span className="info" onClick={() => history.push("/pinkoctober")}>
             Outubro rosa
           </span>
