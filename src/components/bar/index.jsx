@@ -1,7 +1,7 @@
 import { StyleBar, MenuHamburguer } from "./styles";
 import { FaBars } from "react-icons/fa";
 import { MdDarkMode, MdLightMode } from "react-icons/md";
-
+import { AiOutlineClose } from "react-icons/ai";
 import Hamburguer from "../hamburguer";
 import { useState } from "react";
 import { useHistory } from "react-router";
@@ -39,7 +39,9 @@ export default function Bar() {
             Sobre nós
           </span>
         </div>
-        <FaBars className="FaBars" onClick={() => setOpen(!open)} />
+        <div className="FaBars" onClick={() => setOpen(!open)}>
+          {open ? <FaBars /> : <AiOutlineClose />}
+        </div>
         <MenuHamburguer open={open}>
           <Hamburguer />
         </MenuHamburguer>
