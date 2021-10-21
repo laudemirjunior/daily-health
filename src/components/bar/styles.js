@@ -19,9 +19,10 @@ export const StyleBar = styled.div`
     align-items: center;
   }
   .logo {
-    font-size: 30px;
+    font-size: 34px;
     padding: 10px;
     font-weight: bold;
+    font-family: "Dancing Script", cursive;
   }
   .buttons {
     display: flex;
@@ -38,6 +39,10 @@ export const StyleBar = styled.div`
     display: block;
     margin-right: 30px;
     font-size: 20px;
+  }
+  img {
+    width: 200px;
+    height: 250px;
   }
   @media (min-width: 768px) {
     .info {

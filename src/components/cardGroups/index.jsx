@@ -1,10 +1,16 @@
-import { StyleCardTask } from "./styles";
+import { Button, StyleCardTask } from "./styles";
 import { AiOutlineLogin } from "react-icons/ai";
 import { useContext } from "react";
 import { MyGroupListContext } from "../../Providers/myGroupList";
+import { useHistory } from "react-router";
 
 const CardGroups = ({ item }) => {
+  let history = useHistory();
   const { subscribe } = useContext(MyGroupListContext);
+
+  function handleClick(item) {
+    history.push(`/groups/${item.id}`);
+  }
 
   return (
     <StyleCardTask>
@@ -24,6 +30,7 @@ const CardGroups = ({ item }) => {
           }}
           className="iconGroup"
         />
+        <Button onClick={() => handleClick(item)}>Entrar</Button>
       </div>
     </StyleCardTask>
   );

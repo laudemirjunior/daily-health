@@ -29,6 +29,7 @@ export const Container = styled.div`
     }
   }
   .buttons {
+    z-index: 1;
     min-width: 300px;
     width: 40%;
     height: 100%;
@@ -68,7 +69,6 @@ export const Poligon = styled.div`
   background-color: var(--menu);
   top: 60px;
   left: 0px;
-  z-index: -1;
   height: calc(100% - 60px);
   width: 100%;
   clip-path: polygon(0 0, 100% 0, 100% 20%, 0 70%);

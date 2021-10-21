@@ -5,10 +5,6 @@ import { toast } from "react-toastify";
 export const ActivitiesContext = createContext();
 
 export const ActivitiesProvider = ({ children }) => {
-  const [token] = useState(
-    JSON.parse(localStorage.getItem("@KenzieHealth:token")) || ""
-  );
-
   const [activitiesList, setActivitiesList] = useState([]);
 
   const notifySearchActivities = () =>
@@ -20,6 +16,7 @@ export const ActivitiesProvider = ({ children }) => {
     toast.error("Erro ao deletar a atividade!");
 
   const searchActivities = (id) => {
+    const token = JSON.parse(localStorage.getItem("@KenzieHealth:token"));
     api
       .get(`/activities/?group=${id}&page=1`, {
         headers: {
@@ -33,6 +30,7 @@ export const ActivitiesProvider = ({ children }) => {
   };
 
   const createActivity = (activity) => {
+    const token = JSON.parse(localStorage.getItem("@KenzieHealth:token"));
     api
       .post("/activities/", activity, {
         headers: {
@@ -43,6 +41,7 @@ export const ActivitiesProvider = ({ children }) => {
   };
 
   const updateAtivity = (id, title) => {
+    const token = JSON.parse(localStorage.getItem("@KenzieHealth:token"));
     api
       .patch(`/activities/${id}/`, title, {
         headers: {
@@ -53,6 +52,7 @@ export const ActivitiesProvider = ({ children }) => {
   };
 
   const deleteActivity = (id) => {
+    const token = JSON.parse(localStorage.getItem("@KenzieHealth:token"));
     api
       .delete(`/activities/${id}/`, {
         headers: {

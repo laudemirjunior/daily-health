@@ -4,10 +4,6 @@ import { toast } from "react-toastify";
 export const GoalsContext = createContext();
 
 export const GoalsProvider = ({ children }) => {
-  const [token] = useState(
-    JSON.parse(localStorage.getItem("@KenzieHealth:token")) || ""
-  );
-
   const [goalsList, setGoalsList] = useState([]);
 
   const notifySearchGoals = () => toast.error("Erro ao carregar suas metas!");
@@ -15,8 +11,10 @@ export const GoalsProvider = ({ children }) => {
   const notifyUpdateGoals = () => toast.error("Erro ao atualizar sua meta!");
   const notifyDeleteGoals = () => toast.error("Erro ao deletar sua meta!");
 
-  const searchGoals = (id) => {
-    api
+  const searchGoals = async (id) => {
+    const token = JSON.parse(localStorage.getItem("@KenzieHealth:token"));
+    console.log(token);
+    await api
       .get(`/goals/?group=${id}&page=1`, null, {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -25,10 +23,14 @@ export const GoalsProvider = ({ children }) => {
       .then((response) => {
         setGoalsList(response.data.results);
       })
-      .catch(() => notifySearchGoals());
+      .catch((err) => {
+        console.log(err);
+        notifySearchGoals();
+      });
   };
 
   const createGoals = (goal) => {
+    const token = JSON.parse(localStorage.getItem("@KenzieHealth:token"));
     api
       .post("/goals/", goal, {
         headers: {
@@ -39,6 +41,7 @@ export const GoalsProvider = ({ children }) => {
   };
 
   const updateGoals = (boolean, id) => {
+    const token = JSON.parse(localStorage.getItem("@KenzieHealth:token"));
     api
       .patch(
         `/goals/${id}/`,
@@ -53,6 +56,7 @@ export const GoalsProvider = ({ children }) => {
   };
 
   const deleteGoals = (id) => {
+    const token = JSON.parse(localStorage.getItem("@KenzieHealth:token"));
     api
       .delete(`/goals/${id}/`, {
         headers: {

@@ -5,7 +5,7 @@ import "moment/locale/pt-br";
 import { useContext } from "react";
 import { ActivitiesContext } from "../../Providers/activities";
 
-const CardActivities = ({ item }) => {
+const CardActivities = ({ item, locket }) => {
   const { deleteActivity } = useContext(ActivitiesContext);
   return (
     <StyleCardTask>
@@ -16,15 +16,17 @@ const CardActivities = ({ item }) => {
         </h4>
         <h4>Hora: {moment(item.realization_time).format("LT")}</h4>
       </div>
-      <AiOutlineCloseCircle
-        onClick={() => deleteActivity(item.id)}
-        style={{
-          color: "red",
-          backgroundColor: "white",
-          borderRadius: "50%",
-          boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
-        }}
-      />
+      {locket && (
+        <AiOutlineCloseCircle
+          onClick={() => deleteActivity(item.id)}
+          style={{
+            color: "red",
+            backgroundColor: "white",
+            borderRadius: "50%",
+            boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
+          }}
+        />
+      )}
     </StyleCardTask>
   );
 };

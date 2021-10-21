@@ -18,7 +18,6 @@ const Home = () => {
         <div className="background">
           <h1>Monitore seus habitos</h1>
         </div>
-        <Poligon />
         <div className="buttons">
           <h1>Monitore seus habitos</h1>
           <span>Comece agora para transformar sua vida </span>
@@ -27,6 +26,7 @@ const Home = () => {
           <Buttons onClick={() => history.push("/signup")}>Sign Up</Buttons>
         </div>
       </Container>
+      <Poligon />
     </MainContainer>
   );
 };

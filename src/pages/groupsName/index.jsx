@@ -55,18 +55,16 @@ const GroupsID = () => {
               </Link>
               <h1>Minhas Metas</h1>
 
-              <Button onClick={() => openShowGoals()}>Criar meta</Button>
               {goalsList.map((item) => {
-                return <CardGoals item={item} locket={true} />;
+                return <CardGoals item={item} locket={false} />;
               })}
               {openGoals && <CardCreateGoals openShowGoals={openShowGoals} />}
             </div>
             <div className="card">
               <h1>Minhas atividades</h1>
-              <Button onClick={openShowActivities}>Criar atividade</Button>
               {activitiesList.map((item) => {
                 return (
-                  <CardActivities item={item} locket={true}></CardActivities>
+                  <CardActivities item={item} locket={false}></CardActivities>
                 );
               })}
               {openActivities && (

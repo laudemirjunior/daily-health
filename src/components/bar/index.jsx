@@ -25,7 +25,7 @@ export default function Bar() {
               : history.push("/")
           }
         >
-          Kenzie Health
+          Daily Health
         </div>
         <div className="buttons">
           <div onClick={reverse}>

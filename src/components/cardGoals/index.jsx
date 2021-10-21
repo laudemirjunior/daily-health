@@ -3,7 +3,7 @@ import { AiOutlineCloseCircle, AiOutlineCheckCircle } from "react-icons/ai";
 import { useContext } from "react";
 import { GoalsContext } from "../../Providers/goals";
 
-const CardGoals = ({ item }) => {
+const CardGoals = ({ item, locket }) => {
   const { updateGoals, deleteGoals } = useContext(GoalsContext);
 
   return (
@@ -16,29 +16,33 @@ const CardGoals = ({ item }) => {
           <h5>Alcançou: {item.achieved === true ? "Sim" : "Não"}</h5>
         </div>
         <div className="actions">
-          <AiOutlineCloseCircle
-            onClick={() => deleteGoals(item.id)}
-            style={{
-              color: "red",
-              backgroundColor: "white",
-              borderRadius: "50%",
-              boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
-            }}
-          />
+          {locket && (
+            <AiOutlineCloseCircle
+              onClick={() => deleteGoals(item.id)}
+              style={{
+                color: "red",
+                backgroundColor: "white",
+                borderRadius: "50%",
+                boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
+              }}
+            />
+          )}
           <div
             className="active"
             onClick={() => {
               updateGoals(true, item.id);
             }}
           >
-            <AiOutlineCheckCircle
-              style={{
-                color: "green",
-                backgroundColor: "white",
-                borderRadius: "50%",
-                boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
-              }}
-            />
+            {locket && (
+              <AiOutlineCheckCircle
+                style={{
+                  color: "green",
+                  backgroundColor: "white",
+                  borderRadius: "50%",
+                  boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
+                }}
+              />
+            )}
           </div>
         </div>
       </StyleCardTask>

@@ -8,7 +8,6 @@ import CardCreateGroup from "../../components/cardCreateGroup";
 import CardGroups from "../../components/cardGroups";
 import { GroupListContext } from "../../Providers/groupList";
 import { MyGroupListContext } from "../../Providers/myGroupList";
-
 import { Redirect } from "react-router";
 
 const Groups = () => {
