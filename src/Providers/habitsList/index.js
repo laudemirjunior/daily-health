@@ -10,6 +10,7 @@ export const HabitListProvider = ({ children }) => {
   const [habitList, setHabitList] = useState([]);
   const { token } = useContext(AuthContext);
   const { decodedToken, isExpired } = useJwt(token);
+  const [anime, setAnime] = useState(false);
 
   const notifyGetHabitList = () =>
     toast.error("Erro ao carregar seus hábitos!");
@@ -47,7 +48,6 @@ export const HabitListProvider = ({ children }) => {
 
   const CreateHabit = (habit) => {
     const token = JSON.parse(localStorage.getItem("@KenzieHealth:token"));
-
     let newHabit = {
       ...habit,
       how_much_achieved: 0,
@@ -59,7 +59,11 @@ export const HabitListProvider = ({ children }) => {
           Authorization: `Bearer ${token}`,
         },
       })
-      .then(() => getHabitList())
+      .then(() => {
+        getHabitList();
+        setAnime(false);
+      })
+
       .catch(() => notifyCreateHabit());
   };
 
@@ -90,6 +94,7 @@ export const HabitListProvider = ({ children }) => {
         CreateHabit,
         updateHabit,
         getHabitList,
+        anime,
       }}
     >
       {children}
