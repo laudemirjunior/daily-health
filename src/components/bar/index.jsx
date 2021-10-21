@@ -24,9 +24,7 @@ export default function Bar() {
               ? history.push("/dashboard")
               : history.push("/")
           }
-        >
-          Kenzie Health
-        </div>
+        ></div>
         <div className="buttons">
           <div onClick={reverse}>
             {change ? <MdDarkMode /> : <MdLightMode />}

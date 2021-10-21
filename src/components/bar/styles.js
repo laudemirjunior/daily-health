@@ -39,6 +39,10 @@ export const StyleBar = styled.div`
     margin-right: 30px;
     font-size: 20px;
   }
+  img {
+    width: 200px;
+    height: 250px;
+  }
   @media (min-width: 768px) {
     .info {
       display: block;
