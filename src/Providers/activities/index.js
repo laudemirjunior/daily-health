@@ -6,7 +6,8 @@ export const ActivitiesContext = createContext();
 
 export const ActivitiesProvider = ({ children }) => {
   const [activitiesList, setActivitiesList] = useState([]);
-
+  const [loadingAct, setLoading] = useState(false);
+  const [batata, setBatata] = useState(false);
   const notifySearchActivities = () =>
     toast.error("Erro ao carregar as atividade!");
   const notifyCreateActivity = () => toast.error("Erro ao criar a atividade!");
@@ -15,9 +16,10 @@ export const ActivitiesProvider = ({ children }) => {
   const notifyDeleteActivity = () =>
     toast.error("Erro ao deletar a atividade!");
 
-  const searchActivities = (id) => {
+  const searchActivities = async (id) => {
     const token = JSON.parse(localStorage.getItem("@KenzieHealth:token"));
-    api
+    setLoading(true);
+    await api
       .get(`/activities/?group=${id}&page=1`, {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -25,6 +27,8 @@ export const ActivitiesProvider = ({ children }) => {
       })
       .then((response) => {
         setActivitiesList(response.data.results);
+        setBatata("batata");
+        setLoading(false);
       })
       .catch(() => notifySearchActivities());
   };
@@ -70,6 +74,7 @@ export const ActivitiesProvider = ({ children }) => {
         createActivity,
         updateAtivity,
         deleteActivity,
+        loadingAct,
       }}
     >
       {children}

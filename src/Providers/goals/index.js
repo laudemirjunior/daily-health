@@ -5,23 +5,27 @@ export const GoalsContext = createContext();
 
 export const GoalsProvider = ({ children }) => {
   const [goalsList, setGoalsList] = useState([]);
-
+  const [loading, setLoading] = useState(false);
+  const [batata, setBatata] = useState(false);
   const notifySearchGoals = () => toast.error("Erro ao carregar suas metas!");
   const notifyCreateGoals = () => toast.error("Erro ao criar sua meta!");
   const notifyUpdateGoals = () => toast.error("Erro ao atualizar sua meta!");
   const notifyDeleteGoals = () => toast.error("Erro ao deletar sua meta!");
 
-  const searchGoals = async (id) => {
+  const searchGoals = (id) => {
+    setLoading(true);
     const token = JSON.parse(localStorage.getItem("@KenzieHealth:token"));
-    console.log(token);
-    await api
+
+    api
       .get(`/goals/?group=${id}&page=1`, null, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       })
-      .then((response) => {
+      .then(async (response) => {
         setGoalsList(response.data.results);
+        setBatata("batata");
+        setLoading(false);
       })
       .catch((err) => {
         console.log(err);
@@ -77,6 +81,7 @@ export const GoalsProvider = ({ children }) => {
         createGoals,
         updateGoals,
         deleteGoals,
+        loading,
       }}
     >
       {children}

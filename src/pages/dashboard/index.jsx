@@ -7,10 +7,12 @@ import { HabitListContext } from "../../Providers/habitsList";
 import { MyGroupListContext } from "../../Providers/myGroupList";
 import { useContext } from "react";
 import { Redirect } from "react-router";
+import CircularProgress from "@mui/material/CircularProgress";
 
 const Dashboard = () => {
-  const { habitList, removeHabit, updateHabit } = useContext(HabitListContext);
-  const { myGroupList } = useContext(MyGroupListContext);
+  const { habitList, removeHabit, updateHabit, loading } =
+    useContext(HabitListContext);
+  const { myGroupList, loadingMyGroup } = useContext(MyGroupListContext);
 
   if (!localStorage.getItem("@KenzieHealth:token")) {
     return <Redirect to="/" />;
@@ -29,21 +31,29 @@ const Dashboard = () => {
               <div className="cards">
                 <div className="card">
                   <h1 className="title">Meus hábitos</h1>
-                  {habitList.map((item) => {
-                    return (
-                      <CardHabit
-                        item={item}
-                        removeHabit={removeHabit}
-                        updateHabit={updateHabit}
-                      />
-                    );
-                  })}
+                  {loading ? (
+                    <CircularProgress />
+                  ) : (
+                    habitList.map((item) => {
+                      return (
+                        <CardHabit
+                          item={item}
+                          removeHabit={removeHabit}
+                          updateHabit={updateHabit}
+                        />
+                      );
+                    })
+                  )}
                 </div>
                 <div className="card">
                   <h1 className="title">Meus Grupos</h1>
-                  {myGroupList.map((item) => {
-                    return <CardMyGroups item={item} />;
-                  })}
+                  {loadingMyGroup ? (
+                    <CircularProgress />
+                  ) : (
+                    myGroupList.map((item) => {
+                      return <CardMyGroups item={item} />;
+                    })
+                  )}
                 </div>
               </div>
             </div>

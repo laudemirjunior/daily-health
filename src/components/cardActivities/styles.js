@@ -18,4 +18,11 @@ export const StyleCardTask = styled.div`
     justify-content: space-between;
     flex-direction: column;
   }
+  .iconGroup {
+    transition: 0.4s;
+    :hover {
+      box-shadow: 0 15px 15px rgba(0, 0, 0, 0.16);
+      transform: translate(0, -5px);
+    }
+  }
 `;

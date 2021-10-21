@@ -42,6 +42,13 @@ export const MainContainer = styled.div`
       justify-content: space-around;
       width: 100%;
     }
+    .buttonIcon {
+      transition: 0.8s;
+      border-radius: 10px;
+    }
+    .buttonIcon:hover {
+      opacity: 0.5;
+    }
   }
 
   .card {

@@ -6,12 +6,13 @@ export const GroupListContext = createContext();
 export const GroupListProvider = ({ children }) => {
   const [groupList, setgroupList] = useState([]);
   const notifyGroupList = () => toast.error("Erro ao carregar os grupos!");
-
+  const [loading, setLoading] = useState(false);
   const [number, setNumber] = useState(1);
   const [pag, setPag] = useState(1);
 
   const getAllGroups = () => {
     const token = JSON.parse(localStorage.getItem("@KenzieHealth:token"));
+    setLoading(true);
     api
       .get(`/groups/?page=${number}`, {
         headers: {
@@ -21,6 +22,7 @@ export const GroupListProvider = ({ children }) => {
       .then((response) => {
         setPag(Math.round(response.data.count / 15));
         setgroupList(response.data.results);
+        setLoading(false);
       })
       .catch((err) => {
         notifyGroupList();
@@ -48,7 +50,9 @@ export const GroupListProvider = ({ children }) => {
   }, []);
 
   return (
-    <GroupListContext.Provider value={{ groupList, getAllGroups, next, prev }}>
+    <GroupListContext.Provider
+      value={{ groupList, getAllGroups, next, prev, loading }}
+    >
       {children}
     </GroupListContext.Provider>
   );

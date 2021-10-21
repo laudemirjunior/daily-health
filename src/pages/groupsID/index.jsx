@@ -13,11 +13,12 @@ import { Redirect, useParams } from "react-router";
 import { useEffect } from "react";
 import { RiArrowGoBackLine } from "react-icons/ri";
 import { Link } from "react-router-dom";
-
+import CircularProgress from "@mui/material/CircularProgress";
 const GroupsID = () => {
   const { id } = useParams();
-  const { activitiesList, searchActivities } = useContext(ActivitiesContext);
-  const { goalsList, searchGoals } = useContext(GoalsContext);
+  const { activitiesList, searchActivities, loadingAct } =
+    useContext(ActivitiesContext);
+  const { goalsList, searchGoals, loading } = useContext(GoalsContext);
   const [openActivities, setOpenActivities] = useState(false);
   const [openGoals, setOpenGoals] = useState(false);
 
@@ -56,19 +57,27 @@ const GroupsID = () => {
               <h1>Minhas Metas</h1>
 
               <Button onClick={() => openShowGoals()}>Criar meta</Button>
-              {goalsList.map((item) => {
-                return <CardGoals item={item} locket={true} />;
-              })}
+              {loading ? (
+                <CircularProgress />
+              ) : (
+                goalsList.map((item) => {
+                  return <CardGoals item={item} locket={true} />;
+                })
+              )}
               {openGoals && <CardCreateGoals openShowGoals={openShowGoals} />}
             </div>
             <div className="card">
               <h1>Minhas atividades</h1>
               <Button onClick={openShowActivities}>Criar atividade</Button>
-              {activitiesList.map((item) => {
-                return (
-                  <CardActivities item={item} locket={true}></CardActivities>
-                );
-              })}
+              {loadingAct ? (
+                <CircularProgress />
+              ) : (
+                activitiesList.map((item) => {
+                  return (
+                    <CardActivities item={item} locket={true}></CardActivities>
+                  );
+                })
+              )}
               {openActivities && (
                 <CardCreateActivities openShowActivities={openShowActivities} />
               )}

@@ -64,6 +64,10 @@ export const MainContainer = styled.div`
     top: 0;
     margin: 20px;
     color: var(--black);
+    transition: 0.5s;
+    :hover {
+      opacity: 0.5;
+    }
   }
 `;
 

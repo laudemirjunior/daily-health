@@ -5,7 +5,7 @@ export const MyGroupListContext = createContext();
 
 export const MyGroupListProvider = ({ children }) => {
   const [myGroupList, setMygroupList] = useState([]);
-
+  const [loadingMyGroup, setLoadingMyGroup] = useState(false);
   const notifyGetMyGroupList = () =>
     toast.error("Erro ao carregar sua lista de grupos!");
   const notifyCreateGroup = () => toast.error("Erro ao criar seu grupo!");
@@ -14,13 +14,17 @@ export const MyGroupListProvider = ({ children }) => {
 
   const getMyGroupList = () => {
     const token = JSON.parse(localStorage.getItem("@KenzieHealth:token"));
+    setLoadingMyGroup(true);
     api
       .get("/groups/subscriptions/", {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       })
-      .then((response) => setMygroupList(response.data))
+      .then((response) => {
+        setMygroupList(response.data);
+        setLoadingMyGroup(false);
+      })
       .catch(() => {
         notifyGetMyGroupList();
       });
@@ -77,6 +81,7 @@ export const MyGroupListProvider = ({ children }) => {
         subscribe,
         unSubscribe,
         getMyGroupList,
+        loadingMyGroup,
       }}
     >
       {children}
