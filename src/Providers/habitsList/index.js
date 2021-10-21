@@ -51,7 +51,6 @@ export const HabitListProvider = ({ children }) => {
 
   const CreateHabit = (habit) => {
     const token = JSON.parse(localStorage.getItem("@KenzieHealth:token"));
-
     let newHabit = {
       ...habit,
       how_much_achieved: 0,
@@ -63,7 +62,11 @@ export const HabitListProvider = ({ children }) => {
           Authorization: `Bearer ${token}`,
         },
       })
-      .then(() => getHabitList())
+      .then(() => {
+        getHabitList();
+        setAnime(false);
+      })
+
       .catch(() => notifyCreateHabit());
   };
 
@@ -94,7 +97,11 @@ export const HabitListProvider = ({ children }) => {
         CreateHabit,
         updateHabit,
         getHabitList,
+<<<<<<< HEAD
         loading,
+=======
+        anime,
+>>>>>>> 82e2fd9ccd649955b0c2bfc3bc2c1c658d402a12
       }}
     >
       {children}

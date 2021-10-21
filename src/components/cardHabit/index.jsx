@@ -3,11 +3,6 @@ import { AiOutlineCloseCircle, AiOutlineCheckCircle } from "react-icons/ai";
 import { useState } from "react";
 
 const CardHabit = ({ item, removeHabit, updateHabit }) => {
-  const [show, setShow] = useState(false);
-  const open = () => {
-    setShow(!show);
-  };
-
   const value = () => {
     if ((item.how_much_achieved * 100) / 30 < 100) {
       return (item.how_much_achieved * 100) / 30;
@@ -50,7 +45,6 @@ const CardHabit = ({ item, removeHabit, updateHabit }) => {
             className="active"
             onClick={() => {
               updateHabit(item.how_much_achieved + 1, item.id);
-              open();
             }}
           >
             <h3>{item.how_much_achieved} Dias</h3>

@@ -20,8 +20,6 @@ import { GroupListContext } from "../../Providers/groupList";
 import { useContext } from "react";
 import api from "../../services";
 import { toast } from "react-toastify";
-import { GoalsContext } from "../../Providers/goals";
-import { ActivitiesContext } from "../../Providers/activities";
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState("password");
@@ -29,8 +27,7 @@ const Login = () => {
   const { getHabitList } = useContext(HabitListContext);
   const { getMyGroupList } = useContext(MyGroupListContext);
   const { getAllGroups } = useContext(GroupListContext);
-  const { searchGoals } = useContext(GoalsContext);
-  const { searchActivities } = useContext(ActivitiesContext);
+
   const { up } = useContext(AuthContext);
 
   const schema = yup.object().shape({
