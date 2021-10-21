@@ -62,5 +62,6 @@ export const StyleCardTask = styled.div`
     position: relative;
     bottom: 0;
     right: 3px;
+    z-index: 0;
   }
 `;

@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 export const StyleCardCreate = styled.div`
+  z-index: 1;
   width: 300px;
   height: 450px;
   background-color: white;

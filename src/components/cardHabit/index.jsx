@@ -35,7 +35,7 @@ const CardHabit = ({ item, removeHabit, updateHabit }) => {
 
   return (
     <>
-      <StyleCardTask change={item.how_much_achieved < 30}>
+      <StyleCardTask change={item.how_much_achieved <= 30}>
         <div>
           <h2>Título: {item.title}</h2>
           <h3>Categoria: {item.category}</h3>

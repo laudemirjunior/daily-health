@@ -11,6 +11,7 @@ export const HabitListProvider = ({ children }) => {
   const { token } = useContext(AuthContext);
   const { decodedToken, isExpired } = useJwt(token);
   const [loading, setLoading] = useState(false);
+  const load = "load";
 
   const notifyGetHabitList = () =>
     toast.error("Erro ao carregar seus hábitos!");
@@ -18,9 +19,11 @@ export const HabitListProvider = ({ children }) => {
   const notifyCreateHabit = () => toast.error("Erro ao criar seu hábito!");
   const notifyUpdateHabit = () => toast.error("Erro ao atualizar seu hábito!");
 
-  const getHabitList = () => {
+  const getHabitList = (load) => {
     const token = JSON.parse(localStorage.getItem("@KenzieHealth:token"));
-    setLoading(true);
+    if (!load) {
+      setLoading(true);
+    }
     api
       .get("/habits/personal/", {
         headers: {
@@ -78,7 +81,7 @@ export const HabitListProvider = ({ children }) => {
           Authorization: `Bearer ${token}`,
         },
       })
-      .then(() => getHabitList())
+      .then(() => getHabitList(load))
       .catch(() => notifyUpdateHabit());
   };
 
