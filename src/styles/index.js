@@ -10,7 +10,7 @@ const GlobalStyle = createGlobalStyle`
     font-family: 'Nunito', sans-serif;
   }
   body {
-    background-color: ${(props) => (props.change ? "trasparent" : "#0D0D0D")};;
+    background-color: ${(props) => (props.change ? "trasparent" : "#0D0D0D")};
   }
   .App {
       width: 100%;
