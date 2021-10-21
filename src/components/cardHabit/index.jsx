@@ -1,6 +1,8 @@
 import { StyleCardTask } from "./styles";
 import { AiOutlineCloseCircle, AiOutlineCheckCircle } from "react-icons/ai";
 import { useState } from "react";
+import Lottie from "react-lottie";
+import animationData from "../../animation/animate-check.json";
 
 const CardHabit = ({ item, removeHabit, updateHabit }) => {
   const value = () => {
@@ -11,9 +13,29 @@ const CardHabit = ({ item, removeHabit, updateHabit }) => {
     }
   };
 
+  const [anime, setAnime] = useState(false);
+
+  const [animationState, setAnimationState] = useState({
+    isStopped: false,
+    isPaused: false,
+  });
+  const defaultOptions = {
+    loop: false,
+    autoplay: true,
+    animationData: animationData,
+    rendererSettings: {
+      preserveAspectRatio: "xMidYMid slice",
+    },
+  };
+
+  const handleClick = () => {
+    setAnime(true);
+    setTimeout(() => setAnime(false), 2500);
+  };
+
   return (
     <>
-      <StyleCardTask>
+      <StyleCardTask change={item.how_much_achieved < 30}>
         <div>
           <h2>Título: {item.title}</h2>
           <h3>Categoria: {item.category}</h3>
@@ -40,16 +62,30 @@ const CardHabit = ({ item, removeHabit, updateHabit }) => {
               }}
             ></div>
           </div>
-          <div
-            style={{ backgroundColor: "white", color: "black" }}
-            className="active"
-            onClick={() => {
-              updateHabit(item.how_much_achieved + 1, item.id);
-            }}
-          >
-            <h3>{item.how_much_achieved} Dias</h3>
-            <AiOutlineCheckCircle style={{ color: "green" }} />
-          </div>
+          {anime || item.how_much_achieved > 30 ? (
+            <div className="lottie">
+              <Lottie
+                options={defaultOptions}
+                height={"40px"}
+                width={"40px"}
+                speed={0.5}
+                isStopped={animationState.isStopped}
+                isPaused={animationState.isPaused}
+              />
+            </div>
+          ) : (
+            <div
+              style={{ backgroundColor: "white", color: "black" }}
+              className="active"
+              onClick={() => {
+                updateHabit(item.how_much_achieved + 1, item.id);
+                handleClick();
+              }}
+            >
+              <h3>{item.how_much_achieved} Dias</h3>
+              <AiOutlineCheckCircle style={{ color: "green" }} />
+            </div>
+          )}
         </div>
       </StyleCardTask>
     </>
