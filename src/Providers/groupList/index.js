@@ -6,7 +6,6 @@ export const GroupListContext = createContext();
 export const GroupListProvider = ({ children }) => {
   const [groupList, setgroupList] = useState([]);
   const notifyGroupList = () => toast.error("Erro ao carregar os grupos!");
-
   const [number, setNumber] = useState(2);
   const [pag, setPag] = useState(32);
 

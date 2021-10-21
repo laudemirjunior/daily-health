@@ -18,7 +18,7 @@ const Groups = () => {
     setShowCard(!showCard);
   };
 
-  const { groupList, next, prev } = useContext(GroupListContext);
+  const { groupList, next, prev, loading } = useContext(GroupListContext);
   const { myGroupList } = useContext(MyGroupListContext);
   if (!localStorage.getItem("@KenzieHealth:token")) {
     return <Redirect to="/" />;
@@ -53,6 +53,7 @@ const Groups = () => {
             </div>
           </div>
         </div>
+
         <Poligon />
       </MainContainer>
     </>

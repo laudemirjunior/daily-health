@@ -57,6 +57,7 @@ const Login = () => {
       })
       .then(async () => {
         setNameUser(data.username);
+        localStorage.setItem("@KenzieHealth:name", data.username);
         await toast.success("Login feito com Sucesso!");
         return <Redirect to={"/dashboard"} />;
       })

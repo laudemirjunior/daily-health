@@ -11,6 +11,14 @@ export const StyleBar = styled.div`
   align-items: center;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   color: white;
+  .logo {
+    transition: 0.3s;
+    :hover {
+      color: #777;
+      opacity: 0.8;
+      cursor: pointer;
+    }
+  }
   .bar {
     width: 100%;
     max-width: 1500px;
@@ -27,6 +35,13 @@ export const StyleBar = styled.div`
   .buttons {
     display: flex;
     align-items: center;
+    .iconTop {
+      transition: 0.8s;
+      :hover {
+        color: #777;
+        opacity: 0.8;
+      }
+    }
   }
   .info {
     display: none;
@@ -34,16 +49,18 @@ export const StyleBar = styled.div`
     margin: 10px;
     padding: 10px;
     border-left: 1px solid var(--black);
+    transition: 0.4s;
+    :hover {
+      color: #777;
+      opacity: 0.4;
+    }
   }
   .FaBars {
     display: block;
     margin-right: 30px;
     font-size: 20px;
   }
-  img {
-    width: 200px;
-    height: 250px;
-  }
+
   @media (min-width: 768px) {
     .info {
       display: block;
