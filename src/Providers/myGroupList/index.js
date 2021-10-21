@@ -21,8 +21,7 @@ export const MyGroupListProvider = ({ children }) => {
         },
       })
       .then((response) => setMygroupList(response.data))
-      .catch((err) => {
-        console.log(err);
+      .catch(() => {
         notifyGetMyGroupList();
       });
   };
