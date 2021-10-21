@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import background from "../../images/background.png";
+import backgroundTwo from "../../images/background3.png";
 
 export const StyleCardTask = styled.div`
   width: 100%;
@@ -9,7 +10,8 @@ export const StyleCardTask = styled.div`
   display: flex;
   justify-content: space-between;
   padding: 10px;
-  background-image: url(${background});
+  background-image: ${(props) =>
+    props.change ? `url(${background})` : `url(${backgroundTwo})`};
   background-size: 100% 100%;
   color: white;
   div {
@@ -55,5 +57,10 @@ export const StyleCardTask = styled.div`
   .iconHabit:hover {
     box-shadow: 0 6px 6px rgba(0, 0, 0, 0.16);
     transform: translate(0, -5px);
+  }
+  .lottie {
+    position: relative;
+    bottom: 0;
+    right: 3px;
   }
 `;

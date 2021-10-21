@@ -11,7 +11,6 @@ export const HabitListProvider = ({ children }) => {
   const { token } = useContext(AuthContext);
   const { decodedToken, isExpired } = useJwt(token);
   const [loading, setLoading] = useState(false);
-  const [anime, setAnime] = useState(false);
 
   const notifyGetHabitList = () =>
     toast.error("Erro ao carregar seus hábitos!");
@@ -64,7 +63,7 @@ export const HabitListProvider = ({ children }) => {
         },
       })
       .then(() => {
-        setAnime(false);
+        getHabitList();
       })
 
       .catch(() => notifyCreateHabit());
@@ -98,7 +97,6 @@ export const HabitListProvider = ({ children }) => {
         updateHabit,
         getHabitList,
         loading,
-        anime,
       }}
     >
       {children}
