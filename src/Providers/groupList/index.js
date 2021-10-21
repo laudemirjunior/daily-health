@@ -7,8 +7,8 @@ export const GroupListProvider = ({ children }) => {
   const [groupList, setgroupList] = useState([]);
   const notifyGroupList = () => toast.error("Erro ao carregar os grupos!");
 
-  const [number, setNumber] = useState(2);
-  const [pag, setPag] = useState(32);
+  const [number, setNumber] = useState(1);
+  const [pag, setPag] = useState(1);
 
   const getAllGroups = () => {
     const token = JSON.parse(localStorage.getItem("@KenzieHealth:token"));
@@ -35,7 +35,7 @@ export const GroupListProvider = ({ children }) => {
   };
 
   const prev = () => {
-    if (number > 1) {
+    if (number > 0) {
       setNumber(number - 1);
       getAllGroups();
     }
