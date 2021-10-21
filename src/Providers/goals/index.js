@@ -37,7 +37,10 @@ export const GoalsProvider = ({ children }) => {
           Authorization: `Bearer ${token}`,
         },
       })
-      .catch(() => notifyCreateGoals());
+      .catch((err) => {
+        console.log(err);
+        notifyCreateGoals();
+      });
   };
 
   const updateGoals = (boolean, id) => {

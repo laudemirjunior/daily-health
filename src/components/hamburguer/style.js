@@ -12,6 +12,14 @@ export const StyleHamburguer = styled.div`
   flex-direction: column;
   color: var(--black);
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+
+  .menuItem {
+    transition: 0.5s;
+    :hover {
+      color: #777;
+      opacity: 0.8;
+    }
+  }
   div {
     width: 150px;
     height: 50%;

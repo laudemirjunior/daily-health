@@ -29,7 +29,11 @@ export default function Bar() {
         </div>
         <div className="buttons">
           <div onClick={reverse}>
-            {change ? <MdDarkMode /> : <MdLightMode />}
+            {change ? (
+              <MdDarkMode className="iconTop" />
+            ) : (
+              <MdLightMode className="iconTop" />
+            )}
           </div>
           <span className="info" onClick={() => history.push("/pinkoctober")}>
             Outubro rosa

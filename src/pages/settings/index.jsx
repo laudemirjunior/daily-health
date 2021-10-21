@@ -37,6 +37,7 @@ const Settings = () => {
       .then(() => toast.success(`Seu novo Username é: ${data.userName}`))
       .then(() => {
         setNameUser(data.userName);
+        localStorage.setItem("@KenzieHealth:name", data.username);
       })
 
       .catch((err) => toast.error("Erro ao mudar seu Username!"));
@@ -62,7 +63,12 @@ const Settings = () => {
                 <CardHeading>Seu Perfil: </CardHeading>
                 <div>
                   <img src={k} alt="" />
-                  <span>Username: {nameUser}</span>
+                  <span>
+                    Username:{" "}
+                    {nameUser === ""
+                      ? localStorage.getItem("@KenzieHealth:name")
+                      : nameUser}
+                  </span>
                   <span>
                     Voce Participa de {myGroupList.length} grupos diferentes!
                   </span>

@@ -29,10 +29,15 @@ const Hamburguer = () => {
         <>
           <div>
             <img src={k} alt="" />
-            <p>{nameUser}</p>
+            <p>
+              {nameUser === ""
+                ? localStorage.getItem("@KenzieHealth:name")
+                : nameUser}
+            </p>
           </div>
           <div>
             <div
+              className={local !== "/dashboard" && "menuItem"}
               style={
                 local === "/dashboard"
                   ? { background: "var(--white)" }
@@ -43,6 +48,7 @@ const Hamburguer = () => {
               <span onClick={() => history.push("/dashboard")}>Dashboard</span>
             </div>
             <div
+              className={local !== "/habits" && "menuItem"}
               style={
                 local === "/habits"
                   ? { background: "var(--white)" }
@@ -53,6 +59,7 @@ const Hamburguer = () => {
               <span onClick={() => history.push("/habits")}>Hábitos</span>
             </div>
             <div
+              className={local !== "/groups" && "menuItem"}
               style={
                 local === "/groups"
                   ? { background: "var(--white)" }
@@ -63,6 +70,7 @@ const Hamburguer = () => {
               <span onClick={() => history.push("/groups")}>Grupos</span>
             </div>
             <div
+              className={local !== "/settings" && "menuItem"}
               style={
                 local === "/settings"
                   ? { background: "var(--white)" }
@@ -79,6 +87,7 @@ const Hamburguer = () => {
       )}
       <div className="infos" style={{ height: "100px", marginTop: "20px" }}>
         <div
+          className={local !== "/pinkoctober" && "menuItem"}
           style={
             local === "/pinkoctober"
               ? { background: "var(--white)" }
@@ -89,6 +98,7 @@ const Hamburguer = () => {
           <span onClick={() => history.push("/pinkoctober")}>Outubro Rosa</span>
         </div>
         <div
+          className={local !== "/aboutus" && "menuItem"}
           style={
             local === "/aboutus"
               ? { background: "var(--white)" }
@@ -103,7 +113,9 @@ const Hamburguer = () => {
         {localStorage.getItem("@KenzieHealth:token") && (
           <div>
             <BiLogOut />
-            <span onClick={() => logout()}>Logout</span>
+            <span className="menuItem" onClick={() => logout()}>
+              Logout
+            </span>
           </div>
         )}
       </div>
