@@ -22,7 +22,7 @@ const Hamburguer = () => {
     <StyleHamburguer>
       {localStorage.getItem("@KenzieHealth:token") ? null : (
         <div>
-          <h3>Kenzie Health</h3>
+          <h3>Daily Health</h3>
         </div>
       )}
       {localStorage.getItem("@KenzieHealth:token") && (

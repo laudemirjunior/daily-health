@@ -22,9 +22,9 @@ const AboutUs = () => {
           <LeftContainer>
             <h3>Sobre o App</h3>
             <span>
-              Com uma abordagem simple e facil o kenzie Health e um aplicativo
+              Com uma abordagem simple e facil o Daily Health e um aplicativo
               desenvolvido para voce comecar a desenvovler aquele habito que
-              sempre quis.{" "}
+              sempre quis.
             </span>
           </LeftContainer>
           <RigthContainer>
