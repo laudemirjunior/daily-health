@@ -73,11 +73,11 @@ export const StyleBar = styled.div`
 
 export const MenuHamburguer = styled.div`
   width: 200px;
-  height: 80vh;
+  height: 100vh;
   position: absolute;
   right: 50px;
   top: 60px;
-  z-index: 1;
+  z-index: 2;
   display: ${(props) => (props.open ? "none" : "block")};
   @media (min-width: 768px) {
     display: none;
